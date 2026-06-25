@@ -184,11 +184,12 @@ Solicitud/Contacto → apoyo humano → Embudo caliente → Solicitud de informa
    * El servicio ha sido aceptado y programado en agenda, el pago de la garantía o primer mes está confirmado, pero el baño aún no se entrega físicamente.
 
 10. #### 🚪 Etapa: Baño Entregado (Ganados)
-    * Cuando el equipo de operaciones entrega el baño en el sitio, Daniel o el equipo de logística debe **dar clic al botón "Baño entregado"**.
-    * **Acción del bot:** Dispara la encuesta post-servicio ("Recopila opiniones con emojis") y prepara la reactivación futura.
+    * Cuando se ganen los leads por primera vez, el lead se debe mover al embudo de **Ganados**.
+    * **⚠️ BOTÓN OBLIGATORIO:** Se debe usar preferentemente el botón de la tarjeta que dice **"Baño entregado y ganado"**, ya que este botón activa un mayor número de automatizaciones que el botón de entrega ordinario.
 
 11. #### 🔄 Ganado cliente reactiva
-    * **¿Cómo funciona?** Si un cliente que está en la etapa **Ganados** vuelve a escribir en el futuro (tenga o no un baño físicamente en sitio), el sistema rompe la espera y lo mueve automáticamente a esta etapa para dispararle el bot de reactivación con su menú interactivo de autogestión.
+    * **¿Cómo funciona?** Esta es la etapa donde deben vivir de ahí en adelante todos los clientes que ya se habían ganado pero que se reactivaron por cualquier razón.
+    * **Lógica de flujo:** Una vez que el cliente está en **Ganados**, si este vuelve a iniciar una conversación (pide información, seguimiento o retiros) y **se finaliza/resuelve esa conversación**, el lead se debe mover a esta etapa, donde residirá permanentemente.
 
 12. #### 🚚 Solicitud retiro
     * El cliente solicita que se recoja el baño. El bot le da los pasos para confirmarlo y le dispara la encuesta de emojis.
@@ -215,9 +216,9 @@ Solicitud/Contacto → apoyo humano → Embudo caliente → Solicitud de informa
 
 > [!IMPORTANT]
 > **Regla de oro sobre los clientes Ganados:**
-> 1. **Asegurar el estatus:** Siempre debes verificar que cuando una venta se concrete, el lead quede marcado en la etapa **Ganados**. Si no está en Ganados, el flujo se rompe.
-> 2. **El disparador por mensaje:** Una vez en **Ganados**, el lead entra en una "pausa" de espera. En el momento en que ese cliente vuelve a escribirnos (incluso tiempo después), el sistema detecta que es un cliente ganado y **automáticamente lo mueve a la etapa de reactivación ("Ganado cliente reactiva")**. **Esto ocurre tenga o no tenga un baño activo en su sitio en ese momento.**
-> 3. **¿Por qué funciona así?:** Esta transición automática al embudo de reactivación es lo que permite que se le dispare el menú de opciones (Bot GPT ganados / reactiva) para que el cliente pueda autogestionarse (solicitar retiros, quejas, rentar otro baño, consultar pagos, etc.) sin que tengas que intervenir de inmediato.
+> 1. **Asegurar el estatus:** Cuando una venta se concrete por primera vez, se debe mover el lead al embudo de **Ganados** y utilizar preferentemente el botón **"Baño entregado y ganado"**, ya que este botón contiene más automatizaciones integradas.
+> 2. **Reactivación y finalización:** Si un cliente en **Ganados** vuelve a iniciar una conversación (para pedir información, seguimiento, retiros, etc.), una vez que **se finalice/resuelva esa conversación**, el lead debe mandarse a la nueva etapa llamada **Ganados Cliente reactiva**.
+> 3. **Residencia permanente:** En la etapa de **Ganados Cliente reactiva** es donde deberá vivir siempre aquel cliente que ya se había ganado previamente, pero que se reactivó por cualquier razón.
 
 #### Menú de Cliente Actual ("Ganados el cliente reactiva")
 Cuando un cliente ganado nos vuelve a escribir (tenga o no un baño físicamente en sitio), el bot le presenta un menú interactivo:
@@ -388,8 +389,8 @@ A continuación se presenta un resumen estructurado en formato de preguntas y re
     *   **R:** Si te llega un lead por error y necesitas asignarlo a un compañero, debes cambiar el Responsable en Kommo CRM y **dejar obligatoriamente una nota interna** detallando cualquier dato extra, comentario o necesidad que el cliente ya te haya compartido en la conversación previa para no perder el contexto.
 *   **P7: ¿Cómo funciona la oferta de descuento en el embudo de Baños?**
     *   **R:** Dos horas después de enviar una cotización (manual o automática), si el cliente no responde, el bot le envía de forma automática un incentivo con un **5% de descuento** sobre el costo y agrega la etiqueta `-5% descuento`.
-*   **P8: ¿Qué sucede si un cliente que ya finalizó su servicio eventual (Ganado) vuelve a escribir?**
-    *   **R:** El sistema detecta el mensaje entrante, rompe la pausa de espera y lo mueve automáticamente a la etapa **Cliente Actual** del embudo de reactivación (*Ganados el cliente reactiva*) para lanzarle el menú de opciones de autogestión (retiros de baños, quejas, rentas adicionales, etc.).
+*   **P8: ¿Cómo funciona la reactivación para un cliente que ya fue ganado?**
+    *   **R:** Cuando un cliente ya ganado vuelve a iniciar una conversación (para pedir información, seguimiento, retiros, etc.), una vez que finalice o se resuelva esa conversación, se le debe mover a la etapa **Ganados Cliente reactiva**, donde deberá vivir permanentemente de ahí en adelante.
 
 ---
 

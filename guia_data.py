@@ -57,8 +57,8 @@ EMBUDOS_INFO = {
             },
             {
                 "nombre": "🚪 Baño Entregado / Ganados",
-                "descripcion": "El baño se entregó físicamente. El asesor debe dar clic en el botón 'Baño entregado'.",
-                "detalles": "Al dar clic, se activa la encuesta post-servicio con emojis (☹️, 😐, 😄) y se prepara al cliente para recibir un cupón de reactivación del 10% cuando finalice la renta."
+                "descripcion": "Cuando se ganen los leads por primera vez, se debe mover el lead al embudo de Ganados y usar preferentemente el botón que dice 'Baño entregado y ganado'.",
+                "detalles": "⚠️ ¡Regla Crítica! Siempre da clic al botón 'Baño entregado y ganado' en la tarjeta del lead, ya que este específico activa un mayor número de automatizaciones que el botón de entrega ordinario."
             },
             {
                 "nombre": "👤 Apoyo Humano",
@@ -71,8 +71,8 @@ EMBUDOS_INFO = {
             },
             {
                 "nombre": "🔄 Ganado cliente reactiva",
-                "descripcion": "El cliente ganado vuelve a escribir meses después, rompiendo la pausa de espera.",
-                "detalles": "El sistema detecta el mensaje y mueve el lead automáticamente a esta etapa (incluso si no tiene baño activo) para ofrecerle el menú autogestionable (solicitar retiros, quejas, rentar otro baño, consultar cobros, etc.)."
+                "descripcion": "Etapa donde deben vivir de ahí en adelante todos los clientes que ya se habían ganado pero que se reactivaron por cualquier razón.",
+                "detalles": "Lógica de llegada: Una vez que el lead ya está en Ganados y el cliente vuelve a iniciar una conversación o pide información, seguimiento o retiros, al finalizar/resolver esa conversación, se le debe mandar a esta etapa, donde residirá de manera permanente."
             },
             {
                 "nombre": "🚚 Solicitud retiro",
@@ -244,15 +244,15 @@ QUIZ_QUESTIONS = [
         "explanation": "Saniglobal no realiza servicios residenciales para fosas o sondeo. El bot aplica la etiqueta 'CASA HABITACIÓN' y cierra el lead automáticamente."
     },
     {
-        "question": "Si un cliente que estaba en estatus 'Ganados' (venta cerrada) vuelve a enviar un mensaje meses después, ¿qué ocurre?",
+        "question": "Cuando un cliente que ya estaba en estatus 'Ganados' vuelve a iniciar una conversación (pide info, seguimiento o retiros), ¿qué se debe hacer al finalizar esa conversación?",
         "options": [
-            "Se crea un lead duplicado en el embudo de solicitud de cotización.",
-            "El mensaje es bloqueado por las políticas de Meta de 24 horas.",
-            "El sistema lo mueve automáticamente a la etapa 'Cliente Actual' del embudo 'Ganados el cliente reactiva' para lanzarle el menú de opciones.",
-            "Permanece en el estatus anterior y Daniel Herrera debe buscarlo manualmente."
+            "Cerrar la tarjeta por completo y archivarla como Perdidos.",
+            "Dejarlo en la etapa de Ganados original sin realizar ningún cambio.",
+            "Mandar al lead a la etapa de 'Ganados Cliente reactiva', donde vivirá permanentemente de ahí en adelante.",
+            "Crear un lead duplicado en el embudo de solicitud de cotización."
         ],
         "correct": 2,
-        "explanation": "El sistema tiene una pausa que se rompe cuando el cliente ganado escribe. Esto lo mueve al embudo de reactivación (tenga o no baño activo) para autogestionarse."
+        "explanation": "La nueva regla de negocio establece que al finalizar cualquier conversación reactivada con un cliente que ya era ganado, se le debe mover a la etapa de 'Ganados Cliente reactiva', donde deberá residir de manera permanente."
     },
     {
         "question": "¿De cuánto es el cupón de descuento que ofrece el bot de seguimiento en Fosas y Trampas si la objeción es el precio?",

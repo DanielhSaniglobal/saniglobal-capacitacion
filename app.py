@@ -712,8 +712,8 @@ with tab_recursos:
             "a": "Dos horas después de enviar una cotización (manual o automática), si el cliente no ha respondido, el bot envía automáticamente una oferta del **5% de descuento** y agrega el tag `-5% descuento` para incentivar el cierre."
         },
         {
-            "q": "¿Qué pasa si un cliente ganado escribe de nuevo meses después?",
-            "a": "El sistema rompe la pausa y lo mueve automáticamente a la etapa **Cliente Actual** del embudo de reactivación (*Ganados el cliente reactiva*), mostrándole un menú interactivo autogestionable (solicitar retiro de baños, cotizar otro servicio, registrar quejas, etc.)."
+            "q": "¿Cómo funciona la reactivación para un cliente que ya fue ganado?",
+            "a": "Cuando un cliente que ya fue ganado vuelve a iniciar una conversación (para pedir información, seguimiento, retiros, etc.), una vez que finalice o se resuelva esa conversación, se le debe mandar a la etapa **Ganados Cliente reactiva**, donde deberá vivir permanentemente de ahí en adelante."
         }
     ]
 
