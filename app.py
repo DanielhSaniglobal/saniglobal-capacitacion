@@ -318,13 +318,14 @@ with head_right:
     st.button(theme_label, on_click=toggle_theme, use_container_width=True)
 
 # 6. Main Navigation Tabs
-tab_general, tab_banos, tab_fosas, tab_trampas, tab_quiz, tab_recursos = st.tabs([
+tab_general, tab_banos, tab_fosas, tab_trampas, tab_quiz, tab_recursos, tab_guia = st.tabs([
     "🏠 Inicio & General", 
     "🚽 Renta de Baños", 
     "🌀 Fosas Sépticas", 
     "🍳 Trampas de Grasa",
     "📝 Examen Interactivo",
-    "📂 Recursos & Plantillas"
+    "📂 Recursos & Plantillas",
+    "📖 Guía Completa"
 ])
 
 # ----------------------------------------------------
@@ -678,3 +679,19 @@ with tab_recursos:
             
     if not filtered_templates:
         st.info("No se encontraron plantillas con ese criterio de búsqueda.")
+
+# ----------------------------------------------------
+# TAB 7: GUÍA COMPLETA
+# ----------------------------------------------------
+with tab_guia:
+    st.markdown("### 📖 Guía de Capacitación Completa (Documento Oficial)")
+    st.markdown("A continuación se muestra el documento de texto oficial con todas las explicaciones detalladas y reglas de negocio de Saniglobal.")
+    
+    try:
+        with open("Guia_Capacitacion_Embudos.md", "r", encoding="utf-8") as f:
+            guia_content = f.read()
+        
+        # Display the markdown content
+        st.markdown(guia_content, unsafe_allow_html=True)
+    except Exception as e:
+        st.error(f"No se pudo cargar el archivo de la guía: {e}")
