@@ -270,7 +270,7 @@ with head_right:
     theme_label = "☀️ Claro" if IS_DARK else "🌙 Oscuro"
     st.button(theme_label, on_click=toggle_theme, use_container_width=True)
 
-# 6. Load Guide Sections from Markdown (and strip the internal TOC links)
+# 6. Load Guide Sections from Markdown
 def load_guide_sections():
     sections = {}
     try:
@@ -304,7 +304,7 @@ def load_guide_sections():
                 content_end = len(content)
             sections[key] = content[start_idx:content_end].strip()
             
-        # Strip the redundant Table of Contents (TOC) with broken internal links
+        # Strip redundant Table of Contents (TOC) with broken internal links
         if "general_parte1" in sections:
             part1_content = sections["general_parte1"]
             toc_start = part1_content.find("## 📌 Tabla de Contenidos")
@@ -417,127 +417,127 @@ with tab_banos:
     
     st.markdown("<div class='h-divider'></div>", unsafe_allow_html=True)
     st.markdown("### 📊 Tablero Visual de Etapas del Embudo (Renta de Baños)")
-    st.markdown("El embudo se compone de **17 etapas** secuenciales en el orden exacto de Kommo CRM. Cada columna representa una etapa individual en orden de flujo comercial. Haz clic en cada tarjeta para ver su detalle:")
+    st.markdown("El embudo se compone de **17 etapas** secuenciales en el orden exacto de tu CRM. Cada columna representa una etapa individual en orden de flujo comercial. Haz clic en cada tarjeta para ver su detalle:")
     
     etapas_banos = [
         {
             "num": 1,
-            "nombre": "Solicitud de Cotización / Contacto",
-            "razon": "Punto de entrada inicial del prospecto interesado al seleccionar 'Rentar baños'.",
-            "automatizacion": "El bot recopila uso (obra o evento), cantidad, tipo de baño, duración y dirección de forma autogestionada. Si el cliente pide 3 o más baños, el bot se detiene.",
-            "deber_vendedor": "Monitorear el chat. Si pide 3 o más baños, o falla la validación de dirección, debes cotizar manualmente."
+            "nombre": "Cerrado",
+            "razon": "Estatus final y de archivo para solicitudes descartadas, inviables (fuera de zona, proveedores, spam, empleos).",
+            "automatizacion": "El bot archiva y cierra de forma automatizada las solicitudes que no aplican.",
+            "deber_vendedor": "Monitorear ocasionalmente para verificar que no haya falsos descartes."
         },
         {
             "num": 2,
             "nombre": "Apoyo Humano",
-            "razon": "Casos donde el bot no califica datos o el cliente pide hablar con asesor.",
-            "automatizacion": "Detiene el bot y genera una tarea urgente para Daniel Herrera.",
-            "deber_vendedor": "Retomar el chat de inmediato para dar atención manual personalizada."
+            "razon": "Estatus para leads que requieren asistencia directa de un asesor o donde el bot se detiene por respuestas no clasificadas.",
+            "automatizacion": "Detiene el bot y genera de inmediato una tarea urgente asignada a Daniel Herrera.",
+            "deber_vendedor": "Retomar la conversación de forma manual e inmediata para resolver y dar atención."
         },
         {
             "num": 3,
-            "nombre": "Embudo Caliente",
-            "razon": "El cliente está respondiendo activamente en el chat.",
-            "automatizacion": "El bot no envía mensajes automatizados de seguimiento para evitar interrumpir o empalmarse con la conversación en vivo del asesor.",
-            "deber_vendedor": "Dar atención manual e inmediata vía chat en vivo para empujar la venta."
+            "nombre": "Solicitud Cotización",
+            "razon": "Punto de entrada inicial cuando el prospecto ingresa manifestando interés de rentar sanitarios portátiles.",
+            "automatizacion": "El bot inicia la recopilación de datos (uso de obra/evento, cantidad, tipo, dirección).",
+            "deber_vendedor": "Monitorear el chat. Si pide 3 o más baños, el bot se pausa y debes cotizar de forma manual."
         },
         {
             "num": 4,
-            "nombre": "Solicitud de Información",
-            "razon": "Validación de datos del cliente antes de enviar la propuesta.",
-            "automatizacion": "Ninguna automatización de envío masivo activa.",
-            "deber_vendedor": "Completar y validar los datos de entrega y fiscales en la tarjeta del lead."
+            "nombre": "Cotizado",
+            "razon": "La cotización formal ha sido elaborada y enviada a revisión del cliente.",
+            "automatizacion": "Al enviar cotización manual, presionar el botón activa el bot de seguimiento de 21h. Si no responde en 2h, el bot ofrece 5% de descuento.",
+            "deber_vendedor": "Enviar la propuesta en PDF y dar clic obligatoriamente al botón manual 'Cotización realizada'."
         },
         {
             "num": 5,
-            "nombre": "Cotizado / Cotización",
-            "razon": "Propuesta comercial enviada y en espera de respuesta.",
-            "automatizacion": "Si es cotización manual, debes dar clic a 'Cotización realizada' para programar el bot de seguimiento de 21h. Si no responde en 2h, se ofrece 5% de descuento.",
-            "deber_vendedor": "Enviar propuesta en PDF y dar clic obligatoriamente al botón manual 'Cotización realizada'."
+            "nombre": "Embudo Caliente",
+            "razon": "El prospecto se encuentra chateando activamente con el asesor en tiempo real.",
+            "automatizacion": "Se desactivan las respuestas automáticas para evitar entorpecer la conversación humana en vivo.",
+            "deber_vendedor": "Atender con prioridad para resolver dudas y apresurar el cierre de la venta."
         },
         {
             "num": 6,
             "nombre": "Seguimiento Automático",
-            "razon": "Etapa para prospectos inactivos tras 45 horas de silencio desde la cotización.",
-            "automatizacion": "Envía recordatorio a las 21h. A las 24h más sin respuesta, el sistema lo mueve aquí y asigna tag 'Sin respuesta'.",
+            "razon": "Leads que quedaron inactivos tras el envío de la propuesta.",
+            "automatizacion": "Envía recordatorio a las 21 horas. Si pasan otras 24 horas sin respuesta, el CRM los traslada a esta etapa y añade el tag 'Sin respuesta'.",
             "deber_vendedor": "Monitorear y realizar llamadas telefónicas para recuperar la venta."
         },
         {
             "num": 7,
-            "nombre": "Campañas Frío",
-            "razon": "Leads de campañas masivas que no respondieron o no mostraron interés.",
-            "automatizacion": "Se mueven aquí de forma masiva si no interactúan con el recontacto.",
-            "deber_vendedor": "Mantenerlos en esta etapa para futuras campañas de promociones masivas."
+            "nombre": "Programado",
+            "razon": "La renta ha sido acordada, el pago inicial/garantía verificado y está en agenda para entrega física.",
+            "automatizacion": "Pausa alertas en espera de que se concrete la entrega física del sanitario.",
+            "deber_vendedor": "Confirmar la fecha con operaciones y asegurar la correcta documentación del pago."
         },
         {
             "num": 8,
-            "nombre": "Campañas Caliente",
-            "razon": "Leads reactivados por campañas masivas que sí muestran interés.",
-            "automatizacion": "Si responde el mensaje de campaña, el sistema lo mueve aquí automáticamente.",
-            "deber_vendedor": "Dar atención prioritaria inmediata y enviar cotización para cerrar la venta."
+            "nombre": "Perdido Reactivable",
+            "razon": "Prospectos ideales que no cerraron por razones de precio o agenda, candidatos para futuras promociones.",
+            "automatizacion": "Almacenamiento clasificado bajo etiquetas de archivado comercial.",
+            "deber_vendedor": "Registrar de forma obligatoria la objeción del cliente en la tarjeta del lead."
         },
         {
             "num": 9,
-            "nombre": "Programado",
-            "razon": "Venta ganada en espera de la fecha de entrega del baño.",
-            "automatizacion": "Detiene seguimientos en espera del clic de entrega física.",
-            "deber_vendedor": "Asegurar cobro de garantía/renta y coordinar logística con operaciones."
+            "nombre": "En Pausa",
+            "razon": "Prospectos viables que requieren el servicio dentro de 1 mes o más.",
+            "automatizacion": "Detiene seguimientos automatizados para no saturar al cliente.",
+            "deber_vendedor": "Programar tarea de seguimiento en calendario para la fecha de interés."
         },
         {
             "num": 10,
-            "nombre": "Baño Entregado / Ganados",
-            "razon": "El baño ha sido entregado en el sitio del cliente.",
-            "automatizacion": "Se debe usar preferentemente el botón 'Baño entregado y ganado' de la tarjeta porque activa más automatizaciones que el botón normal.",
-            "deber_vendedor": "Mover el lead a Ganados y dar clic obligatoriamente al botón manual 'Baño entregado y ganado'."
+            "nombre": "Reubicar Baños",
+            "razon": "Trámite de logística solicitado por el cliente para mover un sanitario activo de lugar dentro de la obra o evento.",
+            "automatizacion": "Pausa las alertas comerciales ordinarias para centrarse en la logística de reubicación.",
+            "deber_vendedor": "Coordinar la nueva dirección y costo de maniobra con operaciones y confirmar la reubicación física en sitio."
         },
         {
             "num": 11,
-            "nombre": "En Pausa / Pausado",
-            "razon": "Leads viables que indicaron requerir el servicio dentro de 1 mes o más.",
-            "automatizacion": "Detiene alertas y recordatorios automáticos.",
-            "deber_vendedor": "Agendar tarea de seguimiento futuro en el calendario."
+            "nombre": "Quejas sin Resolver",
+            "razon": "Reporte de inconvenientes técnicos, mala limpieza o daños en los sanitarios rentados.",
+            "automatizacion": "La conversación se traslada de inmediato al Embudo de Quejas Sanitarios en la etapa 'INICIO QUEJA'.",
+            "deber_vendedor": "Dar seguimiento urgente y reportar a soporte técnico para resolución inmediata."
         },
         {
             "num": 12,
-            "nombre": "Ganado cliente reactiva",
-            "razon": "Etapa permanente de residencia para clientes ya ganados que se reactivaron por cualquier motivo.",
-            "automatizacion": "Si el cliente ya en Ganados escribe de nuevo, al finalizar la conversación reactivada se le mueve a esta etapa para vivir de ahí en adelante.",
-            "deber_vendedor": "Mover el lead a esta etapa al finalizar/resolver su conversación reactivada."
-        },
-        {
-            "num": 13,
             "nombre": "Solicitud Retiro",
-            "razon": "El cliente solicita el retiro físico del sanitario del sitio.",
+            "razon": "El cliente ha solicitado formalmente la recolección física del baño en el sitio.",
             "automatizacion": "El bot da instrucciones de enviar correo a operaciones y envía la encuesta de emojis.",
             "deber_vendedor": "Validar correo de retiro y reportar a logística para recolección física."
         },
         {
+            "num": 13,
+            "nombre": "Campañas Frío",
+            "razon": "Leads inactivos provenientes de recontactos masivos que no mostraron respuesta o interés.",
+            "automatizacion": "Se agrupan en esta etapa para futuras campañas de promociones masivas.",
+            "deber_vendedor": "Mantenerlos en esta etapa para futuras campañas de promociones masivas."
+        },
+        {
             "num": 14,
-            "nombre": "Quejas sin resolver",
-            "razon": "Reportes e inconformidades de baños.",
-            "automatizacion": "La conversación se traslada de inmediato al Embudo de Quejas Sanitarios (Pipeline 12717196) en 'INICIO QUEJA'.",
-            "deber_vendedor": "Dar seguimiento urgente y reportar a soporte técnico para resolución inmediata."
+            "nombre": "Campañas Caliente",
+            "razon": "Leads que sí respondieron positivamente y muestran interés en rentar nuevamente tras un recontacto.",
+            "automatizacion": "El sistema los mueve aquí automáticamente si el cliente contesta el mensaje masivo.",
+            "deber_vendedor": "Dar atención prioritaria inmediata y enviar cotización para cerrar la venta."
         },
         {
             "num": 15,
-            "nombre": "Perdido Reactivable",
-            "razon": "Leads idóneos no cerrados, candidatos para futuras promociones.",
-            "automatizacion": "Clasificación y guardado bajo etiquetas de archivado comercial.",
-            "deber_vendedor": "Documentar la objeción en los campos de la tarjeta."
+            "nombre": "Ganado Cliente Reactiva",
+            "razon": "Residencia permanente para clientes ganados previamente que se reactivaron por dudas, información o retiros.",
+            "automatizacion": "Una vez resuelta la consulta del cliente reactivado, al cerrar el chat el sistema lo archiva en esta etapa permanente.",
+            "deber_vendedor": "Mover el lead a esta etapa al finalizar/resolver su conversación reactivada."
         },
         {
             "num": 16,
-            "nombre": "Perdidos",
-            "razon": "Servicios concluidos o clientes con competidores.",
-            "automatizacion": "Finaliza el seguimiento del bot.",
-            "deber_vendedor": "Archivar y registrar causa de pérdida."
+            "nombre": "Ganados",
+            "razon": "El sanitario ha sido entregado en sitio por primera vez.",
+            "automatizacion": "Se debe usar preferentemente el botón 'Baño entregado y ganado' de la tarjeta porque activa más automatizaciones que el botón normal.",
+            "deber_vendedor": "Mover el lead a Ganados y dar clic obligatoriamente al botón manual 'Baño entregado y ganado'."
         },
         {
             "num": 17,
-            "nombre": "Cerrado",
-            "razon": "Leads no potenciales (fuera de zona, proveedores, spam, empleos).",
-            "automatizacion": "El bot archiva automáticamente prospectos inviables.",
-            "deber_vendedor": "Monitorear descartes de forma ocasional."
+            "nombre": "Perdidos",
+            "razon": "Prospectos comerciales que decidieron contratar con la competencia o no procedieron.",
+            "automatizacion": "Finaliza el seguimiento del bot.",
+            "deber_vendedor": "Archivar y registrar causa de pérdida."
         }
     ]
     
@@ -584,99 +584,99 @@ with tab_fosas:
     
     st.markdown("<div class='h-divider'></div>", unsafe_allow_html=True)
     st.markdown("### 📊 Tablero Visual de Etapas del Embudo (Fosas Sépticas)")
-    st.markdown("El embudo se compone de **13 etapas** secuenciales en el orden exacto de Kommo CRM. Cada columna representa una etapa individual en orden de flujo comercial. Haz clic en cada tarjeta para ver su detalle:")
+    st.markdown("El embudo se compone de **13 etapas** secuenciales en el orden exacto de tu CRM. Cada columna representa una etapa individual en orden de flujo comercial. Haz clic en cada tarjeta para ver su detalle:")
     
     etapas_fosas = [
         {
             "num": 1,
             "nombre": "Contacto Inicial",
-            "razon": "Primer contacto de prospectos que seleccionaron 'Servicios especiales' -> 'Fosas'.",
+            "razon": "Primer contacto de prospectos que seleccionaron 'Servicios especiales' -> 'Fosas' en el Bot GPT Completo.",
             "automatizacion": "El bot pregunta tipo de residuo, estado del material, almacenamiento y volumen. Envía el PDF de presentación de Saniglobal y lo asigna a Livier Mora.",
-            "deber_vendedor": "Monitorear que el lead califique correctamente y no se trabe en el bot."
+            "deber_vendedor": "Monitorear que el lead califique correctamente."
         },
         {
             "num": 2,
-            "nombre": "CASA HABITACIÓN (Filtro Crítico)",
-            "razon": "Filtro crítico de exclusión. Saniglobal no atiende domicilios residenciales/particulares en este embudo.",
-            "automatizacion": "El bot pregunta si es casa residencial. Si es 'Sí', asigna el tag 'CASA HABITACIÓN', envía mensaje de rechazo cortés y lo mueve automáticamente a Cerrado.",
-            "deber_vendedor": "Ninguno comercial (el bot descarta de forma automática)."
+            "nombre": "CLIENTE ACTUAL",
+            "razon": "Reactivación y resolución local de inconformidades para clientes ganados que vuelven a escribir.",
+            "automatizacion": "El bot despliega menú interactivo. REGLA CRÍTICA DE QUEJAS: En Fosas las quejas NO se mandan a otro embudo. Livier debe resolver de forma local en esta etapa agregando manualmente la etiqueta 'Queja'.",
+            "deber_vendedor": "Atender requerimientos de servicios adicionales o gestionar quejas con el tag manual 'Queja'."
         },
         {
             "num": 3,
+            "nombre": "apoyo humano fosas",
+            "razon": "Prospectos que requieren atención directa de la asesora o el bot se detiene por respuestas no clasificadas.",
+            "automatizacion": "Detiene el bot y genera tarea urgente a Livier Mora.",
+            "deber_vendedor": "Retomar la conversación de forma manual e inmediata."
+        },
+        {
+            "num": 4,
+            "nombre": "CERRADOS NO POTENCIAL",
+            "razon": "Leads residenciales descartados por el bot, spam o proveedores.",
+            "automatizacion": "El bot los mueve aquí automáticamente tras descartar.",
+            "deber_vendedor": "Validar ocasionalmente que no haya leads comerciales válidos aquí."
+        },
+        {
+            "num": 5,
+            "nombre": "CASA HABITACIÓN",
+            "razon": "Filtro crítico de exclusión. Saniglobal no atiende domicilios residenciales/particulares.",
+            "automatizacion": "Si responde que es casa habitación, el bot pone el tag 'CASA HABITACIÓN', envía mensaje de rechazo cortés y lo mueve a Cerrado.",
+            "deber_vendedor": "Ninguno comercial (proceso 100% automatizado)."
+        },
+        {
+            "num": 6,
+            "nombre": "CLIENTES SLP",
+            "razon": "Control geográfico interno para leads que corresponden a la zona de San Luis Potosí.",
+            "automatizacion": "Separa el flujo comercial para operaciones de SLP.",
+            "deber_vendedor": "Coordinar con el equipo regional de operaciones en SLP para logística y precios aplicables."
+        },
+        {
+            "num": 7,
             "nombre": "Solicitud de Información",
             "razon": "Validación técnica de los datos del residuo e información fiscal antes de formular propuesta.",
             "automatizacion": "El bot solicita datos técnicos complementarios.",
             "deber_vendedor": "Validar los requerimientos de sitio, accesos de camión y manguera."
         },
         {
-            "num": 4,
-            "nombre": "Visita de Diagnóstico",
+            "num": 8,
+            "nombre": "Visita diagnóstico",
             "razon": "Proyectos complejos donde es necesario verificar físicamente el sitio antes de cotizar.",
             "automatizacion": "Pausa las automatizaciones mientras se realiza la visita.",
-            "deber_vendedor": "Programar fecha y hora para que el personal técnico acuda al diagnóstico en sitio."
+            "deber_vendedor": "Programar fecha y hora para la visita del personal técnico."
         },
         {
-            "num": 5,
-            "nombre": "Apoyo Humano Fosas",
-            "razon": "Prospectos que requieren atención humana directa o donde el bot se detiene por respuestas no clasificadas.",
-            "automatizacion": "Se detiene el bot y genera tarea urgente a Livier Mora.",
-            "deber_vendedor": "Retomar la conversación de forma manual e inmediata."
-        },
-        {
-            "num": 6,
+            "num": 9,
             "nombre": "Cotización",
             "razon": "Propuesta formulada y enviada a revisión del cliente.",
             "automatizacion": "Cotización siempre manual. Es obligatorio presionar el botón 'Cotización realizada' para configurar el bot de seguimiento de 21h.",
             "deber_vendedor": "Enviar cotización en PDF y dar clic obligatoriamente en el botón manual 'Cotización realizada'."
         },
         {
-            "num": 7,
+            "num": 10,
             "nombre": "Seguimiento",
             "razon": "Seguimiento a propuestas no contestadas.",
             "automatizacion": "A las 21 horas envía seguimiento. Si la objeción es precio, el bot ofrece un cupón del 5% y etiqueta como 'Perdido por precio'.",
             "deber_vendedor": "Realizar llamada telefónica para empujar el cierre del servicio."
         },
         {
-            "num": 8,
-            "nombre": "En Pausa",
+            "num": 11,
+            "nombre": "En pausa",
             "razon": "Clientes que sí quieren el servicio pero lo requieren dentro de 1 mes o más.",
             "automatizacion": "Detiene recordatorios de chat diarios.",
             "deber_vendedor": "Programar tarea de seguimiento en calendario para la fecha de interés."
         },
         {
-            "num": 9,
-            "nombre": "CLIENTE ACTUAL (Reactivación y Quejas)",
-            "razon": "Reactivación y resolución local de inconformidades para clientes ganados que vuelven a escribir.",
-            "automatizacion": "El bot despliega menú interactivo. REGLA CRÍTICA DE QUEJAS: En Fosas las quejas NO se mandan a otro embudo. Livier debe resolver de forma local en esta etapa agregando manualmente la etiqueta 'Queja'.",
-            "deber_vendedor": "Atender requerimientos de servicios adicionales o gestionar soporte local de quejas con el tag 'Queja'."
-        },
-        {
-            "num": 10,
-            "nombre": "Clientes SLP",
-            "razon": "Control geográfico interno para leads que corresponden a la zona de San Luis Potosí.",
-            "automatizacion": "Separa el flujo comercial para operaciones de SLP.",
-            "deber_vendedor": "Coordinar con el equipo regional de operaciones en SLP para logística y precios aplicables."
-        },
-        {
-            "num": 11,
+            "num": 12,
             "nombre": "GANADOS",
             "razon": "Servicio comercial ejecutado, facturado y cobrado con éxito.",
             "automatizacion": "Cierra ciclo de ventas inicial y programa ventana de reactivación.",
             "deber_vendedor": "Mover el lead a GANADOS y asegurar que se documente el pago."
         },
         {
-            "num": 12,
+            "num": 13,
             "nombre": "PERDIDOS",
             "razon": "Prospectos comerciales que decidieron contratar con la competencia o no procedieron.",
             "automatizacion": "Detiene flujos de seguimiento automático.",
             "deber_vendedor": "Registrar la causa de pérdida (objeción de precio, cobertura, etc.)."
-        },
-        {
-            "num": 13,
-            "nombre": "CERRADOS NO POTENCIAL",
-            "razon": "Leads residenciales descartados o contactos no comerciales (proveedores, spam).",
-            "automatizacion": "Mueve a cerrado a leads filtrados automáticamente por el bot.",
-            "deber_vendedor": "Validar ocasionalmente que no haya leads comerciales válidos aquí."
         }
     ]
     
@@ -723,7 +723,7 @@ with tab_trampas:
     
     st.markdown("<div class='h-divider'></div>", unsafe_allow_html=True)
     st.markdown("### 📊 Tablero Visual de Etapas del Embudo (Trampas de Grasa)")
-    st.markdown("El embudo se compone de **8 etapas** secuenciales en el orden exacto de Kommo CRM. Cada columna representa una etapa individual en orden de flujo comercial. Haz clic en cada tarjeta para ver su detalle:")
+    st.markdown("El embudo se compone de **11 etapas** secuenciales en el orden exacto de tu CRM. Cada columna representa una etapa individual en orden de flujo comercial. Haz clic en cada tarjeta para ver su detalle:")
     
     etapas_trampas = [
         {
@@ -731,56 +731,77 @@ with tab_trampas:
             "nombre": "Contacto Inicial",
             "razon": "Primer contacto para desazolve y limpieza de trampas de grasa en restaurantes y comedores.",
             "automatizacion": "El bot pregunta número de trampas, capacidad (lts), material, tipo de acceso, distancia de manguera y rampas. Solicita fotos/videos.",
-            "deber_vendedor": "Monitorear que el cliente preocione los datos técnicos y multimedia solicitados."
+            "deber_vendedor": "Monitorear que el cliente proporcione los datos técnicos y multimedia solicitados."
         },
         {
             "num": 2,
-            "nombre": "Apoyo Humano",
+            "nombre": "CLIENTE ACTUAL",
+            "razon": "Reactivación y soporte post-venta para clientes ganados que vuelven a escribir.",
+            "automatizacion": "El bot despliega menú interactivo. REGLA CRÍTICA DE QUEJAS: Las quejas de trampas NO se mandan a otro embudo. El asesor debe colocar manualmente la etiqueta 'Queja' y resolver directamente en la etapa actual.",
+            "deber_vendedor": "Atender requerimientos de nuevos servicios o resolver inconformidades locales con la etiqueta manual 'Queja'."
+        },
+        {
+            "num": 3,
+            "nombre": "APOYO HUMANO",
             "razon": "El cliente requiere asistencia directa del asesor o ingresó respuestas que el bot no pudo clasificar.",
             "automatizacion": "Detiene el bot y crea tarea comercial urgente al asesor de trampas.",
             "deber_vendedor": "Tomar la conversación en el chat de forma inmediata para resolver y cotizar."
         },
         {
-            "num": 3,
-            "nombre": "COTIZACIÓN (Auto vs Manual)",
+            "num": 4,
+            "nombre": "CERRADOS NO POTENCIAL",
+            "razon": "Leads descartados por el bot, spam o proveedores.",
+            "automatizacion": "El bot los mueve aquí de forma automática.",
+            "deber_vendedor": "Monitorear descartes ocasionalmente."
+        },
+        {
+            "num": 5,
+            "nombre": "SOLICITUD DE INFORMACIÓN",
+            "razon": "Validación y recopilación de datos técnicos adicionales, accesos y datos fiscales antes de cotizar.",
+            "automatizacion": "El bot solicita información complementaria.",
+            "deber_vendedor": "Validar accesos de camión y requerimientos de manguera en la tarjeta del lead."
+        },
+        {
+            "num": 6,
+            "nombre": "VISITA DIAGNÓSTICO",
+            "razon": "Proyectos complejos que requieren inspección física antes de dar precio.",
+            "automatizacion": "Pausa las automatizaciones comerciales en espera del diagnóstico técnico.",
+            "deber_vendedor": "Programar la visita física del personal técnico de diagnóstico."
+        },
+        {
+            "num": 7,
+            "nombre": "COTIZACIÓN",
             "razon": "Envío de propuesta de limpieza al cliente.",
             "automatizacion": "Si es 1 o 2 trampas estándar de 200 LTS, el bot cotiza automáticamente vía webhook. Si supera el estándar (más trampas o más litros), el asesor debe cotizar manualmente por fuera y presionar el botón 'Cotización de trampas de grasa manual'.",
             "deber_vendedor": "Si la cotización es manual, enviarla en PDF y hacer clic obligatoriamente en el botón 'Cotización de trampas de grasa manual'."
         },
         {
-            "num": 4,
-            "nombre": "En Seguimiento",
+            "num": 8,
+            "nombre": "SEGUIMIENTO",
             "razon": "Seguimiento automático a las cotizaciones enviadas.",
             "automatizacion": "A las 21 horas envía mensaje. Si la objeción es precio, el bot ofrece descuento de 5% y etiqueta como 'Perdido por precio'. REGLA CRÍTICA DE QUEJAS: Las quejas de trampas NO se mandan a otro embudo. El asesor debe colocar manualmente la etiqueta 'Queja' y resolver directamente en la etapa actual.",
             "deber_vendedor": "Realizar llamada para negociar y cerrar el servicio."
         },
         {
-            "num": 5,
-            "nombre": "En Pausa",
+            "num": 9,
+            "nombre": "EN PAUSA",
             "razon": "Servicios viables proyectados a más de 1 mes de distancia.",
             "automatizacion": "Detiene flujos de seguimiento diario.",
             "deber_vendedor": "Agendar tarea de seguimiento en calendario para la fecha futura."
         },
         {
-            "num": 6,
-            "nombre": "Perdido Reactivable",
-            "razon": "Prospectos idóneos no cerrados por precio o agenda, archivados para futuras campañas masivas.",
-            "automatizacion": "Se clasifican comercialmente para campañas futuras.",
-            "deber_vendedor": "Asegurar que los datos de contacto y objeciones queden registrados."
+            "num": 10,
+            "nombre": "GANADOS",
+            "razon": "Limpieza ejecutada con éxito, cobrada y facturada.",
+            "automatizacion": "Cierra ciclo de ventas inicial y registra el éxito.",
+            "deber_vendedor": "Mover el lead a GANADOS y registrar los datos de pago."
         },
         {
-            "num": 7,
-            "nombre": "Perdidos",
-            "razon": "Servicios eventuales de limpieza concluidos con éxito o clientes con competidores.",
-            "automatizacion": "Detiene seguimientos automáticos.",
+            "num": 11,
+            "nombre": "PERDIDOS",
+            "razon": "El cliente decidió contratar definitivamente con la competencia.",
+            "automatizacion": "Detiene todos los flujos de seguimiento automáticos.",
             "deber_vendedor": "Archivar y registrar causa de pérdida."
-        },
-        {
-            "num": 8,
-            "nombre": "Cerrado",
-            "razon": "Solicitudes inviables, spam, proveedores o vacantes de empleo.",
-            "automatizacion": "El bot archiva automáticamente prospectos descartados.",
-            "deber_vendedor": "Monitorear descartes ocasionalmente."
         }
     ]
     
