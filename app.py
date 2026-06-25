@@ -270,7 +270,7 @@ with head_right:
     theme_label = "☀️ Claro" if IS_DARK else "🌙 Oscuro"
     st.button(theme_label, on_click=toggle_theme, use_container_width=True)
 
-# 6. Load Guide Sections from Markdown
+# 6. Load Guide Sections from Markdown (and strip the internal TOC links)
 def load_guide_sections():
     sections = {}
     try:
@@ -304,6 +304,15 @@ def load_guide_sections():
                 content_end = len(content)
             sections[key] = content[start_idx:content_end].strip()
             
+        # Strip the redundant Table of Contents (TOC) with broken internal links
+        if "general_parte1" in sections:
+            part1_content = sections["general_parte1"]
+            toc_start = part1_content.find("## 📌 Tabla de Contenidos")
+            if toc_start != -1:
+                glossary_start = part1_content.find("### 1. 📖 Glosario Rápido")
+                if glossary_start != -1:
+                    sections["general_parte1"] = part1_content[:toc_start] + part1_content[glossary_start:]
+                    
     except Exception as e:
         print(f"Error loading guide sections: {e}")
     return sections
@@ -408,7 +417,7 @@ with tab_banos:
     
     st.markdown("<div class='h-divider'></div>", unsafe_allow_html=True)
     st.markdown("### 📊 Tablero Visual de Etapas del Embudo (Renta de Baños)")
-    st.markdown("El embudo se compone de **17 etapas** secuenciales. Cada columna representa una etapa individual en orden de flujo comercial. Haz clic en cada tarjeta para ver su detalle:")
+    st.markdown("El embudo se compone de **17 etapas** secuenciales en el orden exacto de Kommo CRM. Cada columna representa una etapa individual en orden de flujo comercial. Haz clic en cada tarjeta para ver su detalle:")
     
     etapas_banos = [
         {
@@ -420,73 +429,73 @@ with tab_banos:
         },
         {
             "num": 2,
-            "nombre": "Embudo Caliente",
-            "razon": "El cliente está respondiendo activamente en el chat.",
-            "automatizacion": "El bot no envía mensajes automatizados de seguimiento para evitar interrumpir o empalmarse con la conversación en vivo del asesor.",
-            "deber_vendedor": "Dar atención manual e inmediata vía chat en vivo para empujar la venta."
-        },
-        {
-            "num": 3,
-            "nombre": "Solicitud de Información",
-            "razon": "Validación de datos del cliente antes de enviar la propuesta.",
-            "automatizacion": "Ninguna automatización de envío masivo activa.",
-            "deber_vendedor": "Completar y validar los datos de entrega y fiscales en la tarjeta del lead."
-        },
-        {
-            "num": 4,
             "nombre": "Apoyo Humano",
             "razon": "Casos donde el bot no califica datos o el cliente pide hablar con asesor.",
             "automatizacion": "Detiene el bot y genera una tarea urgente para Daniel Herrera.",
             "deber_vendedor": "Retomar el chat de inmediato para dar atención manual personalizada."
         },
         {
-            "num": 5,
-            "nombre": "En Pausa / Pausado",
-            "razon": "Leads viables que indicaron requerir el servicio dentro de 1 mes o más.",
-            "automatizacion": "Detiene alertas y recordatorios automáticos.",
-            "deber_vendedor": "Agendar tarea de seguimiento futuro en el calendario."
+            "num": 3,
+            "nombre": "Embudo Caliente",
+            "razon": "El cliente está respondiendo activamente en el chat.",
+            "automatizacion": "El bot no envía mensajes automatizados de seguimiento para evitar interrumpir o empalmarse con la conversación en vivo del asesor.",
+            "deber_vendedor": "Dar atención manual e inmediata vía chat en vivo para empujar la venta."
         },
         {
-            "num": 6,
+            "num": 4,
+            "nombre": "Solicitud de Información",
+            "razon": "Validación de datos del cliente antes de enviar la propuesta.",
+            "automatizacion": "Ninguna automatización de envío masivo activa.",
+            "deber_vendedor": "Completar y validar los datos de entrega y fiscales en la tarjeta del lead."
+        },
+        {
+            "num": 5,
             "nombre": "Cotizado / Cotización",
             "razon": "Propuesta comercial enviada y en espera de respuesta.",
             "automatizacion": "Si es cotización manual, debes dar clic a 'Cotización realizada' para programar el bot de seguimiento de 21h. Si no responde en 2h, se ofrece 5% de descuento.",
             "deber_vendedor": "Enviar propuesta en PDF y dar clic obligatoriamente al botón manual 'Cotización realizada'."
         },
         {
-            "num": 7,
+            "num": 6,
             "nombre": "Seguimiento Automático",
             "razon": "Etapa para prospectos inactivos tras 45 horas de silencio desde la cotización.",
             "automatizacion": "Envía recordatorio a las 21h. A las 24h más sin respuesta, el sistema lo mueve aquí y asigna tag 'Sin respuesta'.",
             "deber_vendedor": "Monitorear y realizar llamadas telefónicas para recuperar la venta."
         },
         {
-            "num": 8,
+            "num": 7,
             "nombre": "Campañas Frío",
             "razon": "Leads de campañas masivas que no respondieron o no mostraron interés.",
             "automatizacion": "Se mueven aquí de forma masiva si no interactúan con el recontacto.",
             "deber_vendedor": "Mantenerlos en esta etapa para futuras campañas de promociones masivas."
         },
         {
-            "num": 9,
+            "num": 8,
             "nombre": "Campañas Caliente",
             "razon": "Leads reactivados por campañas masivas que sí muestran interés.",
             "automatizacion": "Si responde el mensaje de campaña, el sistema lo mueve aquí automáticamente.",
             "deber_vendedor": "Dar atención prioritaria inmediata y enviar cotización para cerrar la venta."
         },
         {
-            "num": 10,
+            "num": 9,
             "nombre": "Programado",
             "razon": "Venta ganada en espera de la fecha de entrega del baño.",
             "automatizacion": "Detiene seguimientos en espera del clic de entrega física.",
             "deber_vendedor": "Asegurar cobro de garantía/renta y coordinar logística con operaciones."
         },
         {
-            "num": 11,
+            "num": 10,
             "nombre": "Baño Entregado / Ganados",
             "razon": "El baño ha sido entregado en el sitio del cliente.",
             "automatizacion": "Se debe usar preferentemente el botón 'Baño entregado y ganado' de la tarjeta porque activa más automatizaciones que el botón normal.",
             "deber_vendedor": "Mover el lead a Ganados y dar clic obligatoriamente al botón manual 'Baño entregado y ganado'."
+        },
+        {
+            "num": 11,
+            "nombre": "En Pausa / Pausado",
+            "razon": "Leads viables que indicaron requerir el servicio dentro de 1 mes o más.",
+            "automatizacion": "Detiene alertas y recordatorios automáticos.",
+            "deber_vendedor": "Agendar tarea de seguimiento futuro en el calendario."
         },
         {
             "num": 12,
@@ -575,7 +584,7 @@ with tab_fosas:
     
     st.markdown("<div class='h-divider'></div>", unsafe_allow_html=True)
     st.markdown("### 📊 Tablero Visual de Etapas del Embudo (Fosas Sépticas)")
-    st.markdown("El embudo se compone de **13 etapas** secuenciales. Cada columna representa una etapa individual en orden de flujo comercial. Haz clic en cada tarjeta para ver su detalle:")
+    st.markdown("El embudo se compone de **13 etapas** secuenciales en el orden exacto de Kommo CRM. Cada columna representa una etapa individual en orden de flujo comercial. Haz clic en cada tarjeta para ver su detalle:")
     
     etapas_fosas = [
         {
@@ -714,7 +723,7 @@ with tab_trampas:
     
     st.markdown("<div class='h-divider'></div>", unsafe_allow_html=True)
     st.markdown("### 📊 Tablero Visual de Etapas del Embudo (Trampas de Grasa)")
-    st.markdown("El embudo se compone de **8 etapas** secuenciales. Cada columna representa una etapa individual en orden de flujo comercial. Haz clic en cada tarjeta para ver su detalle:")
+    st.markdown("El embudo se compone de **8 etapas** secuenciales en el orden exacto de Kommo CRM. Cada columna representa una etapa individual en orden de flujo comercial. Haz clic en cada tarjeta para ver su detalle:")
     
     etapas_trampas = [
         {
@@ -722,7 +731,7 @@ with tab_trampas:
             "nombre": "Contacto Inicial",
             "razon": "Primer contacto para desazolve y limpieza de trampas de grasa en restaurantes y comedores.",
             "automatizacion": "El bot pregunta número de trampas, capacidad (lts), material, tipo de acceso, distancia de manguera y rampas. Solicita fotos/videos.",
-            "deber_vendedor": "Monitorear que el cliente proporcione los datos técnicos y multimedia solicitados."
+            "deber_vendedor": "Monitorear que el cliente preocione los datos técnicos y multimedia solicitados."
         },
         {
             "num": 2,
