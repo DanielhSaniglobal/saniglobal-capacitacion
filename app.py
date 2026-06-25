@@ -278,7 +278,10 @@ def load_guide_sections():
             content = f.read()
         
         headers = [
-            ("general_parte1", "## ⚙️ PARTE I: BASES GENERALES (Para todo el equipo)"),
+            ("glosario", "### 1. 📖 Glosario Rápido"),
+            ("gpt_completo", "### 2. 🌟 El Embudo GPT Completo — El Origen de Todo"),
+            ("reglas_diarias", "### 3. 🛠️ Reglas de Operación Diaria"),
+            ("soporte_quejas", "### 4. 😤 Embudos de Soporte y Regla Especial de Quejas"),
             ("seccion_banos", "## 🚽 SECCIÓN II: RENTA DE BAÑOS PORTÁTILES"),
             ("seccion_fosas", "## 🌀 SECCIÓN III: SERVICIOS ESPECIALES Y FOSAS SÉPTICAS"),
             ("seccion_trampas", "## 🍳 SECCIÓN IV: TRAMPAS DE GRASA"),
@@ -304,40 +307,40 @@ def load_guide_sections():
                 content_end = len(content)
             sections[key] = content[start_idx:content_end].strip()
             
-        # Strip redundant Table of Contents (TOC) with broken internal links
-        if "general_parte1" in sections:
-            part1_content = sections["general_parte1"]
-            toc_start = part1_content.find("## 📌 Tabla de Contenidos")
-            if toc_start != -1:
-                glossary_start = part1_content.find("### 1. 📖 Glosario Rápido")
-                if glossary_start != -1:
-                    sections["general_parte1"] = part1_content[:toc_start] + part1_content[glossary_start:]
-                    
     except Exception as e:
         print(f"Error loading guide sections: {e}")
     return sections
 
 sections = load_guide_sections()
 
-# Helper to render unified guides
+# Helper to render unified guides as an interactive accordions sequence
 def render_unified_guides(sections):
     st.markdown("### 📘 Guías de Operación y Reglas Generales")
-    st.markdown("Consulta las bases del sistema comercial y directrices obligatorias para todo el equipo:")
+    st.markdown("Consulta las bases del sistema comercial y directrices obligatorias en Kommo CRM:")
     
-    with st.expander("⚙️ 1. Bases Generales e Introducción"):
-        st.markdown(sections.get("general_parte1", ""))
+    with st.expander("📖 1. Glosario Rápido"):
+        st.markdown(sections.get("glosario", ""))
         
-    with st.expander("📖 2. Guías Prácticas de Operación en Kommo CRM"):
+    with st.expander("🌟 2. El Embudo GPT Completo — El Origen de Todo"):
+        st.markdown(sections.get("gpt_completo", ""))
+        
+    with st.expander("🛠️ 3. Reglas de Operación Diaria"):
+        st.markdown(sections.get("reglas_diarias", ""))
+        
+    with st.expander("😤 4. Embudos de Soporte y Regla Especial de Quejas"):
+        st.markdown(sections.get("soporte_quejas", ""))
+        
+    with st.expander("📖 5. Guías Prácticas de Operación en Kommo CRM para Vendedores"):
         st.markdown(sections.get("guias_operacion", ""))
         
-    with st.expander("🚀 3. Buenas Prácticas de Servicio en Ventas"):
+    with st.expander("🚀 6. Buenas Prácticas de Servicio (Uso de Kommo CRM)"):
         st.markdown(sections.get("buenas_practicas", ""))
         
-    with st.expander("📌 4. Tabla Resumen de Reglas, Cupones y Gestión de Quejas"):
+    with st.expander("📌 7. Tabla Resumen de Reglas, Cupones y Gestión de Quejas"):
         st.markdown(sections.get("tabla_resumen", ""))
 
 # Helper to render the stages grid
-def render_pipeline_grid(etapas):
+def render_pipeline_grid(etapas, pipeline_name=""):
     num_etapas = len(etapas)
     cols_per_row = 4
     
@@ -348,23 +351,47 @@ def render_pipeline_grid(etapas):
             if idx < len(row_etapas):
                 etapa = row_etapas[idx]
                 with col:
-                    with st.expander(f"**{etapa['num']}. {etapa['nombre']}**", expanded=False):
-                        st.markdown(f"""
-                        <div style="padding: 0.1rem 0;">
-                            <p style="font-size:0.85rem; margin-bottom:0.5rem; line-height:1.4;">
-                                <strong style="color: {accent_color};">💡 Razón de ser / Secuencia lógica:</strong><br>
-                                {etapa['razon']}
-                            </p>
-                            <p style="font-size:0.85rem; margin-bottom:0.5rem; line-height:1.4;">
-                                <strong style="color: {accent_color};">🤖 Automatización:</strong><br>
-                                {etapa['automatizacion']}
-                            </p>
-                            <p style="font-size:0.85rem; margin-bottom:0px; line-height:1.4;">
-                                <strong style="color: {accent_color};">👤 Deber del vendedor:</strong><br>
-                                {etapa['deber_vendedor']}
-                            </p>
-                        </div>
-                        """, unsafe_allow_html=True)
+                    is_lead_entrante = (pipeline_name == "baños" and etapa['num'] == 1)
+                    title = f"**{etapa['num']}. {etapa['nombre']}**"
+                    if is_lead_entrante:
+                        title = f"🟢 **{etapa['num']}. {etapa['nombre']}**"
+                    
+                    with st.expander(title, expanded=False):
+                        if is_lead_entrante:
+                            st.markdown(f"""
+                            <div style="background-color: {green_bg}; border: 1px solid {green_color}; border-radius: 8px; padding: 0.8rem; margin-bottom: 0.5rem;">
+                                <span class="badge badge-green" style="margin-bottom: 0.5rem; background-color: {green_color}; color: #ffffff;">Etapa Inicial</span>
+                                <p style="font-size:0.85rem; margin-bottom:0.4rem; line-height:1.4; color: {text_color};">
+                                    <strong style="color: {green_color};">💡 Razón de ser / Secuencia lógica:</strong><br>
+                                    {etapa['razon']}
+                                </p>
+                                <p style="font-size:0.85rem; margin-bottom:0.4rem; line-height:1.4; color: {text_color};">
+                                    <strong style="color: {green_color};">🤖 Automatización:</strong><br>
+                                    {etapa['automatizacion']}
+                                </p>
+                                <p style="font-size:0.85rem; margin-bottom:0px; line-height:1.4; color: {text_color};">
+                                    <strong style="color: {green_color};">👤 Deber del vendedor:</strong><br>
+                                    {etapa['deber_vendedor']}
+                                </p>
+                            </div>
+                            """, unsafe_allow_html=True)
+                        else:
+                            st.markdown(f"""
+                            <div style="padding: 0.1rem 0;">
+                                <p style="font-size:0.85rem; margin-bottom:0.5rem; line-height:1.4;">
+                                    <strong style="color: {accent_color};">💡 Razón de ser / Secuencia lógica:</strong><br>
+                                    {etapa['razon']}
+                                </p>
+                                <p style="font-size:0.85rem; margin-bottom:0.5rem; line-height:1.4;">
+                                    <strong style="color: {accent_color};">🤖 Automatización:</strong><br>
+                                    {etapa['automatizacion']}
+                                </p>
+                                <p style="font-size:0.85rem; margin-bottom:0px; line-height:1.4;">
+                                    <strong style="color: {accent_color};">👤 Deber del vendedor:</strong><br>
+                                    {etapa['deber_vendedor']}
+                                </p>
+                            </div>
+                            """, unsafe_allow_html=True)
             else:
                 col.empty()
 
@@ -417,123 +444,130 @@ with tab_banos:
     
     st.markdown("<div class='h-divider'></div>", unsafe_allow_html=True)
     st.markdown("### 📊 Tablero Visual de Etapas del Embudo (Renta de Baños)")
-    st.markdown("El embudo se compone de **17 etapas** secuenciales en el orden exacto de tu CRM. Cada columna representa una etapa individual en orden de flujo comercial. Haz clic en cada tarjeta para ver su detalle:")
+    st.markdown("El embudo se compone de **18 etapas** secuenciales en el orden exacto de tu CRM. Cada columna representa una etapa individual en orden de flujo comercial. Haz clic en cada tarjeta para ver su detalle:")
     
     etapas_banos = [
         {
             "num": 1,
+            "nombre": "Lead Entrante",
+            "razon": "Primer contacto o mensaje que entra a la plataforma de Kommo. Es la etapa inicial por defecto del CRM.",
+            "automatizacion": "Se dispara de inmediato el Bot GPT Completo (recepcionista inteligente) para calificar al cliente y redireccionarlo al embudo correcto.",
+            "deber_vendedor": "No intervenir de inmediato para permitir que el bot recepcionista realice las preguntas de calificación y canalice el lead de forma automatizada."
+        },
+        {
+            "num": 2,
             "nombre": "Cerrado",
             "razon": "Estatus final y de archivo para solicitudes descartadas, inviables (fuera de zona, proveedores, spam, empleos).",
             "automatizacion": "El bot archiva y cierra de forma automatizada las solicitudes que no aplican.",
             "deber_vendedor": "Monitorear ocasionalmente para verificar que no haya falsos descartes."
         },
         {
-            "num": 2,
-            "nombre": "Apoyo Humano",
+            "num": 3,
+            "nombre": "apoyo humano",
             "razon": "Estatus para leads que requieren asistencia directa de un asesor o donde el bot se detiene por respuestas no clasificadas.",
             "automatizacion": "Detiene el bot y genera de inmediato una tarea urgente asignada a Daniel Herrera.",
             "deber_vendedor": "Retomar la conversación de forma manual e inmediata para resolver y dar atención."
         },
         {
-            "num": 3,
-            "nombre": "Solicitud Cotización",
+            "num": 4,
+            "nombre": "Solicitud cotización",
             "razon": "Punto de entrada inicial cuando el prospecto ingresa manifestando interés de rentar sanitarios portátiles.",
             "automatizacion": "El bot inicia la recopilación de datos (uso de obra/evento, cantidad, tipo, dirección).",
             "deber_vendedor": "Monitorear el chat. Si pide 3 o más baños, el bot se pausa y debes cotizar de forma manual."
         },
         {
-            "num": 4,
+            "num": 5,
             "nombre": "Cotizado",
             "razon": "La cotización formal ha sido elaborada y enviada a revisión del cliente.",
             "automatizacion": "Al enviar cotización manual, presionar el botón activa el bot de seguimiento de 21h. Si no responde en 2h, el bot ofrece 5% de descuento.",
             "deber_vendedor": "Enviar la propuesta en PDF y dar clic obligatoriamente al botón manual 'Cotización realizada'."
         },
         {
-            "num": 5,
-            "nombre": "Embudo Caliente",
+            "num": 6,
+            "nombre": "Embudo caliente",
             "razon": "El prospecto se encuentra chateando activamente con el asesor en tiempo real.",
             "automatizacion": "Se desactivan las respuestas automáticas para evitar entorpecer la conversación humana en vivo.",
             "deber_vendedor": "Atender con prioridad para resolver dudas y apresurar el cierre de la venta."
         },
         {
-            "num": 6,
-            "nombre": "Seguimiento Automático",
+            "num": 7,
+            "nombre": "Seguimiento automatico",
             "razon": "Leads que quedaron inactivos tras el envío de la propuesta.",
             "automatizacion": "Envía recordatorio a las 21 horas. Si pasan otras 24 horas sin respuesta, el CRM los traslada a esta etapa y añade el tag 'Sin respuesta'.",
             "deber_vendedor": "Monitorear y realizar llamadas telefónicas para recuperar la venta."
         },
         {
-            "num": 7,
+            "num": 8,
             "nombre": "Programado",
             "razon": "La renta ha sido acordada, el pago inicial/garantía verificado y está en agenda para entrega física.",
             "automatizacion": "Pausa alertas en espera de que se concrete la entrega física del sanitario.",
             "deber_vendedor": "Confirmar la fecha con operaciones y asegurar la correcta documentación del pago."
         },
         {
-            "num": 8,
-            "nombre": "Perdido Reactivable",
+            "num": 9,
+            "nombre": "Perdido reactivable",
             "razon": "Prospectos ideales que no cerraron por razones de precio o agenda, candidatos para futuras promociones.",
             "automatizacion": "Almacenamiento clasificado bajo etiquetas de archivado comercial.",
             "deber_vendedor": "Registrar de forma obligatoria la objeción del cliente en la tarjeta del lead."
         },
         {
-            "num": 9,
-            "nombre": "En Pausa",
+            "num": 10,
+            "nombre": "En pausa",
             "razon": "Prospectos viables que requieren el servicio dentro de 1 mes o más.",
             "automatizacion": "Detiene seguimientos automatizados para no saturar al cliente.",
             "deber_vendedor": "Programar tarea de seguimiento en calendario para la fecha de interés."
         },
         {
-            "num": 10,
-            "nombre": "Reubicar Baños",
+            "num": 11,
+            "nombre": "Reubicar baños",
             "razon": "Trámite de logística solicitado por el cliente para mover un sanitario activo de lugar dentro de la obra o evento.",
             "automatizacion": "Pausa las alertas comerciales ordinarias para centrarse en la logística de reubicación.",
             "deber_vendedor": "Coordinar la nueva dirección y costo de maniobra con operaciones y confirmar la reubicación física en sitio."
         },
         {
-            "num": 11,
-            "nombre": "Quejas sin Resolver",
+            "num": 12,
+            "nombre": "Quejas sin resolver",
             "razon": "Reporte de inconvenientes técnicos, mala limpieza o daños en los sanitarios rentados.",
             "automatizacion": "La conversación se traslada de inmediato al Embudo de Quejas Sanitarios en la etapa 'INICIO QUEJA'.",
             "deber_vendedor": "Dar seguimiento urgente y reportar a soporte técnico para resolución inmediata."
         },
         {
-            "num": 12,
-            "nombre": "Solicitud Retiro",
+            "num": 13,
+            "nombre": "Solicitud retiro",
             "razon": "El cliente ha solicitado formalmente la recolección física del baño en el sitio.",
             "automatizacion": "El bot da instrucciones de enviar correo a operaciones y envía la encuesta de emojis.",
             "deber_vendedor": "Validar correo de retiro y reportar a logística para recolección física."
         },
         {
-            "num": 13,
-            "nombre": "Campañas Frío",
+            "num": 14,
+            "nombre": "Campañas frío",
             "razon": "Leads inactivos provenientes de recontactos masivos que no mostraron respuesta o interés.",
             "automatizacion": "Se agrupan en esta etapa para futuras campañas de promociones masivas.",
             "deber_vendedor": "Mantenerlos en esta etapa para futuras campañas de promociones masivas."
         },
         {
-            "num": 14,
-            "nombre": "Campañas Caliente",
+            "num": 15,
+            "nombre": "Campañas caliente",
             "razon": "Leads que sí respondieron positivamente y muestran interés en rentar nuevamente tras un recontacto.",
             "automatizacion": "El sistema los mueve aquí automáticamente si el cliente contesta el mensaje masivo.",
             "deber_vendedor": "Dar atención prioritaria inmediata y enviar cotización para cerrar la venta."
         },
         {
-            "num": 15,
-            "nombre": "Ganado Cliente Reactiva",
+            "num": 16,
+            "nombre": "Ganado cliente reactiva",
             "razon": "Residencia permanente para clientes ganados previamente que se reactivaron por dudas, información o retiros.",
             "automatizacion": "Una vez resuelta la consulta del cliente reactivado, al cerrar el chat el sistema lo archiva en esta etapa permanente.",
             "deber_vendedor": "Mover el lead a esta etapa al finalizar/resolver su conversación reactivada."
         },
         {
-            "num": 16,
+            "num": 17,
             "nombre": "Ganados",
             "razon": "El sanitario ha sido entregado en sitio por primera vez.",
             "automatizacion": "Se debe usar preferentemente el botón 'Baño entregado y ganado' de la tarjeta porque activa más automatizaciones que el botón normal.",
             "deber_vendedor": "Mover el lead a Ganados y dar clic obligatoriamente al botón manual 'Baño entregado y ganado'."
         },
         {
-            "num": 17,
+            "num": 18,
             "nombre": "Perdidos",
             "razon": "Prospectos comerciales que decidieron contratar con la competencia o no procedieron.",
             "automatizacion": "Finaliza el seguimiento del bot.",
@@ -541,7 +575,7 @@ with tab_banos:
         }
     ]
     
-    render_pipeline_grid(etapas_banos)
+    render_pipeline_grid(etapas_banos, "baños")
 
 # ----------------------------------------------------
 # TAB 2: FOSAS SÉPTICAS
@@ -680,7 +714,7 @@ with tab_fosas:
         }
     ]
     
-    render_pipeline_grid(etapas_fosas)
+    render_pipeline_grid(etapas_fosas, "fosas")
 
 # ----------------------------------------------------
 # TAB 3: TRAMPAS DE GRASA
@@ -805,7 +839,7 @@ with tab_trampas:
         }
     ]
     
-    render_pipeline_grid(etapas_trampas)
+    render_pipeline_grid(etapas_trampas, "trampas")
 
 # ----------------------------------------------------
 # TAB 4: RECURSOS & PLANTILLAS
