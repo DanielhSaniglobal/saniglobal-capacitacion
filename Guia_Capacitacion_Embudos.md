@@ -353,16 +353,43 @@ Contacto inicial → apoyo humano → COTIZACIÓN → En seguimiento
 
 ---
 
-<a name="recursos-kommo"></a>
+<a name="buenas-practicas-servicio"></a>
+## 🚀 Buenas Prácticas de Servicio (Uso de Kommo CRM)
 
-## 🔗 Enlaces y Herramientas Oficiales de Kommo CRM
+Para brindar una atención comercial de excelencia, agilizar el flujo de ventas y asegurar que ningún prospecto se pierda, todos los asesores deben cumplir estrictamente con el siguiente listado de buenas prácticas:
 
-Para complementar tu capacitación, te sugerimos consultar los recursos oficiales de Kommo CRM:
+*   **⏱️ Revisar Kommo CRM cada 5 minutos:** Mantén la plataforma abierta y activa en tu navegador o aplicación móvil. Debes revisarla de manera continua para enterarte de inmediato de nuevos mensajes, cambios de estatus o asignación de tareas.
+*   **📥 Monitorear la entrada de nuevos leads:** Revisa constantemente el *Embudo GPT Completo* para verificar qué nuevos leads han entrado e identificar si el bot recepcionista los está direccionando de forma correcta.
+*   **🚨 Reportar anomalías al administrador:** Si notas que un lead se queda trabado, que el bot no responde, o detectas que un webhook no generó una cotización automática, repórtalo de inmediato con el administrador del sistema para solucionarlo a tiempo.
+*   **👤 Estar revisando constantemente las etapas de "Apoyo Humano":** Consulta de forma prioritaria las etapas de `apoyo humano` en todos los embudos (Baños, Fosas y Trampas). Estos prospectos requieren atención directa e inmediata porque el bot no logró calificar su duda o solicitaron hablar directamente con un asesor.
+*   **📞 Dar seguimiento por llamada telefónica:** No dependas únicamente de los chats escritos. Para los prospectos que se encuentren en el **Embudo Caliente** (chat activo) o en fases de **Seguimiento**, realiza una llamada telefónica. Esto rompe objeciones rápidamente, genera confianza y acelera drásticamente el cierre de la venta.
+*   **🏷️ Poner etiquetas (Tags) siempre:** Acostúmbrate a catalogar a tus clientes usando etiquetas manuales cuando sea necesario (ej. `Queja`, `Propuesta enviada`, `-5% descuento`, `Sin respuesta`). Esto mantiene tu tablero ordenado y facilita campañas futuras de marketing masivo.
 
-1. **[Base de Conocimientos Oficial de Kommo (Recursos)](https://www.kommo.com/es/recursos/)**: El portal de ayuda principal de Kommo con manuales detallados de configuración, integraciones y facturación.
-2. **[Calculadora de Precios de WhatsApp Business](https://www.kommo.com/es/calculadora-precios-whatsapp/)**: Herramienta interactiva para calcular el costo por mensaje y por país en Meta.
-3. **[Generador de Enlaces de WhatsApp](https://www.kommo.com/es/como-crear-un-enlace-de-whatsapp/)**: Utilidad gratuita para generar URLs directas a WhatsApp y códigos QR para campañas comerciales de recontacto.
-4. **[Manual de Creación de Salesbots](https://www.kommo.com/es/salesbot/)**: Documento técnico sobre el funcionamiento y diseño de flujos automatizados de respuesta.
+---
+
+<a name="preguntas-respuestas-guia"></a>
+## ❓ Sección de Preguntas y Respuestas (Q&A) de la Guía de Ventas
+
+A continuación se presenta un resumen estructurado en formato de preguntas y respuestas que abarca toda la lógica comercial de la guía:
+
+*   **P1: ¿Cuál es el canal de entrada y flujo inicial de todos los prospectos de Saniglobal?**
+    *   **R:** Todos los leads entran al **Embudo GPT Completo**. Un bot de bienvenida recopila su interés dándoles a elegir entre: *Rentar baños* (se turna a Baños y asigna a Daniel Herrera), *Servicios especiales* (se turna a Fosas/Trampas y asigna a Livier Mora/Asesor de Trampas) u *Otros asuntos* (RH, proveedores, soporte).
+*   **P2: ¿Bajo qué circunstancias llega un lead al estatus de "Seguimiento Automático" en el embudo de Baños?**
+    *   **R:** Ocurre de forma 100% automática. Cuando el bot o el asesor envían una cotización, si el cliente no responde en 21 horas, el bot le envía un seguimiento automático. Si pasan otras 24 horas sin respuesta (45 horas de silencio en total), el CRM lo traslada a la etapa *Seguimiento automático* con la etiqueta `Sin respuesta` para limpiar el tablero principal del vendedor.
+*   **P3: ¿Cuál es la política para solicitudes residenciales de limpieza de fosas sépticas o desazolves?**
+    *   **R:** Saniglobal **no brinda servicios residenciales** (casas habitación o domicilios particulares) en Servicios Especiales. El bot les pregunta directamente el tipo de propiedad; si responden que "Sí" es residencial, el bot les coloca el tag `CASA HABITACIÓN`, les envía un mensaje cortés de rechazo y los mueve a **Cerrado** automáticamente.
+*   **P4: ¿Cuándo califica una trampa de grasa para cotización automática en su embudo?**
+    *   **R:** Únicamente cuando la solicitud es para **1 o 2 trampas** y ambas de capacidad estándar (**200 LTS**). Si son 3 o más trampas, o de mayor capacidad (250L+), el bot de desazolves se pausa y asigna el caso al asesor comercial para cotizar manualmente.
+*   **P5: ¿Cómo se diferencian las reglas de soporte y quejas entre los embudos de Baños, Fosas y Trampas?**
+    *   **R:**
+        - **En Baños:** Las inconformidades de los clientes se transfieren de inmediato al **Embudo de Quejas Sanitarios** (Pipeline 12717196) en `INICIO QUEJA` para su resolución por personal de soporte.
+        - **En Fosas y Trampas:** Las quejas **no se envían a otro embudo**; deben ser resueltas por el asesor responsable de forma local dentro de la misma etapa (o CLIENTE ACTUAL) agregando la etiqueta manual `Queja`.
+*   **P6: ¿Qué debes hacer bajo la "Regla de Oro de Asignación" si te llega un prospecto por error?**
+    *   **R:** Si te llega un lead por error y necesitas asignarlo a un compañero, debes cambiar el Responsable en Kommo CRM y **dejar obligatoriamente una nota interna** detallando cualquier dato extra, comentario o necesidad que el cliente ya te haya compartido en la conversación previa para no perder el contexto.
+*   **P7: ¿Cómo funciona la oferta de descuento en el embudo de Baños?**
+    *   **R:** Dos horas después de enviar una cotización (manual o automática), si el cliente no responde, el bot le envía de forma automática un incentivo con un **5% de descuento** sobre el costo y agrega la etiqueta `-5% descuento`.
+*   **P8: ¿Qué sucede si un cliente que ya finalizó su servicio eventual (Ganado) vuelve a escribir?**
+    *   **R:** El sistema detecta el mensaje entrante, rompe la pausa de espera y lo mueve automáticamente a la etapa **Cliente Actual** del embudo de reactivación (*Ganados el cliente reactiva*) para lanzarle el menú de opciones de autogestión (retiros de baños, quejas, rentas adicionales, etc.).
 
 ---
 
