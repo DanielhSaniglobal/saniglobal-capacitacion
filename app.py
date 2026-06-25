@@ -442,7 +442,8 @@ with tab_general:
                 Cada lead tiene un asesor comercial responsable. Si necesitas reasignar a un compañero:<br>
                 1. Abre la tarjeta del lead en Kommo CRM.<br>
                 2. Cambia el campo de 'Responsable' al asesor correcto.<br>
-                3. Guarda la tarjeta. El sistema se encarga de reasignar tareas pendientes y mandar alertas automáticas.
+                3. Guarda la tarjeta. El sistema se encarga de reasignar tareas pendientes y mandar alertas automáticas.<br>
+                ⚠️ <strong>Regla de Oro de Asignación:</strong> Si reasignas una oportunidad a un compañero porque te llegó por error, <strong>es obligatorio agregar una nota interna</strong> en la tarjeta del lead detallando cualquier información extra, comentario o necesidad que el cliente ya te haya mencionado.
             </p>
         </div>
         """, unsafe_allow_html=True)

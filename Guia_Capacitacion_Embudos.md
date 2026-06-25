@@ -97,6 +97,7 @@ Meta (WhatsApp, Facebook, Instagram) solo permite responder libremente dentro de
 Cada lead tiene un asesor asignado. Si necesitas transferirlo (por carga de trabajo o territorio):
 - Ve a la tarjeta del lead, busca el campo "Responsable" y cámbialo al usuario correcto.
 - Guarda los cambios. El sistema le notificará automáticamente y reasignará las tareas pendientes.
+- ⚠️ **REGLA DE ORO DE ASIGNACIÓN:** Cuando reasignes una oportunidad a un compañero porque te llegó a ti por error, **debes dejar obligatoriamente una nota** en la tarjeta con cualquier dato extra, comentario o necesidad que el cliente ya te haya compartido en el chat anterior. Esto evita la pérdida de información y facilita el trabajo del nuevo asesor asignado.
 
 #### 🖱️ Botones Manuales en la Tarjeta
 Muchos bots de seguimiento no se activarán a menos que le des clic al botón manual correspondiente dentro de la tarjeta del lead (ej. "Cotización realizada", "Cotización de trampas de grasa manual", "Baño entregado"). **Si no das clic, el cliente se queda congelado sin automatizaciones.**

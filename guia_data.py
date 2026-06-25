@@ -303,8 +303,20 @@ QUIZ_QUESTIONS = [
         ],
         "correct": 3,
         "explanation": "A diferencia de Baños (que usa un embudo de quejas dedicado), en Fosas y Trampas las quejas se resuelven de forma interna y directa en la misma etapa actual, etiquetando el lead con el tag 'Queja'."
+    },
+    {
+        "question": "¿Cuál es la 'Regla de Oro' obligatoria cuando un asesor reasigna un lead a otro compañero porque le llegó a él por error?",
+        "options": [
+            "Simplemente cambiar el responsable y guardar la tarjeta sin hacer nada más.",
+            "Eliminar la conversación y el historial del chat para que el nuevo asesor empiece desde cero.",
+            "Agregar obligatoriamente una nota en la tarjeta detallando cualquier información extra, comentario o necesidad que el cliente ya le haya comentado.",
+            "Mandar un WhatsApp privado al compañero y no modificar nada en Kommo CRM."
+        ],
+        "correct": 2,
+        "explanation": "La Regla de Oro de Asignación establece que si reasignas una oportunidad por error a otro compañero, debes dejar obligatoriamente una nota interna con toda la información extra o comentarios que te haya dado el cliente, para evitar la pérdida de información y facilitar la transición."
     }
 ]
+
 
 MENSAJES_RAPIDOS = [
     {
