@@ -17,24 +17,24 @@
 1. [Glosario rápido: términos clave](#glosario)
 2. [El Embudo GPT Completo: El Origen de todo](#gpt-completo)
 3. [Reglas de Operación Diaria (Meta, Asignación, etc.)](#reglas-operacion)
-4. [Embudos de Soporte (Quejas y Otros Asuntos)](#embudos-soporte)
+4. [Embudos de Soporte y Regla Especial de Quejas](#embudos-soporte)
 
 ### 🚽 SECCIÓN II: RENTA DE BAÑOS PORTÁTILES
-* **Vendedor Responsable:** Daniel Herrera
-* [Flujo y etapas del Embudo de Ventas (Baños)](#seccion-baños)
+* **Vendedor Responsable:** Daniel Herrera (Usuario 12824423)
+* [Flujo y 17 etapas del Embudo de Ventas (Baños)](#seccion-baños)
 * [Secuencia de preguntas del Bot de Renta](#preguntas-baños)
-* [Gestión de Clientes Activos (Ganados y Retiros)](#clientes-activos-baños)
+* [Gestión de Clientes Activos (Ganados, Reactivaciones y Retiros)](#clientes-activos-baños)
 
 ### 🌀 SECCIÓN III: SERVICIOS ESPECIALES Y FOSAS SÉPTICAS
-* **Vendedora Responsable:** Livier Mora
-* [Flujo y etapas del Embudo de Fosas y Especiales](#seccion-fosas)
+* **Vendedora Responsable:** Livier Mora (Usuario 13346199)
+* [Flujo y 13 etapas del Embudo de Fosas](#seccion-fosas)
 * [Secuencia de preguntas del Bot de Fosas](#preguntas-fosas)
 * [Filtro crítico de Casa Habitación (Exclusión)](#filtro-fosas)
 * [Visita de Diagnóstico y Seguimiento](#seguimiento-fosas)
 
 ### 🍳 SECCIÓN IV: TRAMPAS DE GRASA
 * **Vendedor Responsable:** Asesor de Trampas de Grasa
-* [Flujo y etapas del Embudo de Trampas](#seccion-trampas)
+* [Flujo y 8 etapas del Embudo de Trampas](#seccion-trampas)
 * [Secuencia de preguntas del Bot de Trampas](#preguntas-trampas)
 * [Cotización Automática vs. Cotización Manual](#cotizacion-trampas)
 
@@ -49,15 +49,15 @@ Antes de entrar de lleno, aquí están los términos que usamos constantemente:
 
 | Término | Qué significa |
 |---|---|
-| **Lead / Prospecto** | Cualquier persona que nos escribe por primera vez |
-| **Embudo (Pipeline)** | El "camino" o proceso de ventas con etapas definidas |
-| **Etapa (Estatus)** | La fase específica en la que está el lead dentro del embudo |
-| **Bot / Automatización** | Mensajes y acciones que el sistema ejecuta solo, sin que intervengas |
-| **Etiqueta (Tag)** | Marca de color que le ponemos al contacto para clasificarlo |
-| **Webhook** | Conexión automática con otro sistema (ej. cotizador automático) |
-| **Ventana de 24h** | El tiempo que Meta te da para responder libremente por WhatsApp |
-| **Mensaje rápido** | Plantilla de texto guardada para no escribir lo mismo cada vez |
-| **Casa Habitación** | Tag y filtro para prospectos residenciales que no atendemos y se mandan a Cerrado |
+| **Lead / Prospecto** | Cualquier persona o empresa que nos contacta por primera vez a través de nuestros canales digitales |
+| **Embudo (Pipeline)** | El "camino" o proceso de ventas estructurado en etapas secuenciales por el que transita un prospecto |
+| **Etapa (Estatus)** | La fase específica de negociación en la que se encuentra el cliente dentro de un embudo |
+| **Bot / Automatización** | Mensajes y acciones lógicas ejecutadas por el sistema sin intervención humana |
+| **Etiqueta (Tag)** | Marcas de color añadidas a la tarjeta del cliente para filtrado rápido, campañas o disparar automatizaciones |
+| **Webhook** | Solicitud HTTP automática para enviar datos a microservicios externos (ej. cotizadores automáticos) |
+| **Ventana de 24h** | Regla de Meta que limita el envío de mensajes libres a 24 horas desde la última interacción del usuario |
+| **Mensaje rápido** | Plantillas de texto predefinidas en Kommo que se invocan con la tecla '/' para agilizar la comunicación |
+| **Casa Habitación** | Etiqueta y filtro aplicado por el bot para descartar y cerrar solicitudes residenciales no viables en fosas |
 
 ---
 
@@ -72,11 +72,11 @@ Cuando alguien nos escribe por primera vez —sea por WhatsApp, Facebook o Insta
 
 El cliente tiene tres botones para elegir:
 - 🚽 **Rentar baños** → El bot lo mueve al **Embudo de Ventas (Baños)** y lo asigna a Daniel Herrera.
-- 🔧 **Servicios especiales** → El bot lo mueve al **Embudo de Servicios Especiales** y lo asigna a Livier Mora.
+- 🔧 **Servicios especiales** → El bot lo mueve al **Embudo de Servicios Especiales (Fosas)** y lo asigna a Livier Mora.
 - 💬 **Otro asunto** → El bot lo mueve al **Embudo de Otros Asuntos**.
 
 > [!NOTE]
-> Si el cliente escribe en lugar de usar un botón (ej. "renta de sanitarios" o "trampa de grasa"), el sistema intenta detectarlo y enviarlo al embudo correcto automáticamente. Si no puede clasificarlo, lo pasa a soporte humano.
+> Si el cliente escribe en lugar de usar un botón (ej. "renta de sanitarios" o "limpieza de fosa"), el sistema intenta detectarlo y enviarlo al embudo correcto automáticamente. Si no puede clasificarlo, lo pasa a soporte humano.
 
 #### ¿Qué pasa si el cliente no responde?
 El bot espera **61 minutos**. Si no hay respuesta, pregunta si prefiere recibir una llamada. Si tampoco responde, espera **5 horas**, manda un mensaje de despedida cordial y espera **24 horas**. Si en ese tiempo no hay reacción, el sistema le pone la etiqueta **"Sin respuesta"** y cierra la conversación automáticamente.
@@ -99,7 +99,7 @@ Cada lead tiene un asesor asignado. Si necesitas transferirlo (por carga de trab
 - Guarda los cambios. El sistema le notificará automáticamente y reasignará las tareas pendientes.
 
 #### 🖱️ Botones Manuales en la Tarjeta
-Muchos bots de seguimiento no se activarán a menos que le des clic al botón manual correspondiente dentro de la tarjeta del lead (ej. "Cotización realizada", "Baño entregado"). **Si no das clic, el cliente se queda congelado sin automatizaciones.**
+Muchos bots de seguimiento no se activarán a menos que le des clic al botón manual correspondiente dentro de la tarjeta del lead (ej. "Cotización realizada", "Cotización de trampas de grasa manual", "Baño entregado"). **Si no das clic, el cliente se queda congelado sin automatizaciones.**
 
 #### ⚡ Mensajes Rápidos
 Escribe `/` (diagonal) en el chat para buscar plantillas predefinidas. Úsalas para saludos, cuentas de pago o preguntas frecuentes y mantén la consistencia profesional del equipo.
@@ -107,14 +107,18 @@ Escribe `/` (diagonal) en el chat para buscar plantillas predefinidas. Úsalas p
 ---
 
 <a name="embudos-soporte"></a>
-### 4. 😤 Embudos de Soporte: Quejas y Otros Asuntos
+### 4. 😤 Embudos de Soporte y Regla Especial de Quejas
 
-#### Embudo de Quejas (Pipeline 12717196)
-* **¿Cuándo llega?** Cuando un cliente selecciona "Reportes y quejas" en el menú o lo solicita a un asesor.
-* **Acción:** El sistema le pone la etiqueta **"Quejas"** y lo mueve aquí para atención humana inmediata.
+#### 🚽 Renta de Baños (Daniel Herrera): Embudo de Quejas dedicado
+* **¿Cómo se maneja?** Si un cliente de Baños tiene un reporte o inconformidad, la conversación se traslada de inmediato al **Embudo de Quejas Sanitarios (Pipeline 12717196)** en la etapa `INICIO QUEJA`.
+* **Acción:** El sistema le pone la etiqueta **"Quejas"** y crea alertas urgentes para resolución inmediata por el equipo de soporte.
+
+#### 🌀 Fosas (Livier Mora) y 🍳 Trampas: Resolución Local (Misma Etapa)
+* **¿Cómo se maneja?** A diferencia de baños, las quejas de fosas sépticas o trampas de grasa **NUNCA se envían a otro embudo**.
+* **Acción obligatoria:** El asesor responsable debe mantener el lead en su embudo y etapa actual (o en la etapa `CLIENTE ACTUAL` si es post-venta), **colocar manualmente la etiqueta `Queja`** al contacto, y dar seguimiento y resolución al inconveniente directamente allí mismo.
 
 #### Embudo de Otros Asuntos (Pipeline 13756408)
-* **¿Cuándo llega?** Cuando eligen "Otro asunto" en el menú principal.
+* **¿Cuándo llega?** Cuando eligen "Otro asunto" en el menú principal del Bot GPT Completo.
 * **Funcionamiento:** El bot filtra si es:
   - *Empleo:* Da datos de RH y pone la etiqueta **"Vacante laboral"**.
   - *Proveedores:* Da datos de compras y pone la etiqueta **"Proveedores"**.
@@ -127,53 +131,81 @@ Escribe `/` (diagonal) en el chat para buscar plantillas predefinidas. Úsalas p
 ## 🚽 SECCIÓN II: RENTA DE BAÑOS PORTÁTILES
 ### Asesor Responsable: Daniel Herrera (Usuario 12824423)
 
-#### Vista general del Embudo de Ventas (Baños)
+#### Vista general de las 17 etapas del Embudo de Ventas (Baños)
 ```
-Solicitud → Embudo caliente → Solicitud de información → Cotización → En seguimiento 
-→ Programado → Baño entregado → [Ganados] 
-                               ↘ [Pausado]
-                               ↘ [Perdido reactivable] → [Perdidos]
+Solicitud/Contacto → apoyo humano → Embudo caliente → Solicitud de información → Cotizado/Cotización 
+→ Seguimiento automático / Campañas frío / Campañas caliente → Programado → Baño entregado (Ganados)
+↘ En pausa / Solicitud retiro / Quejas sin resolver / Perdido reactivable / Perdidos / Cerrado
 ```
 
 ---
 
-### Etapa por Etapa: Renta de Baños
+### Explicación Etapa por Etapa (Baños):
 
-#### 📥 Etapa: Solicitud de Cotización
-* **¿Cómo llega?** El cliente elige "Rentar baños" en el menú inicial. El bot lo asigna a Daniel Herrera.
-* **Automatización:** El bot recopila los datos para cotizar:
-  1. *¿Obra o Evento?* (Recomienda cantidad según tipo y personas).
-  2. *¿Cuántos baños?* (Si pide 3 o más, se pasa a Daniel para atención manual).
-  3. *¿Tipo de baño?* (Sencillo vs. Con Lavamanos. Muestra fotos de comparación).
-  4. *¿Por cuánto tiempo?* (Por mes/quincena en obra, por día/semana en eventos).
-  5. *¿Dirección de entrega?* (Valida que sea texto y no un pin de ubicación. Debe estar en ZM Guadalajara o ZM San Luis Potosí).
+1. #### 📥 Solicitud de Cotización / Contacto Inicial
+   * **¿Cómo llega?** El cliente elige "Rentar baños" en el menú inicial. El bot lo asigna a Daniel Herrera.
+   * **Automatización:** El bot recopila los datos para cotizar:
+     1. *¿Obra o Evento?* (Recomienda cantidad según tipo y personas).
+     2. *¿Cuántos baños?* (Si pide 3 o más, se pasa a Daniel para atención manual).
+     3. *¿Tipo de baño?* (Sencillo vs. Con Lavamanos. Muestra fotos de comparación).
+     4. *¿Por cuánto tiempo?* (Por mes/quincena en obra, por día/semana en eventos).
+     5. *¿Dirección de entrega?* (Valida que sea texto y no un pin de ubicación. Debe estar en ZM Guadalajara o ZM San Luis Potosí).
 
-#### 🌡️ Etapa: Embudo Caliente
-* **¿Qué significa?** El cliente está respondiendo activamente al chat.
-* **Regla de oro:** **No se disparan mensajes automáticos** en esta etapa para evitar interrumpir o confundir al cliente mientras chatea con el asesor.
+2. #### 👤 Apoyo Humano
+   * **¿Cómo llega?** Si el bot no puede clasificar la respuesta del cliente, o si el cliente escribe un mensaje solicitando un asesor humano de forma expresa, el lead se mueve a este estatus.
+   * **Acción:** Detiene las preguntas del bot y genera una tarea urgente para Daniel Herrera.
 
-#### ℹ️ Etapa: Solicitud de Información
-* Etapa temporal donde el bot procesa y valida datos de dirección antes de activar la cotización automática.
+3. #### 🌡️ Etapa: Embudo Caliente
+   * **¿Qué significa?** El cliente está respondiendo activamente al chat en tiempo real.
+   * **Regla de oro:** **No se disparan mensajes automáticos** en esta etapa para evitar interrumpir o confundir al cliente mientras chatea en vivo con el asesor.
 
-#### 💰 Etapa: Cotización
-* **Ruta Automática:** Si el bot recopiló todos los datos, calcula el precio, envía la propuesta en PDF y mueve el lead a esta etapa.
-* **Ruta Manual:** Si Daniel Herrera envía la propuesta manualmente (ej. cuando son 3 o más baños), **es obligatorio dar clic en el botón "Cotización realizada"** en la tarjeta del lead.
-* **Qué hace el bot aquí:** Pone la etiqueta **"Propuesta enviada"** y ofrece botones de ayuda rápida (*Pasos para contratar*, *Formas de pago*, *Tiempos de entrega*).
-* **Descuento del 5%:** Si el cliente no responde tras **2 horas** de recibir la cotización, el bot le ofrece un 5% de descuento por WhatsApp y le añade la etiqueta **"-5% descuento"**.
+4. #### ℹ️ Etapa: Solicitud de Información
+   * Etapa temporal donde el bot procesa y valida datos de dirección y datos fiscales antes de activar la cotización automática.
 
-#### 📞 Etapa: En Seguimiento
-* **¿Cómo llega?** Pasan **21 horas** sin respuesta tras enviar la cotización. El sistema lo mueve aquí y manda un mensaje de seguimiento preguntando el estado de su decisión.
-* *Botones de respuesta del cliente:*
-  - *"Deseo rentar ya"* → Pasa al asesor Daniel Herrera.
-  - *"Evaluando opciones" / "En pausa"* → El bot le pregunta cuándo recontactar (mañana, 3 días, 1 semana).
-  - *"Ya no lo requiero"* → El bot pregunta el motivo. Si es *Precio*, le ofrece argumentos de valor, un cupón del **10% de descuento** y le pone la etiqueta **"Perdido por precio"**. Si son otros motivos, pone la etiqueta correspondiente (*Falta de espacio en programación*, *No fue necesario el servicio*).
+5. #### 💰 Etapa: Cotizado / Cotización
+   * **Ruta Automática:** Si el bot recopiló todos los datos, calcula el precio, envía la propuesta en PDF y mueve el lead a esta etapa.
+   * **Ruta Manual:** Si Daniel Herrera envía la propuesta manualmente (ej. cuando son 3 o más baños), **es obligatorio dar clic en el botón "Cotización realizada"** en la tarjeta del lead.
+   * **Qué hace el bot aquí:** Pone la etiqueta **"Propuesta enviada"** y ofrece botones de ayuda rápida (*Pasos para contratar*, *Formas de pago*, *Tiempos de entrega*).
+   * **Descuento del 5%:** Si el cliente no responde tras **2 horas** de recibir la cotización, el bot le ofrece un 5% de descuento por WhatsApp y le añade la etiqueta **"-5% descuento"**.
 
-#### 📅 Etapa: Programado
-* El servicio ha sido aceptado y programado en agenda, pero el baño aún no se entrega físicamente.
+6. #### 🤖 Etapa: Seguimiento Automático
+   * **¿Cómo llega aquí?** Cuando una cotización es enviada, el bot de seguimiento inicia una espera de **21 horas**. Si el cliente no escribe ningún mensaje, el bot envía un mensaje automático de seguimiento. Si transcurren **24 horas más** y el cliente sigue sin responder, el sistema lo mueve automáticamente a esta etapa y le coloca la etiqueta **"Sin respuesta"**.
+   * **Cómo funciona:** Mover al cliente aquí permite limpiar la bandeja de cotizaciones activas del vendedor. El bot detiene su secuencia aquí, pero si el cliente llega a responder en el futuro, el CRM lo detecta y vuelve a notificar a Daniel para atención humana.
 
-#### 🚪 Etapa: Baño Entregado (Ganado - Baños)
-* Cuando el equipo de operaciones entrega el baño, Daniel o el equipo de logística debe **dar clic al botón "Baño entregado"**.
-* **Acción del bot:** Dispara la encuesta post-servicio ("Recopila opiniones con emojis") y prepara la reactivación futura.
+7. #### ❄️ Etapa: Campañas Frío
+   * **¿Qué significa?** Es la etapa designada para almacenar aquellos leads provenientes de campañas masivas de recontacto (ej. promociones masivas enviadas a clientes antiguos o perdidos) que **NO respondieron** al mensaje de la campaña o no mostraron interés.
+
+8. #### 🔥 Etapa: Campañas Caliente
+   * **¿Qué significa?** Si los leads de la campaña de recontacto **sí responden el mensaje de forma positiva y muestran interés** en rentar de nuevo, el sistema los mueve automáticamente a esta etapa.
+   * **Prioridad:** Esta etapa es de máxima prioridad. Daniel Herrera debe dar seguimiento manual inmediato a estos prospectos calientes para concretar la renta.
+
+9. #### 📅 Etapa: Programado
+   * El servicio ha sido aceptado y programado en agenda, el pago de la garantía o primer mes está confirmado, pero el baño aún no se entrega físicamente.
+
+10. #### 🚪 Etapa: Baño Entregado (Ganados)
+    * Cuando el equipo de operaciones entrega el baño en el sitio, Daniel o el equipo de logística debe **dar clic al botón "Baño entregado"**.
+    * **Acción del bot:** Dispara la encuesta post-servicio ("Recopila opiniones con emojis") y prepara la reactivación futura.
+
+11. #### 🔄 Ganado cliente reactiva
+    * **¿Cómo funciona?** Si un cliente que está en la etapa **Ganados** vuelve a escribir en el futuro (tenga o no un baño físicamente en sitio), el sistema rompe la espera y lo mueve automáticamente a esta etapa para dispararle el bot de reactivación con su menú interactivo de autogestión.
+
+12. #### 🚚 Solicitud retiro
+    * El cliente solicita que se recoja el baño. El bot le da los pasos para confirmarlo y le dispara la encuesta de emojis.
+
+13. #### 😤 Quejas sin resolver
+    * Estatus donde se concentran los reportes e inconformidades de baños para su seguimiento técnico y operativo.
+
+14. #### ⏸️ En Pausa / Pausado
+    * Leads viables que indicaron que requieren el servicio en más de 1 mes en el futuro.
+
+15. #### 🔴 Perdido Reactivable
+    * Prospectos viables que no cerraron por precio o agenda, archivados para futuras promociones.
+
+16. #### ❌ Perdidos
+    * Servicios eventuales terminados, o clientes que contrataron con la competencia de manera definitiva.
+
+17. #### 🚫 Cerrado
+    * Contactos no viables (fuera de zona, proveedores, spam, empleos).
 
 ---
 
@@ -182,104 +214,79 @@ Solicitud → Embudo caliente → Solicitud de información → Cotización → 
 
 > [!IMPORTANT]
 > **Regla de oro sobre los clientes Ganados:**
-> 1. **Asegurar el estatus:** Siempre debes verificar que cuando una venta se concrete, el lead quede marcado en la etapa **Ganados** (ya sea que lo mueva el vendedor manualmente o que ocurra por una automatización del sistema). Si no está en Ganados, el flujo se rompe.
-> 2. **El disparador por mensaje:** Una vez en **Ganados**, el lead entra en una "pausa" de espera. En el momento en que ese cliente vuelve a escribirnos (incluso tiempo después), el sistema detecta que es un cliente ganado y **automáticamente lo mueve al embudo "Ganados el cliente reactiva"** (etapa: *Cliente Actual*). **Esto ocurre tenga o no tenga un baño activo en su sitio en ese momento.**
+> 1. **Asegurar el estatus:** Siempre debes verificar que cuando una venta se concrete, el lead quede marcado en la etapa **Ganados**. Si no está en Ganados, el flujo se rompe.
+> 2. **El disparador por mensaje:** Una vez en **Ganados**, el lead entra en una "pausa" de espera. En el momento en que ese cliente vuelve a escribirnos (incluso tiempo después), el sistema detecta que es un cliente ganado y **automáticamente lo mueve a la etapa de reactivación ("Ganado cliente reactiva")**. **Esto ocurre tenga o no tenga un baño activo en su sitio en ese momento.**
 > 3. **¿Por qué funciona así?:** Esta transición automática al embudo de reactivación es lo que permite que se le dispare el menú de opciones (Bot GPT ganados / reactiva) para que el cliente pueda autogestionarse (solicitar retiros, quejas, rentar otro baño, consultar pagos, etc.) sin que tengas que intervenir de inmediato.
 
 #### Menú de Cliente Actual ("Ganados el cliente reactiva")
 Cuando un cliente ganado nos vuelve a escribir (tenga o no un baño físicamente en sitio), el bot le presenta un menú interactivo:
 - **Retirar o reubicar:** Si elige *Retirar*, le da instrucciones de enviar un correo a operaciones. Cuando el cliente confirma el envío, se le dispara la **encuesta de emojis** y al finalizar se le regala un **cupón del 10% de descuento** para reactivación. Si dice que no quiere retirar, se le ofrece ampliar la renta.
-- **Quiero otro baño:** Lanza el **<a name="seccion-fosas"></a>
+- **Quiero otro baño:** Envía al cliente al proceso de cotización agregando la tarea "Cotizar nuevo baño".
+- **Reportes y quejas:** Mueve el lead automáticamente al embudo especializado de **Quejas sanitarios (Pipeline 12717196)** en la etapa `INICIO QUEJA` para atención manual urgente.
+
+---
+
+<a name="seccion-fosas"></a>
 ## 🌀 SECCIÓN III: SERVICIOS ESPECIALES Y FOSAS SÉPTICAS
 ### Asesora Responsable: Livier Mora (Usuario 13346199)
 
-#### Vista general del Embudo de Fosas y Especiales
+#### Vista general del Embudo de Fosas y Especiales (13 etapas)
 ```
-Solicitud → Visita de diagnóstico → Cotización → En seguimiento 
-→ [Ganados] 
-→ [Pausado] (Servicio para > 1 mes)
-→ [Perdido reactivable] (Perdido por precio o agenda) → [Perdidos]
-→ [Cerrado] (No califica / Casa Habitación)
+Contacto inicial → CASA HABITACIÓN → Solicitud de información → Visita de diagnóstico → Cotización 
+→ Seguimiento → En pausa → CLIENTE ACTUAL (Reactivación) 
+→ CLIENTES SLP → Apoyo humano fosas → GANADOS → PERDIDOS → CERRADOS NO POTENCIAL
 ```
 
 ---
 
 ### Etapa por Etapa: Fosas Sépticas y Lodos
 
-#### 📥 Etapa: Solicitud de Cotización (Servicios Especiales)
-* **¿Cómo llega?** El cliente elige "Servicios especiales" en el menú inicial y selecciona una categoría aplicable (como fosas sépticas, lodos, vinazas, etc.). El sistema lo asigna automáticamente a Livier Mora.
-* **Preguntas del Bot para Calificación:**
-  1. *¿Qué residuo es?* (Fosas sépticas, lodo biológico, aguas de proceso, vinazas, etc. Se envía PDF de presentación comercial de Saniglobal).
-  2. *¿Estado del material?* (Líquido, Lodo o pasta, Sólido o polvo).
-  3. *¿Dónde está almacenado?* (Fosa/cisterna, Tambo/tolva/sacos, Sobre terreno).
-  4. *¿Volumen o cantidad?* (Menos de 5,000 lt/kg, 5,000 a 10,000, Más de 10,000).
+1. #### 📥 Contacto inicial
+   * **¿Cómo llega?** El cliente elige "Servicios especiales" en el menú inicial y selecciona una categoría aplicable (como fosas sépticas, lodos, vinazas, etc.). El sistema lo asigna automáticamente a Livier Mora.
+   * **Preguntas del Bot para Calificación:**
+     1. *¿Qué residuo es?* (Fosas sépticas, lodo biológico, aguas de proceso, vinazas, etc. Se envía PDF de presentación comercial de Saniglobal).
+     2. *¿Estado del material?* (Líquido, Lodo o pasta, Sólido o polvo).
+     3. *¿Dónde está almacenado?* (Fosa/cisterna, Tambo/tolva/sacos, Sobre terreno).
+     4. *¿Volumen o cantidad?* (Menos de 5,000 lt/kg, 5,000 a 10,000, Más de 10,000).
 
----
+2. #### 🏠 CASA HABITACIÓN (Filtro Crítico)
+   * **¿Qué significa?** Es la etapa a la que se envían automáticamente los prospectos residenciales que no califican para nuestro servicio comercial/industrial.
+   * **Cómo actúa el Bot:** El bot pregunta: *¿Es para una casa habitacional o residencial?* Si responde "Sí", el bot le coloca la etiqueta **`CASA HABITACIÓN`**, envía el mensaje de rechazo cortés, y mueve el lead a la etapa **Cerrado**. Si responde "No", continúa con el flujo normal.
 
-<a name="filtro-fosas"></a>
-### 🏠 Filtro Crítico: Casa Habitación o Domicilio Particular
+3. #### ℹ️ Solicitud de información
+   * Validación técnica de las características físicas del residuo, accesos y datos de facturación de la empresa.
 
-> [!CAUTION]
-> **REGLA DE NEGOCIO:** Saniglobal **no realiza servicios residenciales o para casas particulares** en limpieza de fosas sépticas ni desazolve. Este servicio está enfocado exclusivamente al sector comercial e industrial.
+4. #### 🔎 Visita de Diagnóstico
+   * En proyectos complejos de fosas, antes de cotizar se requiere una visita física. Livier programa la visita y el lead se mantiene en esta etapa en espera del reporte técnico de condiciones de acceso y tipo de residuo.
 
-#### ¿Cómo actúa el Bot ante esto?
-Después de preguntar por el volumen en fosas sépticas, el bot pregunta:
-> *¿Es para una casa habitacional o residencial?*
+5. #### 💰 Cotización (Fosas)
+   * Las fosas requieren cotizaciones detalladas y manuales. Livier elabora la propuesta. Al enviarla al cliente, **debe presionar obligatoriamente el botón "Cotización realizada"** en Kommo para activar el seguimiento automático de 21 horas. Si no lo presiona, el sistema no disparará los recordatorios automáticos.
 
-* **Si el cliente responde "Sí":**
-  1. El bot le coloca automáticamente la etiqueta **`CASA HABITACIÓN`**.
-  2. Le envía el mensaje de rechazo cortés: *"Una disculpa, por el momento no estamos brindando servicios para casa habitación ni domicilios particulares, sin embargo, esperamos poderlo reactivar en la brevedad. Déjanos tus datos..."*
-  3. Mueve el lead automáticamente a la etapa **Cerrado**.
-* **Si el cliente responde "No":**
-  1. El bot continúa con la cotización preguntando por la distancia de manguera (distancia del camión al residuo: 0-10m, 11-20m, 21m+).
+6. #### 📞 Seguimiento
+   * Pasan **21 horas** sin respuesta del cliente. El bot le envía un mensaje de seguimiento preguntando por el estado de la decisión.
+   * Si el cliente indica que no contratará por *Precio*, el bot le ofrece un cupón de descuento del **5% de descuento** (a diferencia de baños, aquí el descuento máximo es del 5%) y añade la etiqueta **`Perdido por precio`**.
 
----
+7. #### ⏸️ En pausa
+   * **¿Cuándo se usa?** El cliente tiene intenciones de contratar pero requiere el servicio en más de 1 mes en el futuro. Mover el lead a esta etapa mantiene despejado el tablero de seguimiento diario.
 
-<a name="seguimiento-fosas"></a>
-### Visita de Diagnóstico, Cotización y Seguimiento
+8. #### 🔄 CLIENTE ACTUAL (Reactivación y Quejas)
+   * **¿Cómo funciona?** Si un cliente en **Ganados** vuelve a escribir, el bot de reactivación lo mueve automáticamente a esta etapa y le muestra un menú interactivo (Solicitar servicio, reportes y quejas, dudas).
+   * ⚠️ **REGLA CRÍTICA DE QUEJAS:** Las quejas de fosas **NO SE ENVIÁN A OTRO EMBUDO**. El asesor debe mantener el lead en esta etapa de CLIENTE ACTUAL, **etiquetarlo manualmente con el tag `Queja`** y darle resolución técnica directamente aquí.
 
-#### 🔎 Visita de Diagnóstico
-* En proyectos complejos de fosas, antes de cotizar se requiere una visita física. Livier programa la visita y el lead se mantiene en esta etapa intermedia en espera del reporte técnico de condiciones de acceso y tipo de residuo.
+9. #### 📍 CLIENTES SLP
+   * Control y almacenamiento de servicios y prospectos pertenecientes a la zona de San Luis Potosí.
 
-#### 💰 Etapa: Cotización (Fosas)
-* Como las fosas requieren cotizaciones detalladas y manuales, Livier elabora la propuesta. Al enviarla al cliente, **debe presionar obligatoriamente el botón "Cotización realizada"** en Kommo para activar el seguimiento automático. Si no lo presiona, el sistema no disparará los recordatorios automáticos de 21 horas.
+10. #### 👤 Apoyo humano fosas
+    * Cuando el cliente requiere atención directa de Livier Mora o el bot se detiene por datos no clasificados.
 
-#### 📞 Etapa: En Seguimiento (Fosas)
-* Pasan **21 horas** sin respuesta del cliente. El bot le envía un mensaje de seguimiento preguntando por el estado de la decisión.
-* Si el cliente indica que no contratará por *Precio*, el bot le da argumentos de valor y le ofrece un cupón de descuento del **5% de descuento** (a diferencia de baños, aquí el descuento máximo es del 5%) y añade la etiqueta **`Perdido por precio`**.
-* Si responde otros motivos de rechazo, se etiquetan según corresponda (*Falta de espacio en programación* o *No fue necesario el servicio*).
+11. #### 🏆 GANADOS
+    * Venta concretada con éxito. El servicio técnico fue programado, ejecutado y pagado.
 
-#### ⏸️ Etapa: Pausado (Fosas)
-* **¿Cuándo se usa?** El cliente tiene intenciones de contratar pero requiere el servicio en más de 1 mes en el futuro. Mover el lead a esta etapa mantiene despejado el tablero de seguimiento diario.
+12. #### ❌ PERDIDOS
+    * Clientes que decidieron contratar definitivamente con competidores sin opción de recuperación.
 
-#### 🔴 Etapa: Perdido Reactivable (Fosas)
-* **¿Cuándo se usa?** El servicio no se concretó por objeción de precio insalvable o por falta de disponibilidad en la agenda inmediata, pero el cliente es una empresa comercial o industrial ideal para nosotros. Se guarda aquí para campañas comerciales futuras de reactivación.
-
-#### ❌ Etapa: Perdidos (Fosas)
-* **¿Cuándo se usa?** Clientes cuyo servicio puntual ya concluyó, o que decidieron contratar definitivamente con competidores sin opción de recuperación.
-
-#### 🚫 Etapa: Cerrado (Fosas)
-* **¿Cuándo se usa?** Contactos no viables (fuera de zona, proveedores, spam, empleos, o casas habitación filtradas automáticamente).
-
----
-
-### 🔄 Reactivación de Clientes de Fosas (Cliente Actual)
-
-> [!IMPORTANT]
-> **El bot de reactivación para Fosas:**
-> En el momento en que un cliente marcado previamente como **Ganados** vuelve a escribirnos (tenga o no un servicio activo), el sistema lo mueve automáticamente al embudo de **Ganados el cliente reactiva fosas** (etapa: *Cliente Actual*, código de estatus `99406052`). 
-
-Al ingresar a esta etapa, el bot le presenta un menú interactivo con las siguientes opciones:
-- **Solicitar servicio:**
-  1. El bot le responde: *"Claro que sí, ¿qué servicio le podemos ofrecer?"*
-  2. Envía una notificación interna a **Livier Mora** y crea de forma automática una tarea de seguimiento en Kommo para cotizar.
-- **Reportes y quejas:**
-  1. El bot le responde: *"Lamentamos que estés teniendo una mala experiencia pero tú eres nuestra prioridad y vamos a trabajar para resolverlo lo antes posible, por favor dime qué es lo que pasó..."*
-  2. Notifica a Livier y crea una tarea de atención urgente.
-  3. ⚠️ **Regla Crítica:** A diferencia de baños, las quejas de fosas **no se envían a otro embudo**. El asesor debe mantener el lead en esta etapa, **etiquetarlo manualmente con el tag `Queja`** y darle resolución directamente.
-- **Dudas del servicio:**
-  1. El bot le responde: *"Claro, explíqueme sus dudas y con gusto le damos información"*
-  2. Crea la tarea para Livier y lo mantiene en espera de atención humana.
+13. #### 🚫 CERRADOS NO POTENCIAL
+    * Contactos no viables (fuera de zona, proveedores, spam, o las casas habitación filtradas automáticamente).
 
 ---
 
@@ -287,76 +294,57 @@ Al ingresar a esta etapa, el bot le presenta un menú interactivo con las siguie
 ## 🍳 SECCIÓN IV: TRAMPAS DE GRASA
 ### Asesor Responsable: Asesor de Trampas de Grasa
 
-#### Vista general del Embudo de Trampas de Grasa
+#### Vista general del Embudo de Trampas de Grasa (8 etapas)
 ```
-Solicitud → Cotización → En seguimiento 
-→ [Ganados] 
-→ [Pausado] (Servicio para > 1 mes)
-→ [Perdido reactivable] (Perdido por precio o agenda) → [Perdidos]
-→ [Cerrado] (No califica)
+Contacto inicial → apoyo humano → COTIZACIÓN → En seguimiento 
+→ En pausa → Perdido reactivable → Perdidos → Cerrado
 ```
 
 ---
 
-<a name="preguntas-trampas"></a>
 ### Etapa por Etapa: Trampas de Grasa
 
-#### 📥 Etapa: Solicitud de Cotización (Trampas)
-* **¿Cómo llega?** El cliente elige "Servicios especiales" en el menú inicial y selecciona **Grasas alimenticias (trampas de grasa)**.
-* **Preguntas de Calificación del Bot:**
-  1. *¿Cuántas trampas de grasa?* (Solo 1, 2, o 3 o más. Si pide 3 o más, el bot lo turna al asesor para cotización manual).
-  2. *¿Capacidad o tamaño promedio?* (200 LTS estándar, 250 a 500 LTS, Más de 500 LTS. Tamaños mayores a 200 LTS van a cotización manual).
-  3. *¿De qué material son?* (Plástico/PVC, Acero inoxidable/Metal, Concreto/Obra civil).
-  4. *¿Cómo es el acceso para la unidad?* (A pie de trampa, Acceso complicado, Requiere permisos).
-  5. *¿Distancia del camión a la trampa?* (Corta 0-10m, Media 11-20m, Larga más de 21m).
-  6. *¿Cuenta con rampas accesibles?* (Sí, No lo sé, No).
-  7. *Fotos/Videos:* Solicita evidencia visual para verificar las condiciones físicas antes del servicio.
+1. #### 📥 Contacto inicial
+   * **¿Cómo llega?** El cliente elige "Servicios especiales" en el menú inicial y selecciona **Grasas alimenticias (trampas de grasa)**.
+   * **Preguntas de Calificación del Bot:**
+     1. *¿Cuántas trampas de grasa?* (Solo 1, 2, o 3 o más. Si pide 3 o más, el bot lo turna al asesor para cotización manual).
+     2. *¿Capacidad o tamaño promedio?* (200 LTS estándar, 250 a 500 LTS, Más de 500 LTS. Tamaños mayores a 200 LTS van a cotización manual).
+     3. *¿De qué material son?* (Plástico/PVC, Acero inoxidable/Metal, Concreto/Obra civil).
+     4. *¿Cómo es el acceso para la unidad?* (A pie de trampa, Acceso complicado, Requiere permisos).
+     5. *¿Distancia del camión a la trampa?* (Corta 0-10m, Media 11-20m, Larga más de 21m).
+     6. *¿Cuenta con rampas accesibles?* (Sí, No lo sé, No).
+     7. *Fotos/Videos:* Solicita evidencia visual para verificar las condiciones físicas antes del servicio.
+
+2. #### 👤 Apoyo humano
+   * Cuando el lead requiere asistencia directa del asesor de trampas o el bot se detiene por datos no clasificados.
+
+3. #### 💰 COTIZACIÓN (Automática vs. Manual)
+   * **Cotización Automática:** Si el cliente solicita **1 o 2 trampas de 200 LTS (estándar)** y responde todas las preguntas del bot, el sistema procesa el webhook. El bot le envía al cliente un enlace personalizado generado en el campo `{{lead.cf.1117077}}` con la cotización lista y mueve el lead a *COTIZACIÓN*.
+   * **Cotización Manual:** Si el tamaño es mayor a 200 LTS, requiere permisos complejos o son más de 3 trampas, el bot pausa la automatización. El asesor debe formular la cotización manualmente. Al enviarla, **debe presionar obligatoriamente el botón "Cotización de trampas de grasa manual"** en Kommo para mover el lead al estatus de cotización.
+
+4. #### 📞 En seguimiento
+   * A las **21 horas** de haber enviado la cotización, el bot pregunta el estatus de la decisión.
+   * Si el cliente rechaza por *Precio*, se le ofrece un cupón del **5% de descuento** y se le etiqueta como **"Perdido por precio"**.
+   * ⚠️ **REGLA CRÍTICA DE QUEJAS:** Las quejas de trampas de grasa **NO SE ENVÍAN A OTRO EMBUDO**. El asesor debe mantener el lead en su etapa actual, **colocarle manualmente la etiqueta `Queja`** al contacto, y darle resolución directamente dentro de la etapa en que se encuentre el lead en este embudo.
+
+5. #### ⏸️ En pausa
+   * **¿Cuándo se usa?** El cliente necesita la limpieza en más de 1 mes en el futuro. Se mueve aquí para mantener limpio el tablero diario.
+
+6. #### 🔴 Perdido reactivable
+   * Prospectos comerciales viables que no concretaron el servicio por precio o agenda. Se guardan para futuras campañas comerciales y promociones.
+
+7. #### ❌ Perdidos
+   * Servicios eventuales concluidos, o clientes que contrataron con la competencia.
+
+8. #### 🚫 Cerrado
+   * Contactos no viables (fuera de zona, proveedores, spam, empleos).
 
 ---
 
-<a name="cotizacion-trampas"></a>
-### 💰 Etapa: Cotización (Trampas)
+## 📌 Tabla Resumen de Reglas, Cupones y Gestión de Quejas
 
-#### 1. Cotización Automática
-* Si el cliente solicita **1 o 2 trampas de 200 LTS (estándar)** y responde todas las preguntas del bot, el sistema procesa el webhook `https://trampas-de-grasa-microservicio.vercel.app/api/webhook`.
-* El bot le envía al cliente un enlace personalizado generado en el campo `{{lead.cf.1117077}}` con la cotización lista y mueve el lead a *Cotización*.
-
-#### 2. Cotización Manual
-* Si el tamaño es mayor a 200 LTS, requiere permisos complejos o son más de 3 trampas, el bot pausa la automatización.
-* El asesor debe formular la cotización manualmente. Al enviarla, **debe presionar obligatoriamente el botón "Cotización de trampas de grasa manual"** en Kommo para mover el lead al estatus de cotización.
-
-#### 📞 Etapa: En Seguimiento (Trampas)
-* A las **21 horas** de haber enviado la cotización, el bot pregunta el estatus de la decisión.
-* Si el cliente rechaza por *Precio*, se le ofrece un cupón del **5% de descuento** y se le etiqueta como **"Perdido por precio"**.
-
-#### ⏸️ Etapa: Pausado (Trampas)
-* **¿Cuándo se usa?** El cliente necesita la limpieza en más de 1 mes en el futuro. Se mueve aquí para mantener limpio el tablero diario.
-
-#### 🔴 Etapa: Perdido Reactivable (Trampas)
-* **¿Cuándo se usa?** Prospectos comerciales viables que no concretaron el servicio por precio o agenda. Se guardan para futuras campañas comerciales y promociones.
-
-#### ❌ Etapa: Perdidos (Trampas)
-* **¿Cuándo se usa?** Servicios eventuales concluidos, o clientes que contrataron con la competencia.
-
-#### 🚫 Etapa: Cerrado (Trampas)
-* **¿Cuándo se usa?** Contactos no viables (fuera de zona, proveedores, spam, empleos).
-
-#### 😤 Quejas y Soporte (Regla Especial para Trampas)
-
-> [!IMPORTANT]
-> **Atención de Quejas en Trampas de Grasa:**
-> Si un cliente de trampas reporta una inconformidad o queja sobre el servicio prestado:
-> 1. **No se envía a otro embudo:** A diferencia del flujo de baños, no se utiliza un embudo especial para quejas.
-> 2. **Gestión Interna:** El asesor responsable debe **colocar la etiqueta `Queja`** al contacto.
-> 3. **Resolución en sitio:** Se le debe dar seguimiento y resolver el inconveniente directamente dentro del estatus actual del lead en el embudo de trampas.
-
----
-
-## 📌 Tabla Resumen de Reglas y Cupones de Descuento
-
-| Embudo | Descuento Inicial (Sin respuesta) | Cupón en Seguimiento (Objeción de Precio) | Disparador de Seguimiento |
-|---|---|---|---|
-| **Baños (Daniel Herrera)** | **5%** (a las 2 horas sin respuesta) | **10%** (en seguimiento de 21h) | Botón manual "Cotización realizada" / Webhook automático |
-| **Fosas (Livier Mora)** | N/A (Cotización siempre manual) | **5%** (en seguimiento de 21h) | Botón manual "Cotización realizada" |
-| **Trampas (Asesor Trampas)** | N/A | **5%** (en seguimiento de 21h) | Botón manual "Cotización de trampas de grasa manual" |
-
+| Embudo | Descuento Inicial (Sin respuesta) | Cupón en Seguimiento (Objeción de Precio) | Disparador de Seguimiento | Gestión de Quejas y Soporte |
+|---|---|---|---|---|
+| **Baños (Daniel Herrera)** | **5%** (a las 2 horas sin respuesta) | **10%** (en seguimiento de 21h) | Botón manual "Cotización realizada" / Webhook automático | **Se traslada al embudo especializado de Quejas** (Pipeline 12717196) |
+| **Fosas (Livier Mora)** | N/A (Cotización siempre manual) | **5%** (en seguimiento de 21h) | Botón manual "Cotización realizada" | **Resolución local en la etapa CLIENTE ACTUAL** (Tag manual `Queja`) |
+| **Trampas (Asesor Trampas)** | N/A | **5%** (en seguimiento de 21h) | Botón manual "Cotización de trampas de grasa manual" | **Resolución local en la etapa actual** (Tag manual `Queja`) |

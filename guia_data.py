@@ -15,10 +15,10 @@ GLOSARIO = {
 EMBUDOS_INFO = {
     "baños": {
         "responsable": "Daniel Herrera",
-        "descripcion": "Embudo enfocado en la renta de sanitarios portátiles para obras y eventos.",
+        "descripcion": "Embudo enfocado en la renta de sanitarios portátiles para obras y eventos (17 etapas en total).",
         "etapas": [
             {
-                "nombre": "📥 Solicitud de Cotización",
+                "nombre": "📥 Solicitud de Cotización / Contacto Inicial",
                 "descripcion": "El lead entra aquí al seleccionar 'Rentar baños'. El bot recopila de forma automática: uso (obra o evento), cantidad de baños (hasta 3), tipo de baño (sencillo o con lavamanos), duración y dirección física.",
                 "detalles": "Si el cliente solicita 3 o más baños o envía un pin de ubicación inválido repetidamente, se asigna directamente a Daniel Herrera para seguimiento humano."
             },
@@ -32,27 +32,57 @@ EMBUDOS_INFO = {
                 "descripcion": "Paso intermedio de validación de datos del cliente antes de cotizar."
             },
             {
-                "nombre": "💰 Cotización",
+                "nombre": "💰 Cotizado / Cotización",
                 "descripcion": "El bot (por webhook) o el asesor envían la cotización en PDF y ponen el tag 'Propuesta enviada'.",
                 "detalles": "¡Importante! Si la cotización es manual, debes dar clic al botón 'Cotización realizada'. Si no responde en 2h, se activa el bot de descuento automático del 5%."
             },
             {
-                "nombre": "📞 En Seguimiento",
-                "descripcion": "A las 21 horas post-cotización sin respuesta, el sistema manda un mensaje de seguimiento preguntando si están evaluando opciones, desean contratar o cancelan.",
-                "detalles": "Si cancelan por precio alto, el bot envía un cupón de 10% de descuento como último recurso y pone el tag 'Perdido por precio'."
+                "nombre": "🤖 Seguimiento Automático",
+                "descripcion": "Los prospectos llegan a esta etapa de forma 100% automatizada.",
+                "detalles": "Circunstancias de llegada: Cuando se envía una cotización, el bot espera 21 horas. Si el cliente no responde en ese lapso, el bot envía un mensaje automático de seguimiento. Si pasan otras 24 horas y el cliente sigue en silencio, el sistema lo mueve de forma automática a esta etapa y le asigna la etiqueta 'Sin respuesta'. Esto sirve para mantener limpio el estatus de 'Cotizado' de la bandeja del asesor."
+            },
+            {
+                "nombre": "❄️ Campañas Frío",
+                "descripcion": "Etapa diseñada para leads inactivos o antiguos a los que se les envía una campaña masiva de recontacto.",
+                "detalles": "Se colocan aquí aquellos leads de campañas masivas que NO responden al mensaje enviado o no muestran interés."
+            },
+            {
+                "nombre": "🔥 Campañas Caliente",
+                "descripcion": "Leads reactivados mediante campañas que sí interactúan.",
+                "detalles": "Si un lead al que se le envió el mensaje de campaña sí responde y muestra interés en contratar nuevamente, el sistema lo mueve automáticamente a esta etapa para que Daniel Herrera le brinde atención prioritaria para cerrar la venta."
             },
             {
                 "nombre": "📅 Programado",
                 "descripcion": "Venta ganada en espera de la fecha acordada para que el equipo de operaciones entregue el baño."
             },
             {
-                "nombre": "🚪 Baño Entregado",
+                "nombre": "🚪 Baño Entregado / Ganados",
                 "descripcion": "El baño se entregó físicamente. El asesor debe dar clic en el botón 'Baño entregado'.",
                 "detalles": "Al dar clic, se activa la encuesta post-servicio con emojis (☹️, 😐, 😄) y se prepara al cliente para recibir un cupón de reactivación del 10% cuando finalice la renta."
             },
             {
-                "nombre": "⏸️ Pausado",
+                "nombre": "👤 Apoyo Humano",
+                "descripcion": "El lead requiere atención humana directa porque el bot no pudo clasificar su solicitud o el cliente solicitó hablar con un asesor.",
+                "detalles": "Se crea una tarea urgente para Daniel Herrera y se notifica internamente."
+            },
+            {
+                "nombre": "⏸️ En Pausa / Pausado",
                 "descripcion": "Prospectos viables pero que requieren el servicio hasta dentro de 1 mes o más."
+            },
+            {
+                "nombre": "🔄 Ganado cliente reactiva",
+                "descripcion": "El cliente ganado vuelve a escribir meses después, rompiendo la pausa de espera.",
+                "detalles": "El sistema detecta el mensaje y mueve el lead automáticamente a esta etapa (incluso si no tiene baño activo) para ofrecerle el menú autogestionable (solicitar retiros, quejas, rentar otro baño, consultar cobros, etc.)."
+            },
+            {
+                "nombre": "🚚 Solicitud retiro",
+                "descripcion": "El cliente ha solicitado formalmente el retiro de la unidad de baño.",
+                "detalles": "Se le dan instrucciones de mandar correo a operacionesgdl@saniglobal.com.mx y se le envía la encuesta de emojis."
+            },
+            {
+                "nombre": "😤 Quejas sin resolver",
+                "descripcion": "Inconformidades del cliente que requieren atención humana.",
+                "detalles": "En Baños, las quejas se transfieren a este estatus especializado para su resolución inmediata por parte del asesor, a diferencia de los otros embudos que lo manejan de forma local."
             },
             {
                 "nombre": "🔴 Perdido Reactivable",
@@ -70,17 +100,21 @@ EMBUDOS_INFO = {
     },
     "fosas": {
         "responsable": "Livier Mora",
-        "descripcion": "Limpieza de fosas sépticas, lodos estables, pozos de absorción y residuos líquidos industriales.",
+        "descripcion": "Limpieza de fosas sépticas, lodos estables, pozos de absorción y residuos líquidos industriales (13 etapas).",
         "etapas": [
             {
-                "nombre": "📥 Solicitud de Cotización",
-                "descripcion": "El bot pregunta por tipo de residuo, estado del material (líquido, lodo, sólido), almacenamiento (fosa, cisterna, tambo, sobre terreno) y volumen (hasta 5,000L, 5k-10k, más de 10k).",
+                "nombre": "📥 Contacto inicial",
+                "descripcion": "El lead entra al seleccionar 'Servicios especiales' -> 'Fosas'. El bot pregunta por tipo de residuo, estado del material, almacenamiento y volumen.",
                 "detalles": "Se envía la presentación de Saniglobal en PDF."
             },
             {
-                "nombre": "🏠 Filtro de Casa Habitación (Exclusión)",
+                "nombre": "🏠 CASA HABITACIÓN (Filtro Crítico)",
                 "descripcion": "El bot pregunta obligatoriamente: ¿Es para una casa habitacional o residencial?",
-                "detalles": "Si es 'Sí', el bot pone la etiqueta 'CASA HABITACIÓN', envía un mensaje de disculpa y lo mueve automáticamente a Cerrado. Saniglobal solo atiende sector comercial o industrial para estos servicios."
+                "detalles": "Si la respuesta es 'Sí', el bot le coloca la etiqueta 'CASA HABITACIÓN', envía el mensaje de rechazo cortés de que Saniglobal solo atiende sector comercial/industrial, y lo mueve automáticamente a Cerrado."
+            },
+            {
+                "nombre": "ℹ️ Solicitud de información",
+                "descripcion": "Validación técnica de los datos del residuo e información fiscal de la empresa antes de cotizar."
             },
             {
                 "nombre": "🔎 Visita de Diagnóstico",
@@ -88,61 +122,73 @@ EMBUDOS_INFO = {
             },
             {
                 "nombre": "💰 Cotización",
-                "descripcion": "La cotización en este embudo siempre se elabora de manera manual.",
-                "detalles": "Es obligatorio que el asesor presione el botón 'Cotización realizada' al enviar la propuesta para que se dispare el bot de seguimiento de 21h."
+                "descripcion": "La cotización en este embudo siempre se realiza de manera manual por Livier.",
+                "detalles": "Es obligatorio presionar el botón 'Cotización realizada' para que el bot de seguimiento de 21h se configure correctamente."
             },
             {
-                "nombre": "📞 En Seguimiento",
-                "descripcion": "A las 21 horas se envía mensaje de seguimiento. Si la objeción es precio, el bot ofrece un 5% de descuento máximo y etiqueta como 'Perdido por precio'."
+                "nombre": "📞 Seguimiento",
+                "descripcion": "A las 21 horas se envía mensaje de seguimiento automático. Si la objeción es precio, el bot ofrece un 5% de descuento máximo y etiqueta como 'Perdido por precio'."
             },
             {
-                "nombre": "⏸️ Pausado",
-                "descripcion": "Clientes comerciales que sí quieren el servicio pero lo necesitan dentro de más de 1 mes.",
-                "detalles": "Se mueven aquí para mantener limpio el tablero diario."
+                "nombre": "⏸️ En pausa",
+                "descripcion": "Clientes comerciales que sí quieren el servicio pero lo necesitan dentro de más de 1 mes."
             },
             {
-                "nombre": "🔴 Perdido Reactivable",
-                "descripcion": "Prospectos ideales que no cerraron por precio o agenda. Se guardan para futuras campañas de reactivación comercial."
+                "nombre": "🔄 CLIENTE ACTUAL (Reactivación y Quejas)",
+                "descripcion": "Si un cliente en 'Ganados' vuelve a escribir, el bot de reactivación lo mueve a esta etapa y le muestra el menú interactivo (Solicitar servicio, reportes y quejas, dudas).",
+                "detalles": "Regla Crítica para Quejas: En Fosas, las quejas NO se mandan a otro embudo. El asesor debe mantener el lead en esta etapa de CLIENTE ACTUAL, colocarle la etiqueta 'Queja' y darle resolución directamente aquí."
             },
             {
-                "nombre": "❌ Perdidos",
+                "nombre": "📍 CLIENTES SLP",
+                "descripcion": "Etapa de control para prospectos o clientes que corresponden a la zona de San Luis Potosí."
+            },
+            {
+                "nombre": "👤 Apoyo humano fosas",
+                "descripcion": "Cuando el cliente requiere atención directa de Livier o el bot no puede clasificar su solicitud."
+            },
+            {
+                "nombre": "🏆 GANADOS",
+                "descripcion": "Venta ganada, servicio ejecutado y facturado con éxito."
+            },
+            {
+                "nombre": "❌ PERDIDOS",
                 "descripcion": "Servicios eventuales concluidos, o clientes que contrataron con la competencia."
             },
             {
-                "nombre": "🚫 Cerrado",
+                "nombre": "🚫 CERRADOS NO POTENCIAL",
                 "descripcion": "Prospectos no viables (fuera de zona, proveedores, spam, empleos, o casas habitación filtradas)."
-            },
-            {
-                "nombre": "🔄 Reactivación (Cliente Actual)",
-                "descripcion": "Si un cliente en 'Ganados' vuelve a escribir, el bot 'Ganados el cliente reactiva fosas' lo mueve a esta etapa (Cliente Actual) y le muestra un menú interactivo.",
-                "detalles": "El menú ofrece: 'Solicitar servicio', 'Reportes y quejas' o 'Dudas del servicio'. Las tres opciones crean una tarea y notifican a Livier. Si es una queja, NO se manda a otro embudo; se debe etiquetar manualmente como 'Queja' y resolverse en esta misma etapa."
             }
         ]
     },
     "trampas": {
         "responsable": "Asesor de Trampas de Grasa",
-        "descripcion": "Limpieza y mantenimiento de trampas de grasa para cocinas comerciales, restaurantes e industrias.",
+        "descripcion": "Limpieza y mantenimiento de trampas de grasa para cocinas comerciales, restaurantes e industrias (8 etapas).",
         "etapas": [
             {
-                "nombre": "📥 Solicitud de Cotización",
+                "nombre": "📥 Contacto inicial",
                 "descripcion": "El bot realiza preguntas de calificación: número de trampas (1, 2, o 3+), capacidad (200L estándar, 250-500L, 500L+), material de la trampa, tipo de acceso, distancia de manguera necesaria y si cuenta con rampas.",
                 "detalles": "Además, se le solicita fotos/videos de la trampa."
             },
             {
-                "nombre": "💰 Cotización (Automática vs. Manual)",
+                "nombre": "👤 Apoyo humano",
+                "descripcion": "Cuando el lead requiere asistencia directa del asesor o el bot se detiene por datos no clasificados."
+            },
+            {
+                "nombre": "💰 COTIZACIÓN (Automática vs. Manual)",
                 "descripcion": "Si es 1 o 2 trampas estándar de 200 LTS y se completaron los datos, se calcula y envía la propuesta automáticamente por un microservicio externo.",
                 "detalles": "Si no cumple estas condiciones (ej. más capacidad o trampas), el asesor cotiza manualmente y presiona el botón 'Cotización de trampas de grasa manual' para continuar el flujo."
             },
             {
-                "nombre": "📞 En Seguimiento",
-                "descripcion": "Seguimiento automático a las 21 horas. Si hay objeción de precio, ofrece cupón del 5% y asigna el tag 'Perdido por precio'."
+                "nombre": "📞 En seguimiento",
+                "descripcion": "Seguimiento automático a las 21 horas. Si hay objeción de precio, ofrece cupón del 5% y asigna el tag 'Perdido por precio'.",
+                "detalles": "Regla Crítica para Quejas: Las quejas de trampas de grasa NO se mandan a otro embudo. El asesor de trampas debe colocar manualmente la etiqueta 'Queja' y darle resolución directamente dentro de la etapa en que se encuentre el lead en este embudo."
             },
             {
-                "nombre": "⏸️ Pausado",
+                "nombre": "⏸️ En pausa",
                 "descripcion": "Servicios viables que se programarán a más de 1 mes en el futuro."
             },
             {
-                "nombre": "🔴 Perdido Reactivable",
+                "nombre": "🔴 Perdido reactivable",
                 "descripcion": "Prospectos ideales que no cerraron por precio o agenda. Se guardan para futuras campañas y promociones."
             },
             {
@@ -152,11 +198,6 @@ EMBUDOS_INFO = {
             {
                 "nombre": "🚫 Cerrado",
                 "descripcion": "Solicitudes no viables (fuera de zona, proveedores, spam, empleos)."
-            },
-            {
-                "nombre": "😤 Quejas y Soporte (Regla Especial)",
-                "descripcion": "Cualquier inconformidad del cliente sobre el servicio de limpieza de trampas.",
-                "detalles": "Regla de oro: No se transfieren a otro embudo. El asesor de trampas debe etiquetar el lead como 'Queja' y darle resolución directamente en la etapa en que se encuentre."
             }
         ]
     }
@@ -229,6 +270,39 @@ QUIZ_QUESTIONS = [
         ],
         "correct": 1,
         "explanation": "El microservicio solo cotiza automáticamente si son máximo 2 trampas de tamaño estándar (200 LTS). Tamaños mayores o más cantidad requieren cotización manual."
+    },
+    {
+        "question": "¿Bajo qué condiciones y cómo funciona la etapa de 'Seguimiento Automático' en el embudo de Renta de Baños?",
+        "options": [
+            "Llega cuando el cliente solicita un descuento adicional del 10% y el sistema lo procesa en segundos.",
+            "Se activa a las 2 horas de inactividad del lead cuando este se encuentra en la etapa inicial de solicitud.",
+            "Ocurre cuando, tras 21h de enviada la cotización el cliente no responde, el bot envía un recordatorio automático. Si pasan otras 24h sin respuesta, el sistema lo mueve automáticamente a esta etapa y le asigna el tag 'Sin respuesta'.",
+            "Es una etapa manual donde Daniel Herrera mete los datos de entrega."
+        ],
+        "correct": 2,
+        "explanation": "El Seguimiento Automático ocurre tras 21h de inactividad (primer mensaje del bot) más 24h adicionales sin respuesta. Mueve el lead a la etapa 'Seguimiento automático' y asigna el tag 'Sin respuesta'."
+    },
+    {
+        "question": "¿Cuál es la diferencia entre las etapas 'Campañas Frío' y 'Campañas Caliente' en el embudo de Baños?",
+        "options": [
+            "Campañas Frío es para la temporada invernal y Campañas Caliente es para la temporada de calor.",
+            "Campañas Frío es para leads masivos de recontacto que NO responden; Campañas Caliente es para aquellos que SÍ responden y muestran interés para su atención prioritaria.",
+            "Campañas Frío es para clientes residenciales y Campañas Caliente es para el sector comercial.",
+            "Campañas Frío es para lodos líquidos y Campañas Caliente es para residuos sólidos."
+        ],
+        "correct": 1,
+        "explanation": "Campañas Frío agrupa a los prospectos inactivos recontactados que no contestaron la campaña; Campañas Caliente es para los que sí respondieron con interés en contratar."
+    },
+    {
+        "question": "¿Cómo se deben gestionar las quejas y reportes en los embudos de Fosas Sépticas y Trampas de Grasa?",
+        "options": [
+            "Se deben mover de inmediato al embudo especializado de Quejas (ID 12717196).",
+            "No se atienden porque Saniglobal no tiene departamento de soporte.",
+            "Se reasignan automáticamente al departamento de marketing (Michelle).",
+            "NO se envían a otro embudo. El asesor a cargo debe mantener el lead en su etapa actual (o Cliente Actual), asignarle manualmente la etiqueta 'Queja' y darle resolución allí mismo."
+        ],
+        "correct": 3,
+        "explanation": "A diferencia de Baños (que usa un embudo de quejas dedicado), en Fosas y Trampas las quejas se resuelven de forma interna y directa en la misma etapa actual, etiquetando el lead con el tag 'Queja'."
     }
 ]
 
