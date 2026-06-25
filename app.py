@@ -715,92 +715,69 @@ with tab_recursos:
 
     st.markdown("<div class='h-divider'></div>", unsafe_allow_html=True)
     st.markdown("### 📖 Guías Prácticas de Operación en Kommo")
-    st.markdown("Sigue estas instrucciones para dominar las herramientas diarias del CRM:")
+    st.markdown("Sigue estas instrucciones para dominar las herramientas de seguimiento del CRM:")
 
-    with st.expander("⚡ 1. Cómo usar y crear Respuestas Rápidas (Mensajes Rápidos)"):
+    with st.expander("⚡ 1. Respuestas Rápidas (Mensajes Rápidos)"):
         st.markdown("""
-        **¿Qué son?**  
-        Son plantillas de texto predefinidas para responder preguntas comunes (números de cuenta, documentos, precios) en segundos.
+        **¿Qué son y cómo te ayudan?**  
+        Son textos predefinidos (números de cuenta, requisitos de contratación, precios básicos) que evitan que escribas lo mismo una y otra vez.
         
         **Cómo usarlas en el chat:**  
-        1. En el cuadro de chat de un lead, escribe una barra diagonal `/`.
-        2. Escribe una palabra clave del título o texto de la plantilla (ej. `/pago` o `/requisitos`).
-        3. El sistema te mostrará una lista de sugerencias. Presiona `Enter` para cargar el texto y envíalo.
+        1. Escribe la barra diagonal `/` en la caja de chat de un lead.
+        2. Escribe palabras clave del título (ej. `/pagos` o `/requisitos`).
+        3. El sistema desplegará las opciones. Presiona `Enter` para cargar el texto y envíalo.
         
-        **Cómo crearlas o editarlas:**  
+        **Cómo crearlas desde Ajustes:**  
         1. Ve a **Ajustes** (icono de engranaje) → **Mensajes rápidos**.
-        2. Haz clic en **Añadir plantilla**.
-        3. Escribe un título y el cuerpo del mensaje.
-        4. Puedes usar variables dinámicas (como `{{contact.name}}` para el nombre o `{{lead.id}}` para el ID del lead) para personalizar el texto automáticamente.
-        """, unsafe_allow_html=True)
+        2. Haz clic en **Añadir plantilla**, asígnale un nombre descriptivo y escribe el mensaje. Puedes usar variables dinámicas como `{{contact.name}}` para que el sistema inserte el nombre del cliente automáticamente.
+        """)
 
-    with st.expander("🤖 2. Cómo usar y activar Respuestas Automáticas (Salesbot)"):
+    with st.expander("📅 2. Las Tareas y la Sección de Calendario"):
         st.markdown("""
-        **¿Qué es?**  
-        Es nuestro bot inteligente que califica leads, envía cotizaciones y asigna tareas.
+        Las tareas en Kommo son compromisos en tu agenda vinculados a un cliente. Tienen fecha, hora y responsable.
         
-        **Cómo activar un bot de forma manual:**  
-        1. Si deseas que el bot recopile datos por ti o envíe una cotización a un cliente asignado, abre la tarjeta del lead.
-        2. En el menú de la derecha, busca la sección **Salesbot**.
-        3. Elige el flujo de bot deseado (ej. *De solicitud a cotizado* o *Apoyo humano*) y presiona **Ejecutar**.
+        **Tipos de Tareas en Kommo:**  
+        * **Seguimiento:** Para recordatorios de llamadas ordinarias o confirmaciones de lectura de propuestas.
+        * **Reunión:** Para visitas técnicas programadas o videollamadas con empresas.
+        * **Personalizadas:** Tareas creadas por ti o el sistema con descripciones específicas.
         
-        **Cómo evitar interferir con los bots:**  
-        * Mientras estés chateando activamente con el cliente, el lead debe estar en la etapa de **Embudo Caliente** (aquí los bots están apagados).
-        * Cuando termines de chatear y le envíes la propuesta, recuerda moverlo a la etapa **Cotización** y dar clic en el botón **Cotización realizada**. Esto activará correctamente los recordatorios automáticos de 21 horas.
-        """, unsafe_allow_html=True)
+        **Reglas Lógicas y Buenas Prácticas:**  
+        - **Monitorea tu Calendario:** Revisa constantemente la sección de **Calendario** en la barra lateral izquierda. Ahí verás tus tareas agendadas en la semana: las que están *en proceso* (futuras) y las *vencidas* (en rojo). Evita acumular tareas vencidas; habla de un mal seguimiento.
+        - **Recordatorios Externos Obligatorios:** Las alertas de Kommo en el navegador pueden pasarse por alto si estás fuera de la computadora o chateando en tu celular personal. **Es obligatorio programar recordatorios externos** (ej. alarmas en tu celular o eventos en tu calendario de Google Calendar) para contactar a los clientes en la fecha y hora exacta acordadas.
+        """)
 
-    with st.expander("⏱️ 3. Cómo reabrir la Ventana de 24 horas de Meta (WhatsApp)"):
+    with st.expander("✍️ 3. Las Notas (Registro de Acuerdos Especiales)"):
         st.markdown("""
-        **¿Qué es la regla de las 24 horas?**  
-        Meta (dueña de WhatsApp) prohíbe enviar mensajes libres a los clientes si han pasado más de 24 horas desde que ellos nos enviaron su último mensaje.
+        Las notas son anotaciones permanentes en la tarjeta del lead que no se le envían al cliente.
         
-        **Cómo volver a contactar al cliente si la ventana se cerró:**  
-        1. Abre el chat del lead en Kommo. Verás una alerta de que la ventana está cerrada.
-        2. Haz clic en el botón de **Plantillas de WhatsApp (HSM)** en el chat.
-        3. Selecciona una plantilla oficial aprobada (ej. de seguimiento o recordatorio de pago).
-        4. Completa los campos dinámicos si se requiere y envíala.
-        5. **Reapertura:** En cuanto el cliente responda a tu plantilla (presionando un botón o escribiendo algo), la ventana se abrirá y podrás chatear libremente de nuevo por otras 24 horas.
-        """, unsafe_allow_html=True)
+        **Qué debes registrar en las Notas para tu beneficio:**  
+        * **Precios acordados:** Si le diste una cotización especial o un descuento manual específico.
+        * **Requerimientos del sitio de entrega:** Detalles críticos para el camión o la logística (ej. *'La calle es estrecha, se requiere camión pequeño'*, *'Hay cables de luz bajos'*, *'Hay acceso limitado por obra'*).
+        * **Datos de facturación e información fiscal:** Si los proporcionó por teléfono o notas rápidas.
+        * **Contactos secundarios:** Nombres de secretarias, jefes de obra, encargados de compras, etc.
+        
+        **Beneficio:** Todo queda guardado en la tarjeta. Si te vas de vacaciones o te enfermas, cualquier compañero podrá leer tus notas y dar soporte al cliente sin repetir preguntas molestas.
+        """)
 
-    with st.expander("📅 4. Gestión de Tareas y Alertas (Regla de Oro)"):
+    with st.expander("💬 4. Bandeja de Chats Limpia y Filtros de Usuario"):
         st.markdown("""
-        **La Regla de Oro:**  
-        *“Ningún lead activo debe quedarse sin una tarea pendiente.”* Si un lead no tiene tarea, significa que se encuentra en el olvido y no recibirá seguimiento.
+        Para operar de manera ágil y no perder ventas, es fundamental mantener ordenada tu bandeja de chats.
         
-        **Cómo programar una tarea:**  
-        1. En la parte inferior de la tarjeta del lead, haz clic en **Añadir tarea**.
-        2. Selecciona la fecha y hora límite de tu recordatorio (ej. Mañana a las 9:00 am).
-        3. Escribe una nota clara de lo que debes hacer (ej. *'Llamar para confirmar dirección de entrega'* o *'Revisar si enviaron comprobante'*).
-        4. Selecciona el tipo de tarea (`Llamada`, `Seguimiento`, `Reunión`).
-        5. Guarda la tarea. Kommo te enviará notificaciones visuales y sonoras en el navegador y en la app móvil.
-        """, unsafe_allow_html=True)
+        **¿Por qué debes tener limpia la sección de chats?**  
+        Si dejas acumuladas conversaciones abiertas sin resolver o sin responder, los chats entrantes nuevos se irán apilando, se sepultarán hacia abajo de la bandeja y perderemos leads por no responder en su ventana de 24 horas.
+        
+        **¿Cuándo se debe 'Cerrar conversación' o 'Marcar como resuelto'?**  
+        * **Marcar como resuelto:** Cuando el cliente ya fue atendido, se le envió la información solicitada y no hay ninguna acción inmediata pendiente de nuestra parte en el chat. Esto limpia el chat de tu bandeja activa.
+        * **Marcar conversación cerrada / Cerrar:** En canales de chat, cuando el contacto fue transferido a otro embudo (como quejas en baños) o cuando el prospecto fue rechazado (como casas habitación en fosas).
+        
+        **Filtros de Chat por Usuario:**  
+        Para no saturarte con los chats de tus compañeros, aplica un filtro rápido:
+        1. Ve a la sección de **Chats**.
+        2. Haz clic en la barra de búsqueda y filtros superior.
+        3. En el campo **Responsable**, selecciona tu usuario (ej. Daniel Herrera o Livier Mora).
+        4. Guarda el filtro. Ahora la pantalla te mostrará **únicamente** los chats asignados a ti, permitiéndote concentrarte al 100% en tu bandeja de leads.
+        """)
 
-    with st.expander("🗂️ 5. Cómo usar Tareas, Notas y Siguientes para tu beneficio"):
-        st.markdown("""
-        **El trío dinámico de Kommo: Organiza tu día y vende más**
-        
-        ### 📅 A. Las Tareas (Tasks)
-        * **Qué son:** Recordatorios de acciones comerciales con fecha, hora y responsable.
-        * **Cómo te benefician:** 
-          - Al iniciar el día, ve a la sección de **Tareas** para ver tu lista diaria ordenada por hora. 
-          - Libera espacio mental: en lugar de intentar recordar a quién llamar, agenda la tarea y deja que el CRM te notifique.
-          - Si una tarea vence, se pondrá en rojo en tu tablero comercial. Mantener tareas en rojo indica un mal seguimiento de leads.
-        
-        ### ✍️ B. Las Notas (Notes)
-        * **Qué son:** Comentarios estáticos escritos en el historial del lead.
-        * **Qué debes registrar en las Notas:**
-          - Acuerdos especiales de precio, requerimientos especiales del sitio (ej. *'Calle angosta, se requiere camión chico'*).
-          - Datos de contacto secundarios (ej. *'Nombre de la secretaria: Patricia'*).
-          - Historial de llamadas breves (ej. *'Se marcó pero mandó a buzón, reintentar tarde'*).
-        * **Cómo te benefician:** 
-          - Todo tu equipo tendrá acceso al mismo historial. Si sales de vacaciones, un compañero puede retomar el lead leyendo las notas sin molestar al cliente.
-          - Generas confianza en el cliente al recordar detalles específicos de llamadas anteriores.
-        
-        ### 🔄 C. El "Siguiente" (Siguiente Paso)
-        * **Qué es:** La regla operativa de programar la próxima acción inmediatamente al terminar la actual. Al marcar una tarea como 'Completada', Kommo te preguntará automáticamente: *¿Cuál es el siguiente paso?*.
-        * **Cómo te beneficia:** 
-          - Evita que los leads se queden estancados. Cada interacción con el cliente debe tener una consecuencia en el tiempo para mover el lead hacia la etapa de **Ganados**.
-        """, unsafe_allow_html=True)
 
 # ----------------------------------------------------
 # TAB 7: GUÍA COMPLETA
