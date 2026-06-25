@@ -348,3 +348,64 @@ Contacto inicial → apoyo humano → COTIZACIÓN → En seguimiento
 | **Baños (Daniel Herrera)** | **5%** (a las 2 horas sin respuesta) | **10%** (en seguimiento de 21h) | Botón manual "Cotización realizada" / Webhook automático | **Se traslada al embudo especializado de Quejas** (Pipeline 12717196) |
 | **Fosas (Livier Mora)** | N/A (Cotización siempre manual) | **5%** (en seguimiento de 21h) | Botón manual "Cotización realizada" | **Resolución local en la etapa CLIENTE ACTUAL** (Tag manual `Queja`) |
 | **Trampas (Asesor Trampas)** | N/A | **5%** (en seguimiento de 21h) | Botón manual "Cotización de trampas de grasa manual" | **Resolución local en la etapa actual** (Tag manual `Queja`) |
+
+
+---
+
+<a name="recursos-kommo"></a>
+## 🔗 Enlaces y Herramientas Oficiales de Kommo CRM
+
+Para complementar tu capacitación, te sugerimos consultar los recursos oficiales de Kommo CRM:
+
+1. **[Base de Conocimientos Oficial de Kommo (Recursos)](https://www.kommo.com/es/recursos/)**: El portal de ayuda principal de Kommo con manuales detallados de configuración, integraciones y facturación.
+2. **[Calculadora de Precios de WhatsApp Business](https://www.kommo.com/es/calculadora-precios-whatsapp/)**: Herramienta interactiva para calcular el costo por mensaje y por país en Meta.
+3. **[Generador de Enlaces de WhatsApp](https://www.kommo.com/es/como-crear-un-enlace-de-whatsapp/)**: Utilidad gratuita para generar URLs directas a WhatsApp y códigos QR para campañas comerciales de recontacto.
+4. **[Manual de Creación de Salesbots](https://www.kommo.com/es/salesbot/)**: Documento técnico sobre el funcionamiento y diseño de flujos automatizados de respuesta.
+
+
+---
+
+<a name="guias-operacion-kommo"></a>
+## 📖 Guías Prácticas de Operación en Kommo CRM para Vendedores
+
+Para maximizar tus ventas y no interferir con las automatizaciones del sistema, sigue estas instrucciones paso a paso:
+
+### 1. ⚡ Cómo Usar y Crear Respuestas Rápidas (Mensajes Rápidos)
+* **¿Qué son?** Son plantillas de texto precargadas que te permiten contestar preguntas comunes (números de cuenta para depósitos, requisitos fiscales, etc.) en menos de 3 segundos.
+* **Cómo usarlas en el chat diario:**
+  1. Abre el chat del lead.
+  2. Escribe una barra diagonal `/` en la caja de texto.
+  3. Escribe palabras clave del título (ej. `/pagos` o `/pasos`). El sistema te filtrará las opciones.
+  4. Presiona `Enter` para cargar el texto y envíalo.
+* **Cómo crear nuevas plantillas:**
+  1. Ve a **Ajustes** (icono de engranaje en la barra izquierda) → **Mensajes rápidos**.
+  2. Haz clic en el botón **Añadir plantilla**.
+  3. Escribe un título descriptivo y redacta el texto del mensaje. Puedes usar variables dinámicas (como `{{contact.name}}` o `{{lead.price}}`) para que Kommo llene los datos del cliente de forma automática.
+
+### 2. 🤖 Cómo Usar y Activar Respuestas Automáticas (Salesbot)
+* **¿Qué es?** Es el bot encargado de interactuar inicialmente con el cliente y guiarlo.
+* **Cómo forzar la activación de un bot de forma manual:**
+  1. Abre la tarjeta del lead.
+  2. En el panel de la derecha, localiza la sección **Salesbot**.
+  3. Selecciona el bot que necesitas ejecutar (ej. `De solicitud a cotizado` o `Apoyo humano`).
+  4. Haz clic en **Ejecutar**. El bot enviará los mensajes y reconfigurará el estatus de forma autónoma.
+* **Regla para no romper los bots:**
+  - Mientras estás hablando con el cliente, mantenlo en la etapa **Embudo Caliente** (los bots de seguimiento están apagados aquí).
+  - Al terminar tu interacción y enviarle la propuesta, muévelo a la etapa de **Cotización** y presiona el botón de **Cotización realizada** para programar las alertas y bots de seguimiento correctamente.
+
+### 3. ⏱️ Cómo Reabrir la Ventana de 24 horas de Meta (WhatsApp)
+* **La restricción de Meta:** Por política de seguridad de WhatsApp, si transcurren más de 24 horas desde el último mensaje del cliente, no puedes enviarle mensajes libres (escribir texto ordinario). El sistema bloqueará tus mensajes.
+* **Cómo restablecer el contacto:**
+  1. Entra al chat del lead.
+  2. Haz clic en el botón de **Plantillas de WhatsApp (HSM)**.
+  3. Elige una de nuestras plantillas oficiales de reactivación aprobadas por Meta.
+  4. Envía la plantilla. En cuanto el cliente responda con un texto o presionando un botón de la plantilla, la ventana de 24 horas se restablecerá y podrás volver a escribirle libremente.
+
+### 4. 📅 Gestión de Tareas y Alertas (Regla de Oro)
+* **Nuestra Regla de Oro:** *“Lead activo sin tarea es un lead perdido en el olvido.”* El sistema opera con base en compromisos en agenda.
+* **Cómo crear tus recordatorios diarios:**
+  1. En la parte inferior de la tarjeta del lead, haz clic en **Añadir tarea**.
+  2. Elige el día y la hora de tu recordatorio (ej. Mañana a las 10:00 am).
+  3. Escribe lo que debes realizar (ej. *'Confirmar horario de entrega de sanitarios'* o *'Verificar si Livier ya cotizó'*).
+  4. Selecciona el tipo de tarea (`Llamada`, `Seguimiento`, `Reunión`).
+  5. Guarda. Kommo te enviará notificaciones visuales y sonoras en el navegador y en tu celular.

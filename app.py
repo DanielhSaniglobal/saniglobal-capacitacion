@@ -680,6 +680,101 @@ with tab_recursos:
     if not filtered_templates:
         st.info("No se encontraron plantillas con ese criterio de búsqueda.")
 
+    st.markdown("<div class='h-divider'></div>", unsafe_allow_html=True)
+    st.markdown("### 🔗 Enlaces y Herramientas Oficiales de Kommo")
+    st.markdown("Consulta la documentación y herramientas oficiales de Kommo CRM para resolver dudas adicionales de la plataforma:")
+    
+    col_link1, col_link2 = st.columns(2)
+    with col_link1:
+        st.markdown(f"""
+        <div class="custom-card accent-border-card" style="margin-bottom: 1rem;">
+            <strong>📚 Base de Conocimientos de Kommo</strong>
+            <p style="font-size: 0.8rem; margin-top: 0.5rem; color: {text_muted};">Manuales, guías paso a paso de configuración, facturación, cuentas y canales.</p>
+            <a href="https://www.kommo.com/es/recursos/" target="_blank" style="font-size: 0.85rem; font-weight: bold; color: {accent_color}; text-decoration: none;">Visitar Documentación ↗</a>
+        </div>
+        <div class="custom-card accent-border-card" style="margin-bottom: 1rem;">
+            <strong>📲 Generador de Enlaces de WhatsApp</strong>
+            <p style="font-size: 0.8rem; margin-top: 0.5rem; color: {text_muted};">Crea enlaces de WhatsApp (wa.me) y códigos QR personalizados para tus campañas de recontacto comercial.</p>
+            <a href="https://www.kommo.com/es/como-crear-un-enlace-de-whatsapp/" target="_blank" style="font-size: 0.85rem; font-weight: bold; color: {accent_color}; text-decoration: none;">Crear Enlace ↗</a>
+        </div>
+        """, unsafe_allow_html=True)
+        
+    with col_link2:
+        st.markdown(f"""
+        <div class="custom-card accent-border-card" style="margin-bottom: 1rem;">
+            <strong>💰 Calculadora de Precios de WhatsApp</strong>
+            <p style="font-size: 0.8rem; margin-top: 0.5rem; color: {text_muted};">Calcula el costo exacto de tus mensajes y conversaciones de WhatsApp Business por país.</p>
+            <a href="https://www.kommo.com/es/calculadora-precios-whatsapp/" target="_blank" style="font-size: 0.85rem; font-weight: bold; color: {accent_color}; text-decoration: none;">Calcular Costos ↗</a>
+        </div>
+        <div class="custom-card accent-border-card" style="margin-bottom: 1rem;">
+            <strong>🤖 Automatización de Ventas (Salesbot)</strong>
+            <p style="font-size: 0.8rem; margin-top: 0.5rem; color: {text_muted};">Aprende cómo funciona el Salesbot oficial de Kommo y cómo configurarlo paso a paso.</p>
+            <a href="https://www.kommo.com/es/salesbot/" target="_blank" style="font-size: 0.85rem; font-weight: bold; color: {accent_color}; text-decoration: none;">Ver Guía de Bots ↗</a>
+        </div>
+        """, unsafe_allow_html=True)
+
+    st.markdown("<div class='h-divider'></div>", unsafe_allow_html=True)
+    st.markdown("### 📖 Guías Prácticas de Operación en Kommo")
+    st.markdown("Sigue estas instrucciones para dominar las herramientas diarias del CRM:")
+
+    with st.expander("⚡ 1. Cómo usar y crear Respuestas Rápidas (Mensajes Rápidos)"):
+        st.markdown("""
+        **¿Qué son?**  
+        Son plantillas de texto predefinidas para responder preguntas comunes (números de cuenta, documentos, precios) en segundos.
+        
+        **Cómo usarlas en el chat:**  
+        1. En el cuadro de chat de un lead, escribe una barra diagonal `/`.
+        2. Escribe una palabra clave del título o texto de la plantilla (ej. `/pago` o `/requisitos`).
+        3. El sistema te mostrará una lista de sugerencias. Presiona `Enter` para cargar el texto y envíalo.
+        
+        **Cómo crearlas o editarlas:**  
+        1. Ve a **Ajustes** (icono de engranaje) → **Mensajes rápidos**.
+        2. Haz clic en **Añadir plantilla**.
+        3. Escribe un título y el cuerpo del mensaje.
+        4. Puedes usar variables dinámicas (como `{{contact.name}}` para el nombre o `{{lead.id}}` para el ID del lead) para personalizar el texto automáticamente.
+        """, unsafe_allow_html=True)
+
+    with st.expander("🤖 2. Cómo usar y activar Respuestas Automáticas (Salesbot)"):
+        st.markdown("""
+        **¿Qué es?**  
+        Es nuestro bot inteligente que califica leads, envía cotizaciones y asigna tareas.
+        
+        **Cómo activar un bot de forma manual:**  
+        1. Si deseas que el bot recopile datos por ti o envíe una cotización a un cliente asignado, abre la tarjeta del lead.
+        2. En el menú de la derecha, busca la sección **Salesbot**.
+        3. Elige el flujo de bot deseado (ej. *De solicitud a cotizado* o *Apoyo humano*) y presiona **Ejecutar**.
+        
+        **Cómo evitar interferir con los bots:**  
+        * Mientras estés chateando activamente con el cliente, el lead debe estar en la etapa de **Embudo Caliente** (aquí los bots están apagados).
+        * Cuando termines de chatear y le envíes la propuesta, recuerda moverlo a la etapa **Cotización** y dar clic en el botón **Cotización realizada**. Esto activará correctamente los recordatorios automáticos de 21 horas.
+        """, unsafe_allow_html=True)
+
+    with st.expander("⏱️ 3. Cómo reabrir la Ventana de 24 horas de Meta (WhatsApp)"):
+        st.markdown("""
+        **¿Qué es la regla de las 24 horas?**  
+        Meta (dueña de WhatsApp) prohíbe enviar mensajes libres a los clientes si han pasado más de 24 horas desde que ellos nos enviaron su último mensaje.
+        
+        **Cómo volver a contactar al cliente si la ventana se cerró:**  
+        1. Abre el chat del lead en Kommo. Verás una alerta de que la ventana está cerrada.
+        2. Haz clic en el botón de **Plantillas de WhatsApp (HSM)** en el chat.
+        3. Selecciona una plantilla oficial aprobada (ej. de seguimiento o recordatorio de pago).
+        4. Completa los campos dinámicos si se requiere y envíala.
+        5. **Reapertura:** En cuanto el cliente responda a tu plantilla (presionando un botón o escribiendo algo), la ventana se abrirá y podrás chatear libremente de nuevo por otras 24 horas.
+        """, unsafe_allow_html=True)
+
+    with st.expander("📅 4. Gestión de Tareas y Alertas (Regla de Oro)"):
+        st.markdown("""
+        **La Regla de Oro:**  
+        *“Ningún lead activo debe quedarse sin una tarea pendiente.”* Si un lead no tiene tarea, significa que se encuentra en el olvido y no recibirá seguimiento.
+        
+        **Cómo programar una tarea:**  
+        1. En la parte inferior de la tarjeta del lead, haz clic en **Añadir tarea**.
+        2. Selecciona la fecha y hora límite de tu recordatorio (ej. Mañana a las 9:00 am).
+        3. Escribe una nota clara de lo que debes hacer (ej. *'Llamar para confirmar dirección de entrega'* o *'Revisar si enviaron comprobante'*).
+        4. Selecciona el tipo de tarea (`Llamada`, `Seguimiento`, `Reunión`).
+        5. Guarda la tarea. Kommo te enviará notificaciones visuales y sonoras en el navegador y en la app móvil.
+        """, unsafe_allow_html=True)
+
 # ----------------------------------------------------
 # TAB 7: GUÍA COMPLETA
 # ----------------------------------------------------
