@@ -14,7 +14,7 @@ st.set_page_config(
 
 # 2. Theme Toggle State
 if "theme" not in st.session_state:
-    st.session_state.theme = "dark"
+    st.session_state.theme = "light"
 
 def toggle_theme():
     st.session_state.theme = "light" if st.session_state.theme == "dark" else "dark"
