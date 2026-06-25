@@ -189,13 +189,7 @@ Solicitud → Embudo caliente → Solicitud de información → Cotización → 
 #### Menú de Cliente Actual ("Ganados el cliente reactiva")
 Cuando un cliente ganado nos vuelve a escribir (tenga o no un baño físicamente en sitio), el bot le presenta un menú interactivo:
 - **Retirar o reubicar:** Si elige *Retirar*, le da instrucciones de enviar un correo a operaciones. Cuando el cliente confirma el envío, se le dispara la **encuesta de emojis** y al finalizar se le regala un **cupón del 10% de descuento** para reactivación. Si dice que no quiere retirar, se le ofrece ampliar la renta.
-- **Quiero otro baño:** Lanza el **Bot GPT Ganados** (un flujo rápido de cotización que crea la tarea "Cotizar nuevo baño" asignada a Daniel).
-- **Reportes y quejas:** Mueve el lead al *Embudo de Quejas* con etiqueta **"Quejas"**.
-- **Manifiestos y pagos:** Da los contactos de Michelle (Manifiestos) o Leslie Arellano (Crédito y Cobranza) según elija.
-
----
-
-<a name="seccion-fosas"></a>
+- **Quiero otro baño:** Lanza el **<a name="seccion-fosas"></a>
 ## 🌀 SECCIÓN III: SERVICIOS ESPECIALES Y FOSAS SÉPTICAS
 ### Asesora Responsable: Livier Mora (Usuario 13346199)
 
@@ -213,7 +207,7 @@ Solicitud → Visita de diagnóstico → Cotización → En seguimiento
 ### Etapa por Etapa: Fosas Sépticas y Lodos
 
 #### 📥 Etapa: Solicitud de Cotización (Servicios Especiales)
-* **¿Cómo llega?** El cliente elige "Servicios especiales" en el menú inicial y selecciona una categoría aplicable (como fosas sépticas, lodos, vinazas, etc.). El sistema lo asigna a Livier Mora.
+* **¿Cómo llega?** El cliente elige "Servicios especiales" en el menú inicial y selecciona una categoría aplicable (como fosas sépticas, lodos, vinazas, etc.). El sistema lo asigna automáticamente a Livier Mora.
 * **Preguntas del Bot para Calificación:**
   1. *¿Qué residuo es?* (Fosas sépticas, lodo biológico, aguas de proceso, vinazas, etc. Se envía PDF de presentación comercial de Saniglobal).
   2. *¿Estado del material?* (Líquido, Lodo o pasta, Sólido o polvo).
@@ -245,14 +239,47 @@ Después de preguntar por el volumen en fosas sépticas, el bot pregunta:
 ### Visita de Diagnóstico, Cotización y Seguimiento
 
 #### 🔎 Visita de Diagnóstico
-* En proyectos complejos de fosas, antes de cotizar se requiere una visita física. Livier programa la visita y el lead se mantiene en esta etapa intermedia.
+* En proyectos complejos de fosas, antes de cotizar se requiere una visita física. Livier programa la visita y el lead se mantiene en esta etapa intermedia en espera del reporte técnico de condiciones de acceso y tipo de residuo.
 
 #### 💰 Etapa: Cotización (Fosas)
-* Como las fosas requieren cotizaciones detalladas y manuales, Livier elabora la propuesta. Al enviarla al cliente, **debe presionar el botón "Cotización realizada"** en Kommo para activar el seguimiento automático.
+* Como las fosas requieren cotizaciones detalladas y manuales, Livier elabora la propuesta. Al enviarla al cliente, **debe presionar obligatoriamente el botón "Cotización realizada"** en Kommo para activar el seguimiento automático. Si no lo presiona, el sistema no disparará los recordatorios automáticos de 21 horas.
 
 #### 📞 Etapa: En Seguimiento (Fosas)
-* Pasan **21 horas** sin respuesta del cliente. El bot le envía un mensaje de seguimiento.
-* Si el cliente indica que no contratará por *Precio*, el bot le da argumentos de valor y le ofrece un cupón de descuento del **5% de descuento** (a diferencia de baños, aquí el descuento máximo es del 5%).
+* Pasan **21 horas** sin respuesta del cliente. El bot le envía un mensaje de seguimiento preguntando por el estado de la decisión.
+* Si el cliente indica que no contratará por *Precio*, el bot le da argumentos de valor y le ofrece un cupón de descuento del **5% de descuento** (a diferencia de baños, aquí el descuento máximo es del 5%) y añade la etiqueta **`Perdido por precio`**.
+* Si responde otros motivos de rechazo, se etiquetan según corresponda (*Falta de espacio en programación* o *No fue necesario el servicio*).
+
+#### ⏸️ Etapa: Pausado (Fosas)
+* **¿Cuándo se usa?** El cliente tiene intenciones de contratar pero requiere el servicio en más de 1 mes en el futuro. Mover el lead a esta etapa mantiene despejado el tablero de seguimiento diario.
+
+#### 🔴 Etapa: Perdido Reactivable (Fosas)
+* **¿Cuándo se usa?** El servicio no se concretó por objeción de precio insalvable o por falta de disponibilidad en la agenda inmediata, pero el cliente es una empresa comercial o industrial ideal para nosotros. Se guarda aquí para campañas comerciales futuras de reactivación.
+
+#### ❌ Etapa: Perdidos (Fosas)
+* **¿Cuándo se usa?** Clientes cuyo servicio puntual ya concluyó, o que decidieron contratar definitivamente con competidores sin opción de recuperación.
+
+#### 🚫 Etapa: Cerrado (Fosas)
+* **¿Cuándo se usa?** Contactos no viables (fuera de zona, proveedores, spam, empleos, o casas habitación filtradas automáticamente).
+
+---
+
+### 🔄 Reactivación de Clientes de Fosas (Cliente Actual)
+
+> [!IMPORTANT]
+> **El bot de reactivación para Fosas:**
+> En el momento en que un cliente marcado previamente como **Ganados** vuelve a escribirnos (tenga o no un servicio activo), el sistema lo mueve automáticamente al embudo de **Ganados el cliente reactiva fosas** (etapa: *Cliente Actual*, código de estatus `99406052`). 
+
+Al ingresar a esta etapa, el bot le presenta un menú interactivo con las siguientes opciones:
+- **Solicitar servicio:**
+  1. El bot le responde: *"Claro que sí, ¿qué servicio le podemos ofrecer?"*
+  2. Envía una notificación interna a **Livier Mora** y crea de forma automática una tarea de seguimiento en Kommo para cotizar.
+- **Reportes y quejas:**
+  1. El bot le responde: *"Lamentamos que estés teniendo una mala experiencia pero tú eres nuestra prioridad y vamos a trabajar para resolverlo lo antes posible, por favor dime qué es lo que pasó..."*
+  2. Notifica a Livier y crea una tarea de atención urgente.
+  3. ⚠️ **Regla Crítica:** A diferencia de baños, las quejas de fosas **no se envían a otro embudo**. El asesor debe mantener el lead en esta etapa, **etiquetarlo manualmente con el tag `Queja`** y darle resolución directamente.
+- **Dudas del servicio:**
+  1. El bot le responde: *"Claro, explíqueme sus dudas y con gusto le damos información"*
+  2. Crea la tarea para Livier y lo mantiene en espera de atención humana.
 
 ---
 
@@ -264,8 +291,9 @@ Después de preguntar por el volumen en fosas sépticas, el bot pregunta:
 ```
 Solicitud → Cotización → En seguimiento 
 → [Ganados] 
-→ [Pausado]
-→ [Perdido reactivable] → [Perdidos]
+→ [Pausado] (Servicio para > 1 mes)
+→ [Perdido reactivable] (Perdido por precio o agenda) → [Perdidos]
+→ [Cerrado] (No califica)
 ```
 
 ---
@@ -301,6 +329,27 @@ Solicitud → Cotización → En seguimiento
 * A las **21 horas** de haber enviado la cotización, el bot pregunta el estatus de la decisión.
 * Si el cliente rechaza por *Precio*, se le ofrece un cupón del **5% de descuento** y se le etiqueta como **"Perdido por precio"**.
 
+#### ⏸️ Etapa: Pausado (Trampas)
+* **¿Cuándo se usa?** El cliente necesita la limpieza en más de 1 mes en el futuro. Se mueve aquí para mantener limpio el tablero diario.
+
+#### 🔴 Etapa: Perdido Reactivable (Trampas)
+* **¿Cuándo se usa?** Prospectos comerciales viables que no concretaron el servicio por precio o agenda. Se guardan para futuras campañas comerciales y promociones.
+
+#### ❌ Etapa: Perdidos (Trampas)
+* **¿Cuándo se usa?** Servicios eventuales concluidos, o clientes que contrataron con la competencia.
+
+#### 🚫 Etapa: Cerrado (Trampas)
+* **¿Cuándo se usa?** Contactos no viables (fuera de zona, proveedores, spam, empleos).
+
+#### 😤 Quejas y Soporte (Regla Especial para Trampas)
+
+> [!IMPORTANT]
+> **Atención de Quejas en Trampas de Grasa:**
+> Si un cliente de trampas reporta una inconformidad o queja sobre el servicio prestado:
+> 1. **No se envía a otro embudo:** A diferencia del flujo de baños, no se utiliza un embudo especial para quejas.
+> 2. **Gestión Interna:** El asesor responsable debe **colocar la etiqueta `Queja`** al contacto.
+> 3. **Resolución en sitio:** Se le debe dar seguimiento y resolver el inconveniente directamente dentro del estatus actual del lead en el embudo de trampas.
+
 ---
 
 ## 📌 Tabla Resumen de Reglas y Cupones de Descuento
@@ -310,3 +359,4 @@ Solicitud → Cotización → En seguimiento
 | **Baños (Daniel Herrera)** | **5%** (a las 2 horas sin respuesta) | **10%** (en seguimiento de 21h) | Botón manual "Cotización realizada" / Webhook automático |
 | **Fosas (Livier Mora)** | N/A (Cotización siempre manual) | **5%** (en seguimiento de 21h) | Botón manual "Cotización realizada" |
 | **Trampas (Asesor Trampas)** | N/A | **5%** (en seguimiento de 21h) | Botón manual "Cotización de trampas de grasa manual" |
+

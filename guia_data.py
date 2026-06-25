@@ -94,6 +94,28 @@ EMBUDOS_INFO = {
             {
                 "nombre": "📞 En Seguimiento",
                 "descripcion": "A las 21 horas se envía mensaje de seguimiento. Si la objeción es precio, el bot ofrece un 5% de descuento máximo y etiqueta como 'Perdido por precio'."
+            },
+            {
+                "nombre": "⏸️ Pausado",
+                "descripcion": "Clientes comerciales que sí quieren el servicio pero lo necesitan dentro de más de 1 mes.",
+                "detalles": "Se mueven aquí para mantener limpio el tablero diario."
+            },
+            {
+                "nombre": "🔴 Perdido Reactivable",
+                "descripcion": "Prospectos ideales que no cerraron por precio o agenda. Se guardan para futuras campañas de reactivación comercial."
+            },
+            {
+                "nombre": "❌ Perdidos",
+                "descripcion": "Servicios eventuales concluidos, o clientes que contrataron con la competencia."
+            },
+            {
+                "nombre": "🚫 Cerrado",
+                "descripcion": "Prospectos no viables (fuera de zona, proveedores, spam, empleos, o casas habitación filtradas)."
+            },
+            {
+                "nombre": "🔄 Reactivación (Cliente Actual)",
+                "descripcion": "Si un cliente en 'Ganados' vuelve a escribir, el bot 'Ganados el cliente reactiva fosas' lo mueve a esta etapa (Cliente Actual) y le muestra un menú interactivo.",
+                "detalles": "El menú ofrece: 'Solicitar servicio', 'Reportes y quejas' o 'Dudas del servicio'. Las tres opciones crean una tarea y notifican a Livier. Si es una queja, NO se manda a otro embudo; se debe etiquetar manualmente como 'Queja' y resolverse en esta misma etapa."
             }
         ]
     },
@@ -114,6 +136,27 @@ EMBUDOS_INFO = {
             {
                 "nombre": "📞 En Seguimiento",
                 "descripcion": "Seguimiento automático a las 21 horas. Si hay objeción de precio, ofrece cupón del 5% y asigna el tag 'Perdido por precio'."
+            },
+            {
+                "nombre": "⏸️ Pausado",
+                "descripcion": "Servicios viables que se programarán a más de 1 mes en el futuro."
+            },
+            {
+                "nombre": "🔴 Perdido Reactivable",
+                "descripcion": "Prospectos ideales que no cerraron por precio o agenda. Se guardan para futuras campañas y promociones."
+            },
+            {
+                "nombre": "❌ Perdidos",
+                "descripcion": "Servicios eventuales que ya terminaron o que contrataron con competidores."
+            },
+            {
+                "nombre": "🚫 Cerrado",
+                "descripcion": "Solicitudes no viables (fuera de zona, proveedores, spam, empleos)."
+            },
+            {
+                "nombre": "😤 Quejas y Soporte (Regla Especial)",
+                "descripcion": "Cualquier inconformidad del cliente sobre el servicio de limpieza de trampas.",
+                "detalles": "Regla de oro: No se transfieren a otro embudo. El asesor de trampas debe etiquetar el lead como 'Queja' y darle resolución directamente en la etapa en que se encuentre."
             }
         ]
     }
