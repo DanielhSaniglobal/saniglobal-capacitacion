@@ -283,6 +283,7 @@ def load_guide_sections():
             ("reglas_diarias", "### 3. 🛠️ Reglas de Operación Diaria"),
             ("soporte_quejas", "### 4. 😤 Embudos de Soporte y Regla Especial de Quejas"),
             ("seccion_banos", "## 🚽 SECCIÓN II: RENTA DE BAÑOS PORTÁTILES"),
+            ("gestion_ganados_banos", "### 📋 Gestión y Reactivación de Clientes Ganados (Tengan o no Baño Activo)"),
             ("seccion_fosas", "## 🌀 SECCIÓN III: SERVICIOS ESPECIALES Y FOSAS SÉPTICAS"),
             ("seccion_trampas", "## 🍳 SECCIÓN IV: TRAMPAS DE GRASA"),
             ("tabla_resumen", "## 📌 Tabla Resumen de Reglas, Cupones y Gestión de Quejas"),
@@ -291,9 +292,20 @@ def load_guide_sections():
             ("guias_operacion", "## 📖 Guías Prácticas de Operación en Kommo CRM para Vendedores")
         ]
         
+        def find_header_start(content, header):
+            idx = 0
+            while True:
+                pos = content.find(header, idx)
+                if pos == -1:
+                    return -1
+                if pos > 0 and content[pos - 1] == '#':
+                    idx = pos + len(header)
+                    continue
+                return pos
+        
         positions = []
         for key, header in headers:
-            pos = content.find(header)
+            pos = find_header_start(content, header)
             if pos != -1:
                 positions.append((key, pos, header))
         
@@ -313,31 +325,174 @@ def load_guide_sections():
 
 sections = load_guide_sections()
 
-# Helper to render unified guides as an interactive accordions sequence
-def render_unified_guides(sections):
+# Helper to render unified guides (dynamically filtered per tab)
+def render_unified_guides_for_tab(tab_name, sections):
     st.markdown("### 📘 Guías de Operación y Reglas Generales")
     st.markdown("Consulta las bases del sistema comercial y directrices obligatorias en Kommo CRM:")
     
+    # 1. Glosario Rápido
+    glosario_txt = sections.get("glosario", "")
+    if tab_name != "fosas":
+        lines = glosario_txt.split("\n")
+        filtered_lines = [l for l in lines if "Casa Habitación" not in l]
+        glosario_txt = "\n".join(filtered_lines)
     with st.expander("📖 1. Glosario Rápido"):
-        st.markdown(sections.get("glosario", ""))
+        st.markdown(glosario_txt)
         
+    # 2. El Embudo GPT Completo (Filtrado)
+    gpt_txt = sections.get("gpt_completo", "")
+    if tab_name == "banos":
+        gpt_txt = gpt_txt.replace("- 🔧 **Servicios especiales** → El bot lo mueve al **Embudo de Servicios Especiales (Fosas)** y lo asigna a Livier Mora.\n", "")
+        gpt_txt = gpt_txt.replace("¿Te interesa rentar un baño portátil o buscas algún servicio especializado como limpieza de fosas sépticas, trampas de grasa, recolección de residuos?", "¿Te interesa rentar un baño portátil?")
+    elif tab_name == "fosas":
+        gpt_txt = gpt_txt.replace("- 🚽 **Rentar baños** → El bot lo mueve al **Embudo de Ventas (Baños)** y lo asigna a Daniel Herrera.\n", "")
+        gpt_txt = gpt_txt.replace("¿Te interesa rentar un baño portátil o buscas algún servicio especializado como limpieza de fosas sépticas, trampas de grasa, recolección de residuos?", "¿Buscas algún servicio especializado como limpieza de fosas sépticas?")
+    elif tab_name == "trampas":
+        gpt_txt = gpt_txt.replace("- 🚽 **Rentar baños** → El bot lo mueve al **Embudo de Ventas (Baños)** y lo asigna a Daniel Herrera.\n", "")
+        gpt_txt = gpt_txt.replace("¿Te interesa rentar un baño portátil o buscas algún servicio especializado como limpieza de fosas sépticas, trampas de grasa, recolección de residuos?", "¿Buscas algún servicio especializado como limpieza de trampas de grasa?")
     with st.expander("🌟 2. El Embudo GPT Completo — El Origen de Todo"):
-        st.markdown(sections.get("gpt_completo", ""))
+        st.markdown(gpt_txt)
         
+    # 3. Reglas de Operación Diaria (Filtrado)
+    reglas_txt = sections.get("reglas_diarias", "")
+    if tab_name == "banos":
+        reglas_txt = reglas_txt.replace("Livier Mora (Usuario 13346199)", "Daniel Herrera").replace("Asesor de Trampas de Grasa", "Daniel Herrera")
+        reglas_txt = reglas_txt.replace('"Cotización realizada", "Cotización de trampas de grasa manual", "Baño entregado"', '"Cotización realizada", "Baño entregado"')
+        reglas_txt = reglas_txt.replace('"Cotización de trampas de grasa manual"', '"Cotización realizada"')
+    elif tab_name == "fosas":
+        reglas_txt = reglas_txt.replace("Daniel Herrera (Usuario 12824423)", "Livier Mora").replace("Asesor de Trampas de Grasa", "Livier Mora")
+        reglas_txt = reglas_txt.replace('"Cotización realizada", "Cotización de trampas de grasa manual", "Baño entregado"', '"Cotización realizada"')
+        reglas_txt = reglas_txt.replace('"Cotización de trampas de grasa manual"', '"Cotización realizada"')
+    elif tab_name == "trampas":
+        reglas_txt = reglas_txt.replace("Daniel Herrera (Usuario 12824423)", "Asesor de Trampas").replace("Livier Mora (Usuario 13346199)", "Asesor de Trampas")
+        reglas_txt = reglas_txt.replace('"Cotización realizada", "Cotización de trampas de grasa manual", "Baño entregado"', '"Cotización de trampas de grasa manual"')
     with st.expander("🛠️ 3. Reglas de Operación Diaria"):
-        st.markdown(sections.get("reglas_diarias", ""))
+        st.markdown(reglas_txt)
         
-    with st.expander("😤 4. Embudos de Soporte y Regla Especial de Quejas"):
-        st.markdown(sections.get("soporte_quejas", ""))
+    # 4. Embudos de Soporte y Regla Especial de Quejas (Filtrado)
+    soporte_txt = sections.get("soporte_quejas", "")
+    lines = soporte_txt.split("\n")
+    filtered_soporte = []
+    skip_mode = False
+    
+    if tab_name == "banos":
+        for line in lines:
+            if "#### 🌀 Fosas" in line or "#### 🍳 Trampas" in line:
+                skip_mode = True
+            elif "#### Embudo de Otros" in line or "#### 🚽 Renta de Baños" in line:
+                skip_mode = False
+            if not skip_mode:
+                filtered_soporte.append(line)
+    elif tab_name == "fosas":
+        for line in lines:
+            if "#### 🚽 Renta de Baños" in line or "#### 🍳 Trampas" in line:
+                skip_mode = True
+            elif "#### Embudo de Otros" in line or "#### 🌀 Fosas" in line:
+                skip_mode = False
+            if not skip_mode:
+                clean_line = line.replace(" y 🍳 Trampas", "").replace(" o trampas de grasa", "")
+                filtered_soporte.append(clean_line)
+    elif tab_name == "trampas":
+        for line in lines:
+            if "#### 🚽 Renta de Baños" in line or "#### 🌀 Fosas" in line:
+                skip_mode = True
+            elif "#### Embudo de Otros" in line or "#### 🍳 Trampas" in line:
+                skip_mode = False
+            if not skip_mode:
+                clean_line = line.replace("🌀 Fosas (Livier Mora) y ", "").replace("fosas sépticas o ", "")
+                filtered_soporte.append(clean_line)
+                
+    with st.expander("😤 4. Embudos de Soporte y Regla de Quejas"):
+        st.markdown("\n".join(filtered_soporte))
         
-    with st.expander("📖 5. Guías Prácticas de Operación en Kommo CRM para Vendedores"):
-        st.markdown(sections.get("guias_operacion", ""))
+    # 5. Guías Prácticas de Operación (Filtrado)
+    guias_txt = sections.get("guias_operacion", "")
+    if tab_name == "banos":
+        guias_txt = guias_txt.replace("Livier Mora", "Daniel Herrera").replace("Asesor de Trampas", "Daniel Herrera")
+        guias_txt = guias_txt.replace("(ej. Casa Habitación en fosas)", "(ej. quejas en baños)")
+        guias_txt = guias_txt.replace("Daniel Herrera o Livier Mora", "Daniel Herrera")
+    elif tab_name == "fosas":
+        guias_txt = guias_txt.replace("Daniel Herrera", "Livier Mora").replace("Asesor de Trampas", "Livier Mora")
+        guias_txt = guias_txt.replace("Daniel Herrera o Livier Mora", "Livier Mora")
+    elif tab_name == "trampas":
+        guias_txt = guias_txt.replace("Daniel Herrera", "Asesor de Trampas").replace("Livier Mora", "Asesor de Trampas")
+        guias_txt = guias_txt.replace("(ej. Casa Habitación en fosas)", "(ej. quejas de grasa)")
+        guias_txt = guias_txt.replace("Daniel Herrera o Livier Mora", "Asesor de Trampas")
+        guias_txt = guias_txt.replace("'La calle es estrecha, se requiere camión chico'", "'La trampa está en sótano, requiere manguera extra'")
+    with st.expander("📖 5. Guías Prácticas de Operación en Kommo CRM"):
+        st.markdown(guias_txt)
         
-    with st.expander("🚀 6. Buenas Prácticas de Servicio (Uso de Kommo CRM)"):
-        st.markdown(sections.get("buenas_practicas", ""))
+    # 6. Buenas Prácticas (Filtrado)
+    bp_txt = sections.get("buenas_practicas", "")
+    if tab_name == "banos":
+        bp_txt = bp_txt.replace("(Baños, Fosas y Trampas)", "(Baños)")
+        bp_txt = bp_txt.replace("`apoyo humano` en todos los embudos (Baños, Fosas y Trampas)", "la etapa de `apoyo humano` en el embudo de Baños")
+    elif tab_name == "fosas":
+        bp_txt = bp_txt.replace("(Baños, Fosas y Trampas)", "(Fosas)")
+        bp_txt = bp_txt.replace("`apoyo humano` en todos los embudos (Baños, Fosas y Trampas)", "la etapa de `apoyo humano fosas` en el embudo de Fosas")
+    elif tab_name == "trampas":
+        bp_txt = bp_txt.replace("(Baños, Fosas y Trampas)", "(Trampas)")
+        bp_txt = bp_txt.replace("`apoyo humano` en todos los embudos (Baños, Fosas y Trampas)", "la etapa de `APOYO HUMANO` en el embudo de Trampas")
+    with st.expander("🚀 6. Buenas Prácticas de Servicio en Ventas"):
+        st.markdown(bp_txt)
         
+    # 7. Tabla Resumen (Filtrado)
+    tabla_txt = sections.get("tabla_resumen", "")
+    lines = tabla_txt.split("\n")
+    filtered_tabla = []
+    header_count = 0
+    for line in lines:
+        if "|" in line:
+            if header_count < 2:
+                filtered_tabla.append(line)
+                header_count += 1
+            else:
+                if tab_name == "banos" and "Baños" in line:
+                    filtered_tabla.append(line)
+                elif tab_name == "fosas" and "Fosas" in line:
+                    filtered_tabla.append(line)
+                elif tab_name == "trampas" and "Trampas" in line:
+                    filtered_tabla.append(line)
+        else:
+            filtered_tabla.append(line)
     with st.expander("📌 7. Tabla Resumen de Reglas, Cupones y Gestión de Quejas"):
-        st.markdown(sections.get("tabla_resumen", ""))
+        st.markdown("\n".join(filtered_tabla))
+
+# Helper to render the Q&A filtered
+def render_qa_for_tab(tab_name, sections):
+    qa_txt = sections.get("qa", "")
+    lines = qa_txt.split("\n")
+    filtered_qa = []
+    current_q_match = True
+    
+    for line in lines:
+        if "*   **P" in line or "### P" in line:
+            if "P2" in line or "P7" in line or "P8" in line:
+                current_q_match = (tab_name == "banos")
+            elif "P3" in line:
+                current_q_match = (tab_name == "fosas")
+            elif "P4" in line:
+                current_q_match = (tab_name == "trampas")
+            elif "P5" in line:
+                current_q_match = True
+            else:
+                current_q_match = True
+        
+        if "P5:" in line or "Pregunta 5" in line:
+            filtered_qa.append(line)
+            continue
+            
+        if current_q_match:
+            if "P5" in line and tab_name == "banos" and ("Fosas" in line or "Trampas" in line):
+                continue
+            if "P5" in line and tab_name == "fosas" and ("Baños" in line or "Trampas" in line):
+                continue
+            if "P5" in line and tab_name == "trampas" and ("Baños" in line or "Fosas" in line):
+                continue
+            filtered_qa.append(line)
+            
+    with st.expander("❓ Preguntas y Respuestas (Q&A) de la Guía de Ventas"):
+        st.markdown("\n".join(filtered_qa))
 
 # Helper to render the stages grid
 def render_pipeline_grid(etapas, pipeline_name=""):
@@ -432,16 +587,28 @@ with tab_banos:
     st.markdown("<div class='h-divider'></div>", unsafe_allow_html=True)
     
     # Render Unified Guides
-    render_unified_guides(sections)
+    render_unified_guides_for_tab("banos", sections)
+    render_qa_for_tab("banos", sections)
     
-    with st.expander("❓ Preguntas y Respuestas (Q&A) de la Guía de Ventas"):
-        st.markdown(sections.get("qa", ""))
+    # Specific guide sections in accordions (Replacing the old raw index bullets)
+    st.markdown("### 📋 Guía Específica de Renta de Baños")
+    
+    with st.expander("📋 1. Flujo y Etapas del Embudo de Ventas (Baños)"):
+        st.markdown(sections.get("seccion_banos", ""))
         
-    st.markdown("<div class='h-divider'></div>", unsafe_allow_html=True)
-    
-    # Specific guide section
-    st.markdown(sections.get("seccion_banos", ""))
-    
+    with st.expander("💬 2. Secuencia de Preguntas del Bot de Renta"):
+        st.markdown("""
+        El bot de renta de baños recopila de forma automática los siguientes datos para calificar al cliente y formular la cotización:
+        1. **¿Obra o Evento?** (Recomienda la cantidad de sanitarios según el tipo de uso y número de personas).
+        2. **¿Cuántos baños?** (Si el prospecto solicita 3 o más unidades, el bot se pausa automáticamente y lo turna a Daniel Herrera para atención y cotización manual).
+        3. **¿Tipo de baño?** (Sencillo vs. Con Lavamanos. Muestra fotos comparativas de ambos).
+        4. **¿Por cuánto tiempo?** (Renta por mes/quincena en obras, por día/semana en eventos).
+        5. **¿Dirección de entrega?** (Valida que sea texto y no un pin de ubicación. Debe estar dentro de la Zona Metropolitana de Guadalajara o ZM San Luis Potosí).
+        """)
+        
+    with st.expander("👥 3. Gestión de Clientes Activos (Ganados, Reactivaciones y Retiros)"):
+        st.markdown(sections.get("gestion_ganados_banos", ""))
+        
     st.markdown("<div class='h-divider'></div>", unsafe_allow_html=True)
     st.markdown("### 📊 Tablero Visual de Etapas del Embudo (Renta de Baños)")
     st.markdown("El embudo se compone de **18 etapas** secuenciales en el orden exacto de tu CRM. Cada columna representa una etapa individual en orden de flujo comercial. Haz clic en cada tarjeta para ver su detalle:")
@@ -606,16 +773,38 @@ with tab_fosas:
     st.markdown("<div class='h-divider'></div>", unsafe_allow_html=True)
     
     # Render Unified Guides
-    render_unified_guides(sections)
+    render_unified_guides_for_tab("fosas", sections)
+    render_qa_for_tab("fosas", sections)
     
-    with st.expander("❓ Preguntas y Respuestas (Q&A) de la Guía de Ventas"):
-        st.markdown(sections.get("qa", ""))
+    # Specific guide sections in accordions (Replacing the old raw index bullets)
+    st.markdown("### 📋 Guía Específica de Servicios Especiales y Fosas")
+    
+    with st.expander("📋 1. Flujo y Etapas del Embudo de Fosas"):
+        st.markdown(sections.get("seccion_fosas", ""))
         
-    st.markdown("<div class='h-divider'></div>", unsafe_allow_html=True)
-    
-    # Specific guide section
-    st.markdown(sections.get("seccion_fosas", ""))
-    
+    with st.expander("💬 2. Secuencia de Preguntas del Bot de Fosas"):
+        st.markdown("""
+        El bot de fosas realiza de forma automática las siguientes preguntas de calificación técnica para que la asesora pueda cotizar:
+        1. **¿Qué residuo es?** (Fosas sépticas, lodo biológico, aguas de proceso, vinazas, etc. Envía el PDF de presentación de Saniglobal).
+        2. **¿Estado del material?** (Líquido, Lodo o pasta, Sólido o polvo).
+        3. **¿Dónde está almacenado?** (Fosa/cisterna, Tambo/tolva/sacos, Sobre terreno).
+        4. **¿Volumen o cantidad?** (Menos de 5,000 lt/kg, 5,000 a 10,000, Más de 10,000).
+        """)
+        
+    with st.expander("🏠 3. Filtro Crítico de Casa Habitación (Exclusión)"):
+        st.markdown("""
+        **Regla de Exclusión:** Saniglobal no atiende domicilios residenciales o particulares en el servicio de fosas.
+        - **Automatización:** El bot pregunta: *¿Es para una casa habitacional o residencial?* 
+        - Si responde **"Sí"**, el bot le coloca la etiqueta **`CASA HABITACIÓN`**, envía el mensaje de rechazo cortés y mueve el lead a la etapa **Cerrado**.
+        - Si responde **"No"**, continúa con el flujo normal comercial.
+        """)
+        
+    with st.expander("🔎 4. Visita de Diagnóstico y Seguimiento"):
+        st.markdown("""
+        - **Visita de Diagnóstico:** Para proyectos complejos, es obligatorio programar una visita física antes de cotizar. El lead se mantiene en la etapa `Visita diagnóstico` hasta contar con el reporte de accesos y tipo de residuo.
+        - **Seguimiento Automático (21 horas):** Tras enviar la cotización manual en PDF, la asesora debe presionar el botón "Cotización realizada". A las 21h sin respuesta, el bot de seguimiento se activa. Si la objeción es precio, ofrece 5% de descuento.
+        """)
+        
     st.markdown("<div class='h-divider'></div>", unsafe_allow_html=True)
     st.markdown("### 📊 Tablero Visual de Etapas del Embudo (Fosas Sépticas)")
     st.markdown("El embudo se compone de **13 etapas** secuenciales en el orden exacto de tu CRM. Cada columna representa una etapa individual en orden de flujo comercial. Haz clic en cada tarjeta para ver su detalle:")
@@ -745,16 +934,33 @@ with tab_trampas:
     st.markdown("<div class='h-divider'></div>", unsafe_allow_html=True)
     
     # Render Unified Guides
-    render_unified_guides(sections)
+    render_unified_guides_for_tab("trampas", sections)
+    render_qa_for_tab("trampas", sections)
     
-    with st.expander("❓ Preguntas y Respuestas (Q&A) de la Guía de Ventas"):
-        st.markdown(sections.get("qa", ""))
+    # Specific guide sections in accordions (Replacing the old raw index bullets)
+    st.markdown("### 📋 Guía Específica de Trampas de Grasa")
+    
+    with st.expander("📋 1. Flujo y Etapas del Embudo de Trampas"):
+        st.markdown(sections.get("seccion_trampas", ""))
         
-    st.markdown("<div class='h-divider'></div>", unsafe_allow_html=True)
-    
-    # Specific guide section
-    st.markdown(sections.get("seccion_trampas", ""))
-    
+    with st.expander("💬 2. Secuencia de Preguntas del Bot de Trampas"):
+        st.markdown("""
+        El bot de trampas realiza las siguientes preguntas de calificación técnica antes de procesar la cotización:
+        1. **¿Cuántas trampas de grasa?** (Solo 1, 2, o 3 o más. Si pide 3 o más, va a cotización manual).
+        2. **¿Capacidad o tamaño promedio?** (200 LTS estándar, 250 a 500 LTS, Más de 500 LTS. Tamaños mayores a 200 LTS van a cotización manual).
+        3. **¿De qué material son?** (Plástico/PVC, Acero inoxidable/Metal, Concreto/Obra civil).
+        4. **¿Cómo es el acceso para la unidad?** (A pie de trampa, Acceso complicado, Requiere permisos).
+        5. **¿Distancia del camión a la trampa?** (Corta 0-10m, Media 11-20m, Larga más de 21m).
+        6. **¿Cuenta con rampas accesibles?** (Sí, No lo sé, No).
+        7. **Fotos/Videos:** Solicita evidencia visual para verificar las condiciones físicas antes del servicio.
+        """)
+        
+    with st.expander("💰 3. Cotización Automática vs. Cotización Manual"):
+        st.markdown("""
+        - **Cotización Automática:** Si el cliente solicita 1 o 2 trampas estándar de 200 LTS y responde todas las preguntas del bot, el sistema procesa el webhook y envía un enlace de cotización personalizado de forma automática, moviendo el lead a `COTIZACIÓN`.
+        - **Cotización Manual:** Si el tamaño es mayor a 200 LTS, requiere permisos o son más de 3 trampas, el asesor formula la cotización manualmente. Al enviarla en PDF, **debe presionar obligatoriamente el botón "Cotización de trampas de grasa manual"** en la tarjeta para continuar con el flujo del bot.
+        """)
+        
     st.markdown("<div class='h-divider'></div>", unsafe_allow_html=True)
     st.markdown("### 📊 Tablero Visual de Etapas del Embudo (Trampas de Grasa)")
     st.markdown("El embudo se compone de **11 etapas** secuenciales en el orden exacto de tu CRM. Cada columna representa una etapa individual en orden de flujo comercial. Haz clic en cada tarjeta para ver su detalle:")
