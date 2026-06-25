@@ -409,3 +409,31 @@ Para maximizar tus ventas y no interferir con las automatizaciones del sistema, 
   3. Escribe lo que debes realizar (ej. *'Confirmar horario de entrega de sanitarios'* o *'Verificar si Livier ya cotizó'*).
   4. Selecciona el tipo de tarea (`Llamada`, `Seguimiento`, `Reunión`).
   5. Guarda. Kommo te enviará notificaciones visuales y sonoras en el navegador y en tu celular.
+
+
+### 🗂️ 5. El Trío Dinámico de Kommo: Tareas, Notas y Siguientes Pasos
+Para organizar tu día de trabajo de forma profesional y garantizar que ningún lead se pierda, debes dominar estas tres herramientas:
+
+#### 📅 A. Las Tareas (Tasks) — Tu Agenda Inteligente
+* **¿Qué son?** Recordatorios con fecha, hora y responsable vinculados a un lead.
+* **Cómo usarlas para tu beneficio:**
+  - **Lista diaria ordenada:** Al iniciar tu jornada laboral, abre la sección de **Tareas** en Kommo. Verás tu lista de llamadas, seguimientos o correos programados para hoy, listados cronológicamente.
+  - **Libera espacio mental:** No guardes pendientes en la memoria ni en hojas sueltas. Agenda una tarea y deja que el CRM te alerte en el navegador o en la app móvil de Kommo.
+  - **Alerta roja:** Las tareas que pasan de su hora límite sin completarse se pintan de rojo. Evita tener tareas vencidas (en rojo), ya que reflejan negligencia comercial en tus tableros.
+
+#### ✍️ B. Las Notas (Notes) — El Historial Clínico de la Venta
+* **¿Qué son?** Comentarios que agregas en el feed de la tarjeta del lead.
+* **Qué debes escribir en las notas:**
+  - Acuerdos especiales de precio, cotizaciones manuales o descuentos.
+  - Especificidades técnicas o del sitio de entrega (ej. *'Jardín con acceso de solo 1 metro'* o *'Cableado bajo, el operador debe tener cuidado'*).
+  - Datos de contacto alternos (ej. *'Contacto administrativo: Sra. Elena, tel: XXX'*).
+  - Resúmenes rápidos de llamadas (ej. *'Hablé con él, está de viaje y regresa el lunes'*).
+* **Cómo usarlas para tu beneficio:**
+  - **Trabajo en equipo:** Si sales de vacaciones o estás indispuesto, cualquier compañero puede leer las notas de tus leads y darles seguimiento sin tener que llamar al cliente a repetir preguntas.
+  - **Confianza comercial:** Al hablar con el cliente, puedes mencionar los detalles específicos guardados en tus notas. Esto demuestra un servicio al cliente sumamente atento y profesional.
+
+#### 🔄 C. El "Siguiente" (Siguientes Pasos) — La Regla Operativa
+* **¿Qué es?** El hábito inquebrantable de programar el próximo contacto antes de cerrar una tarjeta. Al marcar una tarea como "Completada", Kommo te preguntará automáticamente: *¿Cuál es el siguiente paso?*.
+* **Cómo usarlo para tu beneficio:**
+  - **Mantén el impulso:** Si llamaste al cliente y te dijo que lo evalúa en tres días, programa tu siguiente tarea para esa fecha. Si acabas de cotizar, agenda tu siguiente paso para el día siguiente.
+  - **Evita la inactividad:** Al asegurar que todo lead activo tiene siempre una tarea futura, garantizas que sigan avanzando por las etapas del embudo comercial hasta concretarse como **Ganados**.

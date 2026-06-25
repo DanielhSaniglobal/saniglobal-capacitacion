@@ -775,6 +775,33 @@ with tab_recursos:
         5. Guarda la tarea. Kommo te enviará notificaciones visuales y sonoras en el navegador y en la app móvil.
         """, unsafe_allow_html=True)
 
+    with st.expander("🗂️ 5. Cómo usar Tareas, Notas y Siguientes para tu beneficio"):
+        st.markdown("""
+        **El trío dinámico de Kommo: Organiza tu día y vende más**
+        
+        ### 📅 A. Las Tareas (Tasks)
+        * **Qué son:** Recordatorios de acciones comerciales con fecha, hora y responsable.
+        * **Cómo te benefician:** 
+          - Al iniciar el día, ve a la sección de **Tareas** para ver tu lista diaria ordenada por hora. 
+          - Libera espacio mental: en lugar de intentar recordar a quién llamar, agenda la tarea y deja que el CRM te notifique.
+          - Si una tarea vence, se pondrá en rojo en tu tablero comercial. Mantener tareas en rojo indica un mal seguimiento de leads.
+        
+        ### ✍️ B. Las Notas (Notes)
+        * **Qué son:** Comentarios estáticos escritos en el historial del lead.
+        * **Qué debes registrar en las Notas:**
+          - Acuerdos especiales de precio, requerimientos especiales del sitio (ej. *'Calle angosta, se requiere camión chico'*).
+          - Datos de contacto secundarios (ej. *'Nombre de la secretaria: Patricia'*).
+          - Historial de llamadas breves (ej. *'Se marcó pero mandó a buzón, reintentar tarde'*).
+        * **Cómo te benefician:** 
+          - Todo tu equipo tendrá acceso al mismo historial. Si sales de vacaciones, un compañero puede retomar el lead leyendo las notas sin molestar al cliente.
+          - Generas confianza en el cliente al recordar detalles específicos de llamadas anteriores.
+        
+        ### 🔄 C. El "Siguiente" (Siguiente Paso)
+        * **Qué es:** La regla operativa de programar la próxima acción inmediatamente al terminar la actual. Al marcar una tarea como 'Completada', Kommo te preguntará automáticamente: *¿Cuál es el siguiente paso?*.
+        * **Cómo te beneficia:** 
+          - Evita que los leads se queden estancados. Cada interacción con el cliente debe tener una consecuencia en el tiempo para mover el lead hacia la etapa de **Ganados**.
+        """, unsafe_allow_html=True)
+
 # ----------------------------------------------------
 # TAB 7: GUÍA COMPLETA
 # ----------------------------------------------------
