@@ -117,40 +117,7 @@ Para mantener un CRM ordenado y dar atención oportuna, se deben seguir las sigu
    > [!NOTE]
    > Cerrar una conversación o marcarla como resuelta **no cambia el embudo ni elimina el historial** del cliente; únicamente sirve para despejar tu bandeja y dar prioridad a los prospectos en proceso activo de cotización o renta.
 
-#### 📇 Llenado Correcto de la Tarjeta del Lead (Datos Obligatorios)
-La tarjeta del cliente es nuestro expediente comercial oficial. Debe llenarse de forma completa y estandarizada:
-1. **Nombre del Cliente/Empresa:** La tarjeta del lead siempre debe tener el nombre de la empresa o del cliente hasta arriba (en el encabezado principal).
-   
-   ![Nombre del cliente en la cabecera](assets/image4.png)
-   
-2. **Información Crítica Requerida:** Cada lead que avance en negociación debe contar obligatoriamente con los siguientes campos llenos en su tarjeta:
-   - Por lo menos una etiqueta (tag) del servicio requerido.
-   - Presupuesto (ingresado sin IVA).
-   - Dirección de entrega completa.
-   - Archivos adjuntos en PDF de: **Constancia de Situación Fiscal (CSF)** e **INE** (o comprobante de domicilio si es particular).
-   - Tipo de baño y cantidad de sanitarios solicitados.
-   - Área geográfica (cobertura) y canal de procedencia del cliente.
-   - Método de pago, estatus del pago y comprobante de pago adjunto (si aplica).
-   - Fecha de entrega requerida y número de contrato.
-   
-   ![Campos obligatorios en la tarjeta del lead](assets/image5.png)
-   
-3. **Contacto del Receptor en Sitio:** Es obligatorio agregar en los campos inferiores el **nombre y número de teléfono de la persona física que recibirá el sanitario en sitio**, sin importar que sea el mismo contacto del contratante. Este dato es vital para agilizar la logística de entregas y retiros de operaciones.
-   
-   ![Contacto de recepción de sanitarios](assets/image6.png)
 
-#### 🖱️ Botones Manuales de Automatización
-Los bots comerciales se basan en disparadores que tú debes activar manualmente al dar clics obligatorios en los siguientes botones dentro de la tarjeta:
-1. **Cotización realizada:** Haz clic aquí de forma obligatoria en cuanto envíes la cotización formal en PDF al cliente. El sistema le enviará automáticamente un mensaje informativo predefinido en el chat (no necesitas escribir texto de acompañamiento) y programará el bot de seguimiento de 21h.
-   
-   ![Botón Cotización Realizada](assets/image7.png)
-   
-2. **Baño entregado y ganado:** Haz clic aquí una vez que el área de entregas y retiros te confirme la entrega física del baño. El bot le enviará automáticamente al cliente la información post-venta sobre su renta (reglas de uso, mantenimiento y qué procede a partir de ese momento).
-   
-   ![Botón Baño Entregado y Ganado](assets/image8.png)
-
-#### ⚡ Mensajes Rápidos
-Escribe `/` (diagonal) en el chat para buscar plantillas predefinidas. Úsalas para saludos, cuentas de pago o preguntas frecuentes y mantén la consistencia profesional del equipo.
 ---
 
 <a name="embudos-soporte"></a>
@@ -297,6 +264,45 @@ Cuando un cliente ganado nos vuelve a escribir (tenga o no un baño físicamente
 - **Retirar o reubicar:** Si elige *Retirar*, le da instrucciones de enviar un correo a operaciones. Cuando el cliente confirma el envío, se le dispara la **encuesta de emojis** y al finalizar se le regala un **cupón del 10% de descuento** para reactivación. Si dice que no quiere retirar, se le ofrece ampliar la renta.
 - **Quiero otro baño:** Envía al cliente al proceso de cotización agregando la tarea "Cotizar nuevo baño".
 - **Reportes y quejas:** Mueve el lead automáticamente al embudo especializado de **Quejas sanitarios (Pipeline 12717196)** en la etapa `INICIO QUEJA` para atención manual urgente.
+
+---
+
+### 🚽 Reglas Operativas Específicas de Baños Portátiles
+
+#### 📇 Llenado Correcto de la Tarjeta del Lead (Datos Obligatorios)
+La tarjeta del cliente es nuestro expediente comercial oficial. Debe llenarse de forma completa y estandarizada:
+1. **Nombre del Cliente/Empresa:** La tarjeta del lead siempre debe tener el nombre de la empresa o del cliente hasta arriba (en el encabezado principal).
+   
+   ![Nombre del cliente en la cabecera](assets/image4.png)
+   
+2. **Información Crítica Requerida:** Cada lead que avance en negociación debe contar obligatoriamente con los siguientes campos llenos en su tarjeta:
+   - Por lo menos una etiqueta (tag) del servicio requerido.
+   - Presupuesto (ingresado sin IVA).
+   - Dirección de entrega completa.
+   - Archivos adjuntos en PDF de: **Constancia de Situación Fiscal (CSF)** e **INE** (o comprobante de domicilio si es particular).
+   - Tipo de baño y cantidad de sanitarios solicitados.
+   - Área geográfica (cobertura) y canal de procedencia del cliente.
+   - Método de pago, estatus del pago y comprobante de pago adjunto (si aplica).
+   - Fecha de entrega requerida y número de contrato.
+   
+   ![Campos obligatorios en la tarjeta del lead](assets/image5.png)
+   
+3. **Contacto del Receptor en Sitio:** Es obligatorio agregar en los campos inferiores el **nombre y número de teléfono de la persona física que recibirá el sanitario en sitio**, sin importar que sea el mismo contacto del contratante. Este dato es vital para agilizar la logística de entregas y retiros de operaciones.
+   
+   ![Contacto de recepción de sanitarios](assets/image6.png)
+
+#### 🖱️ Botones Manuales de Automatización
+Los bots comerciales se basan en disparadores que tú debes activar manualmente al dar clics obligatorios en los siguientes botones dentro de la tarjeta:
+1. **Cotización realizada:** Haz clic aquí de forma obligatoria en cuanto envíes la cotización formal en PDF al cliente. El sistema le enviará automáticamente un mensaje informativo predefinido en el chat (no necesitas escribir texto de acompañamiento) y programará el bot de seguimiento de 21h.
+   
+   ![Botón Cotización Realizada](assets/image7.png)
+   
+2. **Baño entregado y ganado:** Haz clic aquí una vez que el área de entregas y retiros te confirme la entrega física del baño. El bot le enviará automáticamente al cliente la información post-venta sobre su renta (reglas de uso, mantenimiento y qué procede a partir de ese momento).
+   
+   ![Botón Baño Entregado y Ganado](assets/image8.png)
+
+#### ⚡ Mensajes Rápidos
+Escribe `/` (diagonal) en el chat para buscar plantillas predefinidas. Úsalas para saludos, cuentas de pago o preguntas frecuentes y mantén la consistencia profesional del equipo.
 
 ---
 

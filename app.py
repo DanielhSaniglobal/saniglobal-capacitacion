@@ -322,6 +322,7 @@ def load_guide_sections():
             ("soporte_quejas", "### 4. 😤 Embudos de Soporte y Regla Especial de Quejas"),
             ("seccion_banos", "## 🚽 SECCIÓN II: RENTA DE BAÑOS PORTÁTILES"),
             ("gestion_ganados_banos", "### 📋 Gestión y Reactivación de Clientes Ganados (Tengan o no Baño Activo)"),
+            ("reglas_banos", "### 🚽 Reglas Operativas Específicas de Baños Portátiles"),
             ("programacion_banos", "### 📬 Proceso Obligatorio de Programación y Envío a Facturación/Operaciones (Solo para Baños)"),
             ("seccion_fosas", "## 🌀 SECCIÓN III: SERVICIOS ESPECIALES Y FOSAS SÉPTICAS"),
             ("seccion_trampas", "## 🍳 SECCIÓN IV: TRAMPAS DE GRASA"),
@@ -416,19 +417,8 @@ def render_unified_guides_for_tab(tab_name, sections):
     with st.expander("🌟 3. El Embudo GPT Completo — El Origen de Todo"):
         render_markdown_with_images(gpt_txt)
         
-    # 4. Reglas de Operación Diaria (Filtrado)
+    # 4. Reglas de Operación Diaria (now contains only general rules: assignment, inbox management)
     reglas_txt = sections.get("reglas_diarias", "")
-    if tab_name == "banos":
-        reglas_txt = reglas_txt.replace("Livier Mora (Usuario 13346199)", "Daniel Herrera").replace("Asesor de Trampas de Grasa", "Daniel Herrera")
-        reglas_txt = reglas_txt.replace('"Cotización realizada", "Cotización de trampas de grasa manual", "Baño entregado"', '"Cotización realizada", "Baño entregado"')
-        reglas_txt = reglas_txt.replace('"Cotización de trampas de grasa manual"', '"Cotización realizada"')
-    elif tab_name == "fosas":
-        reglas_txt = reglas_txt.replace("Daniel Herrera (Usuario 12824423)", "Livier Mora").replace("Asesor de Trampas de Grasa", "Livier Mora")
-        reglas_txt = reglas_txt.replace('"Cotización realizada", "Cotización de trampas de grasa manual", "Baño entregado"', '"Cotización realizada"')
-        reglas_txt = reglas_txt.replace('"Cotización de trampas de grasa manual"', '"Cotización realizada"')
-    elif tab_name == "trampas":
-        reglas_txt = reglas_txt.replace("Daniel Herrera (Usuario 12824423)", "Asesor de Trampas").replace("Livier Mora (Usuario 13346199)", "Asesor de Trampas")
-        reglas_txt = reglas_txt.replace('"Cotización realizada", "Cotización de trampas de grasa manual", "Baño entregado"', '"Cotización de trampas de grasa manual"')
     with st.expander("🛠️ 4. Reglas de Operación Diaria"):
         render_markdown_with_images(reglas_txt)
         
@@ -668,11 +658,14 @@ with tab_banos:
         4. **¿Por cuánto tiempo?** (Renta por mes/quincena en obras, por día/semana en eventos).
         5. **¿Dirección de entrega?** (Valida que sea texto y no un pin de ubicación. Debe estar dentro de la Zona Metropolitana de Guadalajara o ZM San Luis Potosí).
         """)
+    
+    with st.expander("📇 3. Reglas Operativas: Tarjeta del Lead, Botones y Mensajes Rápidos"):
+        render_markdown_with_images(sections.get("reglas_banos", ""))
         
-    with st.expander("👥 3. Gestión de Clientes Activos (Ganados, Reactivaciones y Retiros)"):
+    with st.expander("👥 4. Gestión de Clientes Activos (Ganados, Reactivaciones y Retiros)"):
         render_markdown_with_images(sections.get("gestion_ganados_banos", ""))
         
-    with st.expander("📬 4. Proceso Obligatorio de Programación y Envío a Facturación/Operaciones"):
+    with st.expander("📬 5. Proceso Obligatorio de Programación y Envío a Facturación/Operaciones"):
         render_markdown_with_images(sections.get("programacion_banos", ""))
         
     st.markdown("<div class='h-divider'></div>", unsafe_allow_html=True)
