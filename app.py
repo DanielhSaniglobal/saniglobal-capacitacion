@@ -419,14 +419,20 @@ def render_unified_guides_for_tab(tab_name, sections):
         reglas_txt = reglas_txt.replace('"Cotización realizada", "Cotización de trampas de grasa manual", "Baño entregado"', '"Cotización realizada", "Baño entregado"')
         reglas_txt = reglas_txt.replace('"Cotización de trampas de grasa manual"', '"Cotización realizada"')
     elif tab_name == "fosas":
-        if "#### 📬 Proceso Obligatorio de Programación" in reglas_txt:
-            reglas_txt = reglas_txt.split("#### 📬 Proceso Obligatorio de Programación")[0].strip()
+        for marker in ["#### 📬 Proceso Obligatorio de Programación", "#### Proceso Obligatorio de Programación", "Proceso Obligatorio de Programación"]:
+            if marker in reglas_txt:
+                reglas_txt = reglas_txt.split(marker)[0]
+                reglas_txt = re.sub(r'####\s*📬?\s*$', '', reglas_txt).strip()
+                break
         reglas_txt = reglas_txt.replace("Daniel Herrera (Usuario 12824423)", "Livier Mora").replace("Asesor de Trampas de Grasa", "Livier Mora")
         reglas_txt = reglas_txt.replace('"Cotización realizada", "Cotización de trampas de grasa manual", "Baño entregado"', '"Cotización realizada"')
         reglas_txt = reglas_txt.replace('"Cotización de trampas de grasa manual"', '"Cotización realizada"')
     elif tab_name == "trampas":
-        if "#### 📬 Proceso Obligatorio de Programación" in reglas_txt:
-            reglas_txt = reglas_txt.split("#### 📬 Proceso Obligatorio de Programación")[0].strip()
+        for marker in ["#### 📬 Proceso Obligatorio de Programación", "#### Proceso Obligatorio de Programación", "Proceso Obligatorio de Programación"]:
+            if marker in reglas_txt:
+                reglas_txt = reglas_txt.split(marker)[0]
+                reglas_txt = re.sub(r'####\s*📬?\s*$', '', reglas_txt).strip()
+                break
         reglas_txt = reglas_txt.replace("Daniel Herrera (Usuario 12824423)", "Asesor de Trampas").replace("Livier Mora (Usuario 13346199)", "Asesor de Trampas")
         reglas_txt = reglas_txt.replace('"Cotización realizada", "Cotización de trampas de grasa manual", "Baño entregado"', '"Cotización de trampas de grasa manual"')
     with st.expander("🛠️ 4. Reglas de Operación Diaria"):
