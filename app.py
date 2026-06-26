@@ -277,6 +277,10 @@ def load_guide_sections():
         with open("Guia_Capacitacion_Embudos.md", "r", encoding="utf-8") as f:
             content = f.read()
         
+        # Remove raw HTML anchor tags to prevent them from showing in Streamlit expanders
+        import re
+        content = re.sub(r'<a\s+name="[^"]*">\s*</a>', '', content)
+        
         headers = [
             ("glosario", "### 1. 📖 Glosario Rápido"),
             ("gpt_completo", "### 2. 🌟 El Embudo GPT Completo — El Origen de Todo"),
