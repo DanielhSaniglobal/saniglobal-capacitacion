@@ -21,7 +21,7 @@
 
 ### 🚽 SECCIÓN II: RENTA DE BAÑOS PORTÁTILES
 * **Vendedor Responsable:** Daniel Herrera (Usuario 12824423)
-* [Flujo y 17 etapas del Embudo de Ventas (Baños)](#seccion-baños)
+* [Flujo y 18 etapas del Embudo de Ventas (Baños)](#seccion-baños)
 * [Secuencia de preguntas del Bot de Renta](#preguntas-baños)
 * [Gestión de Clientes Activos (Ganados, Reactivaciones y Retiros)](#clientes-activos-baños)
 
@@ -34,7 +34,7 @@
 
 ### 🍳 SECCIÓN IV: TRAMPAS DE GRASA
 * **Vendedor Responsable:** Asesor de Trampas de Grasa
-* [Flujo y 8 etapas del Embudo de Trampas](#seccion-trampas)
+* [Flujo y 11 etapas del Embudo de Trampas](#seccion-trampas)
 * [Secuencia de preguntas del Bot de Trampas](#preguntas-trampas)
 * [Cotización Automática vs. Cotización Manual](#cotizacion-trampas)
 
@@ -133,82 +133,107 @@ Escribe `/` (diagonal) en el chat para buscar plantillas predefinidas. Úsalas p
 ### Asesor Responsable: Daniel Herrera (Usuario 12824423)
 * **Embudo en Kommo CRM:** Embudo de ventas (este es el que se debe tener seleccionado en la sección de Leads, en el menú de la barra izquierda que siempre está fija).
 
-#### Vista general de las 17 etapas del Embudo de Ventas (Baños)
+#### Vista general de las 18 etapas del Embudo de Ventas (Baños)
 ```
-Solicitud/Contacto → apoyo humano → Embudo caliente → Solicitud de información → Cotizado/Cotización 
-→ Seguimiento automático / Campañas frío / Campañas caliente → Programado → Baño entregado (Ganados)
-↘ En pausa / Solicitud retiro / Quejas sin resolver / Perdido reactivable / Perdidos / Cerrado
+Lead Entrante → Cerrado → apoyo humano → Solicitud cotización → Cotizado → Embudo caliente 
+→ Seguimiento automatico → Programado → Perdido reactivable → En pausa 
+→ Reubicar baños → Quejas sin resolver → Solicitud retiro → Campañas frío 
+→ Campañas caliente → Ganado cliente reactiva → Ganados → Perdidos
 ```
 
 ---
 
 ### Explicación Etapa por Etapa (Baños):
 
-1. #### 📥 Solicitud de Cotización / Contacto Inicial
-   * **¿Cómo llega?** El cliente elige "Rentar baños" en el menú inicial. El bot lo asigna a Daniel Herrera.
-   * **Automatización:** El bot recopila los datos para cotizar:
-     1. *¿Obra o Evento?* (Recomienda cantidad según tipo y personas).
-     2. *¿Cuántos baños?* (Si pide 3 o más, se pasa a Daniel para atención manual).
-     3. *¿Tipo de baño?* (Sencillo vs. Con Lavamanos. Muestra fotos de comparación).
-     4. *¿Por cuánto tiempo?* (Por mes/quincena en obra, por día/semana en eventos).
-     5. *¿Dirección de entrega?* (Valida que sea texto y no un pin de ubicación. Debe estar en ZM Guadalajara o ZM San Luis Potosí).
+1. **Lead Entrante**
+   * **¿Cómo llega?** Primer contacto o mensaje que entra a la plataforma de Kommo. Es la etapa inicial por defecto del CRM.
+   * **Automatización:** Se dispara de inmediato el Bot GPT Completo (recepcionista inteligente) para calificar al cliente y redireccionarlo al embudo correcto.
+   * **Deber del vendedor:** No intervenir de inmediato para permitir que el bot recepcionista realice las preguntas de calificación y canalice el lead de forma automatizada.
 
-2. #### 👤 Apoyo Humano
-   * **¿Cómo llega?** Si el bot no puede clasificar la respuesta del cliente, o si el cliente escribe un mensaje solicitando un asesor humano de forma expresa, el lead se mueve a este estatus.
-   * **Acción:** Detiene las preguntas del bot y genera una tarea urgente para Daniel Herrera.
+2. **Cerrado**
+   * **¿Cómo llega?** Estatus final y de archivo para solicitudes descartadas, inviables (fuera de zona, proveedores, spam, empleos).
+   * **Automatización:** El bot archiva y cierra de forma automatizada las solicitudes que no aplican.
+   * **Deber del vendedor:** Monitorear ocasionalmente para verificar que no haya falsos descartes.
 
-3. #### 🌡️ Etapa: Embudo Caliente
-   * **¿Qué significa?** El cliente está respondiendo activamente al chat en tiempo real.
-   * **Regla de oro:** **No se disparan mensajes automáticos** en esta etapa para evitar interrumpir o confundir al cliente mientras chatea en vivo con el asesor.
+3. **apoyo humano**
+   * **¿Cómo llega?** Estatus para leads que requieren asistencia directa de un asesor o donde el bot se detiene por respuestas no clasificadas.
+   * **Automatización:** Detiene el bot y genera de inmediato una tarea urgente asignada a Daniel Herrera.
+   * **Deber del vendedor:** Retomar la conversación de forma manual e inmediata para resolver y dar atención.
 
-4. #### ℹ️ Etapa: Solicitud de Información
-   * Etapa temporal donde el bot procesa y valida datos de dirección y datos fiscales antes de activar la cotización automática.
+4. **Solicitud cotización**
+   * **¿Cómo llega?** Punto de entrada inicial cuando el prospecto ingresa manifestando interés de rentar sanitarios portátiles.
+   * **Automatización:** El bot inicia la recopilación de datos (uso de obra/evento, cantidad, tipo, dirección).
+   * **Deber del vendedor:** Monitorear el chat. Si pide 3 o más baños, el bot se pausa y debes cotizar de forma manual.
 
-5. #### 💰 Etapa: Cotizado / Cotización
-   * **Ruta Automática:** Si el bot recopiló todos los datos, calcula el precio, envía la propuesta en PDF y mueve el lead a esta etapa.
-   * **Ruta Manual:** Si Daniel Herrera envía la propuesta manualmente (ej. cuando son 3 o más baños), **es obligatorio dar clic en el botón "Cotización realizada"** en la tarjeta del lead.
-   * **Qué hace el bot aquí:** Pone la etiqueta **"Propuesta enviada"** y ofrece botones de ayuda rápida (*Pasos para contratar*, *Formas de pago*, *Tiempos de entrega*).
-   * **Descuento del 5%:** Si el cliente no responde tras **2 horas** de recibir la cotización, el bot le ofrece un 5% de descuento por WhatsApp y le añade la etiqueta **"-5% descuento"**.
+5. **Cotizado**
+   * **¿Cómo llega?** La cotización formal ha sido elaborada y enviada a revisión del cliente.
+   * **Automatización:** Al enviar cotización manual, presionar el botón activa el bot de seguimiento de 21h. Si no responde en 2h, el bot ofrece 5% de descuento.
+   * **Deber del vendedor:** Enviar la propuesta en PDF y dar clic obligatoriamente al botón manual 'Cotización realizada'.
 
-6. #### 🤖 Etapa: Seguimiento Automático
-   * **¿Cómo llega aquí?** Cuando una cotización es enviada, el bot de seguimiento inicia una espera de **21 horas**. Si el cliente no escribe ningún mensaje, el bot envía un mensaje automático de seguimiento. Si transcurren **24 horas más** y el cliente sigue sin responder, el sistema lo mueve automáticamente a esta etapa y le coloca la etiqueta **"Sin respuesta"**.
-   * **Cómo funciona:** Mover al cliente aquí permite limpiar la bandeja de cotizaciones activas del vendedor. El bot detiene su secuencia aquí, pero si el cliente llega a responder en el futuro, el CRM lo detecta y vuelve a notificar a Daniel para atención humana.
+6. **Embudo caliente**
+   * **¿Cómo llega?** El prospecto se encuentra chateando activamente con el asesor en tiempo real.
+   * **Automatización:** Se desactivan las respuestas automáticas para evitar entorpecer la conversación humana en vivo.
+   * **Deber del vendedor:** Atender con prioridad para resolver dudas y apresurar el cierre de la venta.
 
-7. #### ❄️ Etapa: Campañas Frío
-   * **¿Qué significa?** Es la etapa designada para almacenar aquellos leads provenientes de campañas masivas de recontacto (ej. promociones masivas enviadas a clientes antiguos o perdidos) que **NO respondieron** al mensaje de la campaña o no mostraron interés.
+7. **Seguimiento automatico**
+   * **¿Cómo llega?** Leads que quedaron inactivos tras el envío de la propuesta.
+   * **Automatización:** Envía recordatorio a las 21 horas. Si pasan otras 24 horas sin respuesta, el CRM los traslada a esta etapa y añade el tag 'Sin respuesta'.
+   * **Deber del vendedor:** Monitorear y realizar llamadas telefónicas para recuperar la venta.
 
-8. #### 🔥 Etapa: Campañas Caliente
-   * **¿Qué significa?** Si los leads de la campaña de recontacto **sí responden el mensaje de forma positiva y muestran interés** en rentar de nuevo, el sistema los mueve automáticamente a esta etapa.
-   * **Prioridad:** Esta etapa es de máxima prioridad. Daniel Herrera debe dar seguimiento manual inmediato a estos prospectos calientes para concretar la renta.
+8. **Programado**
+   * **¿Cómo llega?** La renta ha sido acordada, el pago inicial/garantía verificado y está en agenda para entrega física.
+   * **Automatización:** Pausa alertas en espera de que se concrete la entrega física del sanitario.
+   * **Deber del vendedor:** Confirmar la fecha con operaciones y asegurar la correcta documentación del pago.
 
-9. #### 📅 Etapa: Programado
-   * El servicio ha sido aceptado y programado en agenda, el pago de la garantía o primer mes está confirmado, pero el baño aún no se entrega físicamente.
+9. **Perdido reactivable**
+   * **¿Cómo llega?** Prospectos ideales que no cerraron por razones de precio o agenda, candidatos para futuras promociones.
+   * **Automatización:** Almacenamiento clasificado bajo etiquetas de archivado comercial.
+   * **Deber del vendedor:** Registrar de forma obligatoria la objeción del cliente en la tarjeta del lead.
 
-10. #### 🚪 Etapa: Baño Entregado (Ganados)
-    * Cuando se ganen los leads por primera vez, el lead se debe mover al embudo de **Ganados**.
-    * **⚠️ BOTÓN OBLIGATORIO:** Se debe usar preferentemente el botón de la tarjeta que dice **"Baño entregado y ganado"**, ya que este botón activa un mayor número de automatizaciones que el botón de entrega ordinario.
+10. **En pausa**
+    * **¿Cómo llega?** Prospectos viables que requieren el servicio dentro de 1 mes o más.
+    * **Automatización:** Detiene seguimientos automatizados para no saturar al cliente.
+    * **Deber del vendedor:** Programar tarea de seguimiento en calendario para la fecha de interés.
 
-11. #### 🔄 Ganado cliente reactiva
-    * **¿Cómo funciona?** Esta es la etapa donde deben vivir de ahí en adelante todos los clientes que ya se habían ganado pero que se reactivaron por cualquier razón.
-    * **Lógica de flujo:** Una vez que el cliente está en **Ganados**, si este vuelve a iniciar una conversación (pide información, seguimiento o retiros) y **se finaliza/resuelve esa conversación**, el lead se debe mover a esta etapa, donde residirá permanentemente.
+11. **Reubicar baños**
+    * **¿Cómo llega?** Trámite de logística solicitado por el cliente para mover un sanitario activo de lugar dentro de la obra o evento.
+    * **Automatización:** Pausa las alertas comerciales ordinarias para centrarse en la logística de reubicación.
+    * **Deber del vendedor:** Coordinar la nueva dirección y costo de maniobra con operaciones y confirmar la reubicación física en sitio.
 
-12. #### 🚚 Solicitud retiro
-    * El cliente solicita que se recoja el baño. El bot le da los pasos para confirmarlo y le dispara la encuesta de emojis.
+12. **Quejas sin resolver**
+    * **¿Cómo llega?** Reporte de inconvenientes técnicos, mala limpieza o daños en los sanitarios rentados.
+    * **Automatización:** La conversación se traslada de inmediato al Embudo de Quejas Sanitarios en la etapa 'INICIO QUEJA'.
+    * **Deber del vendedor:** Dar seguimiento urgente y reportar a soporte técnico para resolución inmediata.
 
-13. #### 😤 Quejas sin resolver
-    * Estatus donde se concentran los reportes e inconformidades de baños para su seguimiento técnico y operativo.
+13. **Solicitud retiro**
+    * **¿Cómo llega?** El cliente ha solicitado formalmente la recolección física del baño en el sitio.
+    * **Automatización:** El bot da instrucciones de enviar correo a operaciones y envía la encuesta de emojis.
+    * **Deber del vendedor:** Validar correo de retiro y reportar a logística para recolección física.
 
-14. #### ⏸️ En Pausa / Pausado
-    * Leads viables que indicaron que requieren el servicio en más de 1 mes en el futuro.
+14. **Campañas frío**
+    * **¿Cómo llega?** Leads inactivos provenientes de recontactos masivos que no mostraron respuesta o interés.
+    * **Automatización:** Se agrupan en esta etapa para futuras campañas de promociones masivas.
+    * **Deber del vendedor:** Mantenerlos en esta etapa para futuras campañas de promociones masivas.
 
-15. #### 🔴 Perdido Reactivable
-    * Prospectos viables que no cerraron por precio o agenda, archivados para futuras promociones.
+15. **Campañas caliente**
+    * **¿Cómo llega?** Leads que sí respondieron positivamente y muestran interés en rentar nuevamente tras un recontacto.
+    * **Automatización:** El sistema los mueve aquí automáticamente si el cliente contesta el mensaje masivo.
+    * **Deber del vendedor:** Dar atención prioritaria inmediata y enviar cotización para cerrar la venta.
 
-16. #### ❌ Perdidos
-    * Servicios eventuales terminados, o clientes que contrataron con la competencia de manera definitiva.
+16. **Ganado cliente reactiva**
+    * **¿Cómo llega?** Residencia permanente para clientes ganados previamente que se reactivaron por dudas, información o retiros.
+    * **Automatización:** Una vez resuelta la consulta del cliente reactivado, al cerrar el chat el sistema lo archiva en esta etapa permanente.
+    * **Deber del vendedor:** Mover el lead a esta etapa al finalizar/resolver su conversación reactivada.
 
-17. #### 🚫 Cerrado
-    * Contactos no viables (fuera de zona, proveedores, spam, empleos).
+17. **Ganados**
+    * **¿Cómo llega?** El sanitario ha sido entregado en sitio por primera vez.
+    * **Automatización:** Se debe usar preferentemente el botón 'Baño entregado y ganado' de la tarjeta porque activa más automatizaciones que el botón normal.
+    * **Deber del vendedor:** Mover el lead a Ganados y dar clic obligatoriamente al botón manual 'Baño entregado y ganado'.
+
+18. **Perdidos**
+    * **¿Cómo llega?** Prospectos comerciales que decidieron contratar con la competencia o no procedieron.
+    * **Automatización:** Finaliza el seguimiento del bot.
+    * **Deber del vendedor:** Archivar y registrar causa de pérdida.
 
 ---
 
@@ -234,63 +259,81 @@ Cuando un cliente ganado nos vuelve a escribir (tenga o no un baño físicamente
 ### Asesora Responsable: Livier Mora (Usuario 13346199)
 * **Embudo en Kommo CRM:** Embudo Fosas GDL (este es el que se debe tener seleccionado en la sección de Leads, en el menú de la barra izquierda que siempre está fija).
 
-#### Vista general del Embudo de Fosas y Especiales (13 etapas)
+#### Vista general del Embudo de Fosas GDL (13 etapas)
 ```
-Contacto inicial → CASA HABITACIÓN → Solicitud de información → Visita de diagnóstico → Cotización 
-→ Seguimiento → En pausa → CLIENTE ACTUAL (Reactivación) 
-→ CLIENTES SLP → Apoyo humano fosas → GANADOS → PERDIDOS → CERRADOS NO POTENCIAL
+Contacto Inicial → CLIENTE ACTUAL → apoyo humano fosas → CERRADOS NO POTENCIAL 
+→ CASA HABITACIÓN → CLIENTES SLP → Solicitud de información → Visita diagnóstico 
+→ Cotización → Seguimiento → En pausa → GANADOS → PERDIDOS
 ```
 
 ---
 
 ### Etapa por Etapa: Fosas Sépticas y Lodos
 
-1. #### 📥 Contacto inicial
-   * **¿Cómo llega?** El cliente elige "Servicios especiales" en el menú inicial y selecciona una categoría aplicable (como fosas sépticas, lodos, vinazas, etc.). El sistema lo asigna automáticamente a Livier Mora.
-   * **Preguntas del Bot para Calificación:**
-     1. *¿Qué residuo es?* (Fosas sépticas, lodo biológico, aguas de proceso, vinazas, etc. Se envía PDF de presentación comercial de Saniglobal).
-     2. *¿Estado del material?* (Líquido, Lodo o pasta, Sólido o polvo).
-     3. *¿Dónde está almacenado?* (Fosa/cisterna, Tambo/tolva/sacos, Sobre terreno).
-     4. *¿Volumen o cantidad?* (Menos de 5,000 lt/kg, 5,000 a 10,000, Más de 10,000).
+1. **Contacto Inicial**
+   * **¿Cómo llega?** Primer contacto de prospectos que seleccionaron 'Servicios especiales' -> 'Fosas' en el Bot GPT Completo.
+   * **Automatización:** El bot pregunta tipo de residuo, estado del material, almacenamiento y volumen. Envía el PDF de presentación de Saniglobal y lo asigna a Livier Mora.
+   * **Deber del vendedor:** Monitorear que el lead califique correctamente.
 
-2. #### 🏠 CASA HABITACIÓN (Filtro Crítico)
-   * **¿Qué significa?** Es la etapa a la que se envían automáticamente los prospectos residenciales que no califican para nuestro servicio comercial/industrial.
-   * **Cómo actúa el Bot:** El bot pregunta: *¿Es para una casa habitacional o residencial?* Si responde "Sí", el bot le coloca la etiqueta **`CASA HABITACIÓN`**, envía el mensaje de rechazo cortés, y mueve el lead a la etapa **Cerrado**. Si responde "No", continúa con el flujo normal.
+2. **CLIENTE ACTUAL**
+   * **¿Cómo llega?** Reactivación y resolución local de inconformidades para clientes ganados que vuelven a escribir.
+   * **Automatización:** El bot despliega menú interactivo. REGLA CRÍTICA DE QUEJAS: En Fosas las quejas NO se mandan a otro embudo. Livier debe resolver de forma local en esta etapa agregando manualmente la etiqueta 'Queja'.
+   * **Deber del vendedor:** Atender requerimientos de servicios adicionales o gestionar quejas con el tag manual 'Queja'.
 
-3. #### ℹ️ Solicitud de información
-   * Validación técnica de las características físicas del residuo, accesos y datos de facturación de la empresa.
+3. **apoyo humano fosas**
+   * **¿Cómo llega?** Prospectos que requieren atención directa de la asesora o el bot se detiene por respuestas no clasificadas.
+   * **Automatización:** Detiene el bot y genera tarea urgente a Livier Mora.
+   * **Deber del vendedor:** Retomar la conversación de forma manual e inmediata.
 
-4. #### 🔎 Visita de Diagnóstico
-   * En proyectos complejos de fosas, antes de cotizar se requiere una visita física. Livier programa la visita y el lead se mantiene en esta etapa en espera del reporte técnico de condiciones de acceso y tipo de residuo.
+4. **CERRADOS NO POTENCIAL**
+   * **¿Cómo llega?** Leads residenciales descartados por el bot, spam o proveedores.
+   * **Automatización:** El bot los mueve aquí automáticamente tras descartar.
+   * **Deber del vendedor:** Validar ocasionalmente que no haya leads comerciales válidos aquí.
 
-5. #### 💰 Cotización (Fosas)
-   * Las fosas requieren cotizaciones detalladas y manuales. Livier elabora la propuesta. Al enviarla al cliente, **debe presionar obligatoriamente el botón "Cotización realizada"** en Kommo para activar el seguimiento automático de 21 horas. Si no lo presiona, el sistema no disparará los recordatorios automáticos.
+5. **CASA HABITACIÓN**
+   * **¿Cómo llega?** Filtro crítico de exclusión. Saniglobal no atiende domicilios residenciales/particulares.
+   * **Automatización:** Si responde que es casa habitación, el bot pone el tag 'CASA HABITACIÓN', envía mensaje de rechazo cortés y lo mueve a Cerrado.
+   * **Deber del vendedor:** Ninguno comercial (proceso 100% automatizado).
 
-6. #### 📞 Seguimiento
-   * Pasan **21 horas** sin respuesta del cliente. El bot le envía un mensaje de seguimiento preguntando por el estado de la decisión.
-   * Si el cliente indica que no contratará por *Precio*, el bot le ofrece un cupón de descuento del **5% de descuento** (a diferencia de baños, aquí el descuento máximo es del 5%) y añade la etiqueta **`Perdido por precio`**.
+6. **CLIENTES SLP**
+   * **¿Cómo llega?** Control geográfico interno para leads que corresponden a la zona de San Luis Potosí.
+   * **Automatización:** Separa el flujo comercial para operaciones de SLP.
+   * **Deber del vendedor:** Coordinar con el equipo regional de operaciones en SLP para logística y precios aplicables.
 
-7. #### ⏸️ En pausa
-   * **¿Cuándo se usa?** El cliente tiene intenciones de contratar pero requiere el servicio en más de 1 mes en el futuro. Mover el lead a esta etapa mantiene despejado el tablero de seguimiento diario.
+7. **Solicitud de información**
+   * **¿Cómo llega?** Validación técnica de los datos del residuo e información fiscal antes de formular propuesta.
+   * **Automatización:** El bot solicita datos técnicos complementarios.
+   * **Deber del vendedor:** Validar los requerimientos de sitio, accesos de camión y manguera.
 
-8. #### 🔄 CLIENTE ACTUAL (Reactivación y Quejas)
-   * **¿Cómo funciona?** Si un cliente en **Ganados** vuelve a escribir, el bot de reactivación lo mueve automáticamente a esta etapa y le muestra un menú interactivo (Solicitar servicio, reportes y quejas, dudas).
-   * ⚠️ **REGLA CRÍTICA DE QUEJAS:** Las quejas de fosas **NO SE ENVIÁN A OTRO EMBUDO**. El asesor debe mantener el lead en esta etapa de CLIENTE ACTUAL, **etiquetarlo manualmente con el tag `Queja`** y darle resolución técnica directamente aquí.
+8. **Visita diagnóstico**
+   * **¿Cómo llega?** Proyectos complejos donde es necesario verificar físicamente el sitio antes de cotizar.
+   * **Automatización:** Pausa las automatizaciones mientras se realiza la visita.
+   * **Deber del vendedor:** Programar fecha y hora para la visita del personal técnico.
 
-9. #### 📍 CLIENTES SLP
-   * Control y almacenamiento de servicios y prospectos pertenecientes a la zona de San Luis Potosí.
+9. **Cotización**
+   * **¿Cómo llega?** Propuesta formulada y enviada a revisión del cliente.
+   * **Automatización:** Cotización siempre manual. Es obligatorio presionar el botón 'Cotización realizada' para configurar el bot de seguimiento de 21h.
+   * **Deber del vendedor:** Enviar cotización en PDF y dar clic obligatoriamente en el botón manual 'Cotización realizada'.
 
-10. #### 👤 Apoyo humano fosas
-    * Cuando el cliente requiere atención directa de Livier Mora o el bot se detiene por datos no clasificados.
+10. **Seguimiento**
+    * **¿Cómo llega?** Seguimiento a propuestas no contestadas.
+    * **Automatización:** A las 21 horas envía seguimiento. Si la objeción es precio, el bot ofrece un cupón del 5% y etiqueta como 'Perdido por precio'.
+    * **Deber del vendedor:** Realizar llamada telefónica para empujar el cierre del servicio.
 
-11. #### 🏆 GANADOS
-    * Venta concretada con éxito. El servicio técnico fue programado, ejecutado y pagado.
+11. **En pausa**
+    * **¿Cómo llega?** Clientes que sí quieren el servicio pero lo requieren dentro de 1 mes o más.
+    * **Automatización:** Detiene recordatorios de chat diarios.
+    * **Deber del vendedor:** Programar tarea de seguimiento en calendario para la fecha de interés.
 
-12. #### ❌ PERDIDOS
-    * Clientes que decidieron contratar definitivamente con competidores sin opción de recuperación.
+12. **GANADOS**
+    * **¿Cómo llega?** Servicio comercial ejecutado, facturado y cobrado con éxito.
+    * **Automatización:** Cierra ciclo de ventas inicial y programa ventana de reactivación.
+    * **Deber del vendedor:** Mover el lead a GANADOS y asegurar que se documente el pago.
 
-13. #### 🚫 CERRADOS NO POTENCIAL
-    * Contactos no viables (fuera de zona, proveedores, spam, o las casas habitación filtradas automáticamente).
+13. **PERDIDOS**
+    * **¿Cómo llega?** Prospectos comerciales que decidieron contratar con la competencia o no procedieron.
+    * **Automatización:** Detiene flujos de seguimiento automático.
+    * **Deber del vendedor:** Registrar la causa de pérdida (objeción de precio, cobertura, etc.).
 
 ---
 
@@ -299,50 +342,71 @@ Contacto inicial → CASA HABITACIÓN → Solicitud de información → Visita d
 ### Asesor Responsable: Asesor de Trampas de Grasa
 * **Embudo en Kommo CRM:** Embudo de Trampas de grasa (este es el que se debe tener seleccionado en la sección de Leads, en el menú de la barra izquierda que siempre está fija).
 
-#### Vista general del Embudo de Trampas de Grasa (8 etapas)
+#### Vista general del Embudo de Trampas de Grasa (11 etapas)
 ```
-Contacto inicial → apoyo humano → COTIZACIÓN → En seguimiento 
-→ En pausa → Perdido reactivable → Perdidos → Cerrado
+Contacto Inicial → CLIENTE ACTUAL → APOYO HUMANO → CERRADOS NO POTENCIAL 
+→ SOLICITUD DE INFORMACIÓN → VISITA DIAGNÓSTICO → COTIZACIÓN → SEGUIMIENTO 
+→ EN PAUSA → GANADOS → PERDIDOS
 ```
 
 ---
 
 ### Etapa por Etapa: Trampas de Grasa
 
-1. #### 📥 Contacto inicial
-   * **¿Cómo llega?** El cliente elige "Servicios especiales" en el menú inicial y selecciona **Grasas alimenticias (trampas de grasa)**.
-   * **Preguntas de Calificación del Bot:**
-     1. *¿Cuántas trampas de grasa?* (Solo 1, 2, o 3 o más. Si pide 3 o más, el bot lo turna al asesor para cotización manual).
-     2. *¿Capacidad o tamaño promedio?* (200 LTS estándar, 250 a 500 LTS, Más de 500 LTS. Tamaños mayores a 200 LTS van a cotización manual).
-     3. *¿De qué material son?* (Plástico/PVC, Acero inoxidable/Metal, Concreto/Obra civil).
-     4. *¿Cómo es el acceso para la unidad?* (A pie de trampa, Acceso complicado, Requiere permisos).
-     5. *¿Distancia del camión a la trampa?* (Corta 0-10m, Media 11-20m, Larga más de 21m).
-     6. *¿Cuenta con rampas accesibles?* (Sí, No lo sé, No).
-     7. *Fotos/Videos:* Solicita evidencia visual para verificar las condiciones físicas antes del servicio.
+1. **Contacto Inicial**
+   * **¿Cómo llega?** Primer contacto para desazolve y limpieza de trampas de grasa en restaurantes y comedores.
+   * **Automatización:** El bot pregunta número de trampas, capacidad (lts), material, tipo de acceso, distancia de manguera y rampas. Solicita fotos/videos.
+   * **Deber del vendedor:** Monitorear que el cliente proporcione los datos técnicos y multimedia solicitados.
 
-2. #### 👤 Apoyo humano
-   * Cuando el lead requiere asistencia directa del asesor de trampas o el bot se detiene por datos no clasificados.
+2. **CLIENTE ACTUAL**
+   * **¿Cómo llega?** Reactivación y soporte post-venta para clientes ganados que vuelven a escribir.
+   * **Automatización:** El bot despliega menú interactivo. REGLA CRÍTICA DE QUEJAS: Las quejas de trampas NO se mandan a otro embudo. El asesor debe colocar manualmente la etiqueta 'Queja' y resolver directamente en la etapa actual.
+   * **Deber del vendedor:** Atender requerimientos de nuevos servicios o resolver inconformidades locales con la etiqueta manual 'Queja'.
 
-3. #### 💰 COTIZACIÓN (Automática vs. Manual)
-   * **Cotización Automática:** Si el cliente solicita **1 o 2 trampas de 200 LTS (estándar)** y responde todas las preguntas del bot, el sistema procesa el webhook. El bot le envía al cliente un enlace personalizado generado en el campo `{{lead.cf.1117077}}` con la cotización lista y mueve el lead a *COTIZACIÓN*.
-   * **Cotización Manual:** Si el tamaño es mayor a 200 LTS, requiere permisos complejos o son más de 3 trampas, el bot pausa la automatización. El asesor debe formular la cotización manualmente. Al enviarla, **debe presionar obligatoriamente el botón "Cotización de trampas de grasa manual"** en Kommo para mover el lead al estatus de cotización.
+3. **APOYO HUMANO**
+   * **¿Cómo llega?** El cliente requiere asistencia directa del asesor o ingresó respuestas que el bot no pudo clasificar.
+   * **Automatización:** Detiene el bot y crea tarea comercial urgente al asesor de trampas.
+   * **Deber del vendedor:** Tomar la conversación en el chat de forma inmediata para resolver y cotizar.
 
-4. #### 📞 En seguimiento
-   * A las **21 horas** de haber enviado la cotización, el bot pregunta el estatus de la decisión.
-   * Si el cliente rechaza por *Precio*, se le ofrece un cupón del **5% de descuento** y se le etiqueta como **"Perdido por precio"**.
-   * ⚠️ **REGLA CRÍTICA DE QUEJAS:** Las quejas de trampas de grasa **NO SE ENVÍAN A OTRO EMBUDO**. El asesor debe mantener el lead en su etapa actual, **colocarle manualmente la etiqueta `Queja`** al contacto, y darle resolución directamente dentro de la etapa en que se encuentre el lead en este embudo.
+4. **CERRADOS NO POTENCIAL**
+   * **¿Cómo llega?** Leads descartados por el bot, spam o proveedores.
+   * **Automatización:** El bot los mueve aquí de forma automática.
+   * **Deber del vendedor:** Monitorear descartes ocasionalmente.
 
-5. #### ⏸️ En pausa
-   * **¿Cuándo se usa?** El cliente necesita la limpieza en más de 1 mes en el futuro. Se mueve aquí para mantener limpio el tablero diario.
+5. **SOLICITUD DE INFORMACIÓN**
+   * **¿Cómo llega?** Validación y recopilación de datos técnicos adicionales, accesos y datos fiscales antes de cotizar.
+   * **Automatización:** El bot solicita información complementaria.
+   * **Deber del vendedor:** Validar accesos de camión y requerimientos de manguera en la tarjeta del lead.
 
-6. #### 🔴 Perdido reactivable
-   * Prospectos comerciales viables que no concretaron el servicio por precio o agenda. Se guardan para futuras campañas comerciales y promociones.
+6. **VISITA DIAGNÓSTICO**
+   * **¿Cómo llega?** Proyectos complejos que requieren inspección física antes de dar precio.
+   * **Automatización:** Pausa las automatizaciones comerciales en espera del diagnóstico técnico.
+   * **Deber del vendedor:** Programar la visita física del personal técnico de diagnóstico.
 
-7. #### ❌ Perdidos
-   * Servicios eventuales concluidos, o clientes que contrataron con la competencia.
+7. **COTIZACIÓN**
+   * **¿Cómo llega?** Envío de propuesta de limpieza al cliente.
+   * **Automatización:** Si es 1 o 2 trampas estándar de 200 LTS, el bot cotiza automáticamente vía webhook. Si supera el estándar (más trampas o más litros), el asesor debe cotizar manualmente por fuera y presionar el botón 'Cotización de trampas de grasa manual'.
+   * **Deber del vendedor:** Si la cotización es manual, enviarla en PDF y hacer clic obligatoriamente en el botón 'Cotización de trampas de grasa manual'.
 
-8. #### 🚫 Cerrado
-   * Contactos no viables (fuera de zona, proveedores, spam, empleos).
+8. **SEGUIMIENTO**
+   * **¿Cómo llega?** Seguimiento automático a las cotizaciones enviadas.
+   * **Automatización:** A las 21 horas envía mensaje. Si la objeción es precio, el bot ofrece descuento de 5% y etiqueta como 'Perdido por precio'. REGLA CRÍTICA DE QUEJAS: Las quejas de trampas NO se mandan a otro embudo. El asesor debe colocar manualmente la etiqueta 'Queja' y resolver directamente en la etapa actual.
+   * **Deber del vendedor:** Realizar llamada para negociar y cerrar el servicio.
+
+9. **EN PAUSA**
+   * **¿Cómo llega?** Servicios viables proyectados a más de 1 mes de distancia.
+   * **Automatización:** Detiene flujos de seguimiento diario.
+   * **Deber del vendedor:** Agendar tarea de seguimiento en calendario para la fecha futura.
+
+10. **GANADOS**
+    * **¿Cómo llega?** Limpieza ejecutada con éxito, cobrada y facturada.
+    * **Automatización:** Cierra ciclo de ventas inicial y registra el éxito.
+    * **Deber del vendedor:** Mover el lead a GANADOS y registrar los datos de pago.
+
+11. **PERDIDOS**
+    * **¿Cómo llega?** El cliente decidió contratar definitivamente con la competencia.
+    * **Automatización:** Detiene todos los flujos de seguimiento automáticos.
+    * **Deber del vendedor:** Archivar y registrar causa de pérdida.
 
 ---
 
