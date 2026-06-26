@@ -131,6 +131,7 @@ Escribe `/` (diagonal) en el chat para buscar plantillas predefinidas. Úsalas p
 <a name="seccion-baños"></a>
 ## 🚽 SECCIÓN II: RENTA DE BAÑOS PORTÁTILES
 ### Asesor Responsable: Daniel Herrera (Usuario 12824423)
+* **Embudo en Kommo CRM:** Embudo de ventas (este es el que se debe tener seleccionado en la sección de Leads, en el menú de la barra izquierda que siempre está fija).
 
 #### Vista general de las 17 etapas del Embudo de Ventas (Baños)
 ```
@@ -231,6 +232,7 @@ Cuando un cliente ganado nos vuelve a escribir (tenga o no un baño físicamente
 <a name="seccion-fosas"></a>
 ## 🌀 SECCIÓN III: SERVICIOS ESPECIALES Y FOSAS SÉPTICAS
 ### Asesora Responsable: Livier Mora (Usuario 13346199)
+* **Embudo en Kommo CRM:** Embudo Fosas GDL (este es el que se debe tener seleccionado en la sección de Leads, en el menú de la barra izquierda que siempre está fija).
 
 #### Vista general del Embudo de Fosas y Especiales (13 etapas)
 ```
@@ -295,6 +297,7 @@ Contacto inicial → CASA HABITACIÓN → Solicitud de información → Visita d
 <a name="seccion-trampas"></a>
 ## 🍳 SECCIÓN IV: TRAMPAS DE GRASA
 ### Asesor Responsable: Asesor de Trampas de Grasa
+* **Embudo en Kommo CRM:** Embudo de Trampas de grasa (este es el que se debe tener seleccionado en la sección de Leads, en el menú de la barra izquierda que siempre está fija).
 
 #### Vista general del Embudo de Trampas de Grasa (8 etapas)
 ```
@@ -360,7 +363,7 @@ Contacto inicial → apoyo humano → COTIZACIÓN → En seguimiento
 Para brindar una atención comercial de excelencia, agilizar el flujo de ventas y asegurar que ningún prospecto se pierda, todos los asesores deben cumplir estrictamente con el siguiente listado de buenas prácticas:
 
 *   **⏱️ Revisar Kommo CRM cada 5 minutos:** Mantén la plataforma abierta y activa en tu navegador o aplicación móvil. Debes revisarla de manera continua para enterarte de inmediato de nuevos mensajes, cambios de estatus o asignación de tareas.
-*   **📥 Monitorear la entrada de nuevos leads:** Revisa constantemente el *Embudo GPT Completo* para verificar qué nuevos leads han entrado e identificar si el bot recepcionista los está direccionando de forma correcta.
+*   **📥 Monitorear la entrada de nuevos leads:** Revisa constantemente la sección de Chats para verificar qué nuevos leads han entrado e identificar si el bot recepcionista los está direccionando de forma correcta.
 *   **🚨 Reportar anomalías al administrador:** Si notas que un lead se queda trabado, que el bot no responde, o detectas que un webhook no generó una cotización automática, repórtalo de inmediato con el administrador del sistema para solucionarlo a tiempo.
 *   **👤 Estar revisando constantemente las etapas de "Apoyo Humano":** Consulta de forma prioritaria las etapas de `apoyo humano` en todos los embudos (Baños, Fosas y Trampas). Estos prospectos requieren atención directa e inmediata porque el bot no logró calificar su duda o solicitaron hablar directamente con un asesor.
 *   **📞 Dar seguimiento por llamada telefónica:** No dependas únicamente de los chats escritos. Para los prospectos que se encuentren en el **Embudo Caliente** (chat activo) o en fases de **Seguimiento**, realiza una llamada telefónica. Esto rompe objeciones rápidamente, genera confianza y acelera drásticamente el cierre de la venta.

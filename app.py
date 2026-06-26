@@ -600,7 +600,7 @@ with tab_banos:
         <div class="metric-card accent-border-card">
             <div class="metric-label">Asesor Comercial</div>
             <div class="metric-value">Daniel Herrera</div>
-            <div class="metric-subtitle">Responsable del pipeline de sanitarios portátiles.</div>
+            <div class="metric-subtitle">Responsable del <strong>Embudo de ventas</strong> (debes tener este embudo seleccionado en la sección de Leads del menú de la barra izquierda que siempre está fija).</div>
         </div>
         """, unsafe_allow_html=True)
     with c2:
@@ -786,7 +786,7 @@ with tab_fosas:
         <div class="metric-card accent-border-card">
             <div class="metric-label">Asesora Comercial</div>
             <div class="metric-value">Livier Mora</div>
-            <div class="metric-subtitle">Responsable de fosas sépticas, lodos e industriales.</div>
+            <div class="metric-subtitle">Responsable del <strong>Embudo Fosas GDL</strong> (debes tener este embudo seleccionado en la sección de Leads del menú de la barra izquierda que siempre está fija).</div>
         </div>
         """, unsafe_allow_html=True)
     with c2:
@@ -947,7 +947,7 @@ with tab_trampas:
         <div class="metric-card accent-border-card">
             <div class="metric-label">Asesor Comercial</div>
             <div class="metric-value">Asesor Trampas</div>
-            <div class="metric-subtitle">Responsable del pipeline de mantenimiento y succión de grasas alimenticias.</div>
+            <div class="metric-subtitle">Responsable del <strong>Embudo de Trampas de grasa</strong> (debes tener este embudo seleccionado en la sección de Leads del menú de la barra izquierda que siempre está fija).</div>
         </div>
         """, unsafe_allow_html=True)
     with c2:
