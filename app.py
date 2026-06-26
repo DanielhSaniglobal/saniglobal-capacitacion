@@ -2,6 +2,37 @@
 import streamlit as st
 import pandas as pd
 from guia_data import EMBUDOS_INFO, MENSAJES_RAPIDOS, ETAPAS_BANOS, ETAPAS_FOSAS, ETAPAS_TRAMPAS
+import re
+import os
+
+# Helper function to render markdown text and extract image tags to display them inline via st.image
+def render_markdown_with_images(md_text):
+    if not md_text:
+        return
+    pattern = r'!\[(.*?)\]\((.*?)\)'
+    parts = re.split(pattern, md_text)
+    i = 0
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    while i < len(parts):
+        text_block = parts[i]
+        if text_block.strip():
+            st.markdown(text_block)
+        if i + 2 < len(parts):
+            caption = parts[i+1]
+            img_path = parts[i+2]
+            # Resolve image path relative to the script directory if it is relative
+            if not os.path.isabs(img_path):
+                full_img_path = os.path.normpath(os.path.join(script_dir, img_path))
+            else:
+                full_img_path = img_path
+            
+            if os.path.exists(full_img_path):
+                st.image(full_img_path, caption=caption, use_container_width=True)
+            else:
+                st.warning(f"Imagen no encontrada: {img_path} (ruta resuelta: {full_img_path})")
+            i += 3
+        else:
+            i += 1
 
 # 1. Page Configuration
 st.set_page_config(
@@ -365,7 +396,7 @@ def render_unified_guides_for_tab(tab_name, sections):
         filtered_lines = [l for l in lines if "Casa Habitación" not in l]
         glosario_txt = "\n".join(filtered_lines)
     with st.expander("📖 2. Glosario Rápido"):
-        st.markdown(glosario_txt)
+        render_markdown_with_images(glosario_txt)
         
     # 3. El Embudo GPT Completo (Filtrado)
     gpt_txt = sections.get("gpt_completo", "")
@@ -379,7 +410,7 @@ def render_unified_guides_for_tab(tab_name, sections):
         gpt_txt = gpt_txt.replace("- 🚽 **Rentar baños** → El bot lo mueve al **Embudo de Ventas (Baños)** y lo asigna a Daniel Herrera.\n", "")
         gpt_txt = gpt_txt.replace("¿Te interesa rentar un baño portátil o buscas algún servicio especializado como limpieza de fosas sépticas, trampas de grasa, recolección de residuos?", "¿Buscas algún servicio especializado como limpieza de trampas de grasa?")
     with st.expander("🌟 3. El Embudo GPT Completo — El Origen de Todo"):
-        st.markdown(gpt_txt)
+        render_markdown_with_images(gpt_txt)
         
     # 4. Reglas de Operación Diaria (Filtrado)
     reglas_txt = sections.get("reglas_diarias", "")
@@ -395,7 +426,7 @@ def render_unified_guides_for_tab(tab_name, sections):
         reglas_txt = reglas_txt.replace("Daniel Herrera (Usuario 12824423)", "Asesor de Trampas").replace("Livier Mora (Usuario 13346199)", "Asesor de Trampas")
         reglas_txt = reglas_txt.replace('"Cotización realizada", "Cotización de trampas de grasa manual", "Baño entregado"', '"Cotización de trampas de grasa manual"')
     with st.expander("🛠️ 4. Reglas de Operación Diaria"):
-        st.markdown(reglas_txt)
+        render_markdown_with_images(reglas_txt)
         
     # 5. Embudos de Soporte y Regla Especial de Quejas (Filtrado)
     soporte_txt = sections.get("soporte_quejas", "")
@@ -431,7 +462,7 @@ def render_unified_guides_for_tab(tab_name, sections):
                 filtered_soporte.append(clean_line)
                 
     with st.expander("😤 5. Embudos de Soporte y Regla de Quejas"):
-        st.markdown("\n".join(filtered_soporte))
+        render_markdown_with_images("\n".join(filtered_soporte))
         
     # 6. Guías Prácticas de Operación (Filtrado)
     guias_txt = sections.get("guias_operacion", "")
@@ -448,7 +479,7 @@ def render_unified_guides_for_tab(tab_name, sections):
         guias_txt = guias_txt.replace("Daniel Herrera o Livier Mora", "Asesor de Trampas")
         guias_txt = guias_txt.replace("'La calle es estrecha, se requiere camión chico'", "'La trampa está en sótano, requiere manguera extra'")
     with st.expander("📖 6. Guías Prácticas de Operación en Kommo CRM"):
-        st.markdown(guias_txt)
+        render_markdown_with_images(guias_txt)
         
     # 7. Buenas Prácticas (Filtrado)
     bp_txt = sections.get("buenas_practicas", "")
@@ -462,7 +493,7 @@ def render_unified_guides_for_tab(tab_name, sections):
         bp_txt = bp_txt.replace("(Baños, Fosas y Trampas)", "(Trampas)")
         bp_txt = bp_txt.replace("`apoyo humano` en todos los embudos (Baños, Fosas y Trampas)", "la etapa de `APOYO HUMANO` en el embudo de Trampas")
     with st.expander("🚀 7. Buenas Prácticas de Servicio en Ventas"):
-        st.markdown(bp_txt)
+        render_markdown_with_images(bp_txt)
         
     # 8. Tabla Resumen (Filtrado)
     tabla_txt = sections.get("tabla_resumen", "")
@@ -484,7 +515,7 @@ def render_unified_guides_for_tab(tab_name, sections):
         else:
             filtered_tabla.append(line)
     with st.expander("📌 8. Tabla Resumen de Reglas, Cupones y Gestión de Quejas"):
-        st.markdown("\n".join(filtered_tabla))
+        render_markdown_with_images("\n".join(filtered_tabla))
 
 # Helper to render the Q&A filtered
 def render_qa_for_tab(tab_name, sections):
@@ -520,7 +551,7 @@ def render_qa_for_tab(tab_name, sections):
             filtered_qa.append(line)
             
     with st.expander("❓ Preguntas y Respuestas (Q&A) de la Guía de Ventas"):
-        st.markdown("\n".join(filtered_qa))
+        render_markdown_with_images("\n".join(filtered_qa))
 
 # Helper to render the stages grid
 def render_pipeline_grid(etapas, pipeline_name=""):
@@ -622,7 +653,7 @@ with tab_banos:
     st.markdown("### 📋 Guía Específica de Renta de Baños")
     
     with st.expander("📋 1. Flujo y Etapas del Embudo de Ventas (Baños)"):
-        st.markdown(sections.get("seccion_banos", ""))
+        render_markdown_with_images(sections.get("seccion_banos", ""))
         
     with st.expander("💬 2. Secuencia de Preguntas del Bot de Renta"):
         st.markdown("""
@@ -635,7 +666,7 @@ with tab_banos:
         """)
         
     with st.expander("👥 3. Gestión de Clientes Activos (Ganados, Reactivaciones y Retiros)"):
-        st.markdown(sections.get("gestion_ganados_banos", ""))
+        render_markdown_with_images(sections.get("gestion_ganados_banos", ""))
     st.markdown("<div class='h-divider'></div>", unsafe_allow_html=True)
     st.markdown("### 📊 Tablero Visual de Etapas del Embudo (Renta de Baños)")
     st.markdown("El embudo se compone de **18 etapas** secuenciales en el orden exacto de tu CRM. Cada columna representa una etapa individual en orden de flujo comercial. Haz clic en cada tarjeta para ver su detalle:")
@@ -680,7 +711,7 @@ with tab_fosas:
     st.markdown("### 📋 Guía Específica de Servicios Especiales y Fosas")
     
     with st.expander("📋 1. Flujo y Etapas del Embudo de Fosas"):
-        st.markdown(sections.get("seccion_fosas", ""))
+        render_markdown_with_images(sections.get("seccion_fosas", ""))
         
     with st.expander("💬 2. Secuencia de Preguntas del Bot de Fosas"):
         st.markdown("""
@@ -748,7 +779,7 @@ with tab_trampas:
     st.markdown("### 📋 Guía Específica de Trampas de Grasa")
     
     with st.expander("📋 1. Flujo y Etapas del Embudo de Trampas"):
-        st.markdown(sections.get("seccion_trampas", ""))
+        render_markdown_with_images(sections.get("seccion_trampas", ""))
         
     with st.expander("💬 2. Secuencia de Preguntas del Bot de Trampas"):
         st.markdown("""

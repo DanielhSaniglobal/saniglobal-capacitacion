@@ -99,11 +99,86 @@ Cada lead tiene un asesor asignado. Si necesitas transferirlo (por carga de trab
 - Guarda los cambios. El sistema le notificará automáticamente y reasignará las tareas pendientes.
 - ⚠️ **REGLA DE ORO DE ASIGNACIÓN:** Cuando reasignes una oportunidad a un compañero porque te llegó a ti por error, **debes dejar obligatoriamente una nota** en la tarjeta con cualquier dato extra, comentario o necesidad que el cliente ya te haya compartido en el chat anterior. Esto evita la pérdida de información y facilita el trabajo del nuevo asesor asignado.
 
-#### 🖱️ Botones Manuales en la Tarjeta
-Muchos bots de seguimiento no se activarán a menos que le des clic al botón manual correspondiente dentro de la tarjeta del lead (ej. "Cotización realizada", "Cotización de trampas de grasa manual", "Baño entregado"). **Si no das clic, el cliente se queda congelado sin automatizaciones.**
+#### 💬 Gestión de la Bandeja de Entrada (Filtros y Cierre de Chats)
+Para mantener un CRM ordenado y dar atención oportuna, se deben seguir las siguientes directrices en la bandeja de entrada:
+1. **Filtro de Asignación Obligatorio:** Siempre debes tener activo el filtro **"Asignado a mí"** en tu sección de chats para visualizar únicamente tus leads y evitar interferencias o dobles atenciones.
+   
+   ![Filtro de Chats Asignado a mí](assets/image2.png)
+   
+2. **Control de Conversaciones Abiertas:** No se debe dejar la sección de chats (entradas) con más de **10 conversaciones abiertas** al mismo tiempo.
+3. **Cerrar sin Eliminar Tareas (Conversación Cerrada):** Para quitar un lead de la sección de chats activos sin alterar sus tareas internas, haz clic en los 3 puntos debajo del horario del chat y selecciona **"conversación cerrada"**. Esto despeja tu buzón sin eliminar recordatorios.
+   
+   ![Cerrar conversación conservando tareas](assets/image1.png)
+   
+4. **Marcar como Resuelto (Cierre Definitivo):** Para cerrar una conversación y además eliminar todas las tareas pendientes porque el lead ya concluyó su proceso o fue descartado, da clic en el botón **"Marque resuelto"** dentro de la conversación.
+   
+   ![Cerrar conversación eliminando tareas](assets/image3.png)
+   
+   > [!NOTE]
+   > Cerrar una conversación o marcarla como resuelta **no cambia el embudo ni elimina el historial** del cliente; únicamente sirve para despejar tu bandeja y dar prioridad a los prospectos en proceso activo de cotización o renta.
+
+#### 📇 Llenado Correcto de la Tarjeta del Lead (Datos Obligatorios)
+La tarjeta del cliente es nuestro expediente comercial oficial. Debe llenarse de forma completa y estandarizada:
+1. **Nombre del Cliente/Empresa:** La tarjeta del lead siempre debe tener el nombre de la empresa o del cliente hasta arriba (en el encabezado principal).
+   
+   ![Nombre del cliente en la cabecera](assets/image4.png)
+   
+2. **Información Crítica Requerida:** Cada lead que avance en negociación debe contar obligatoriamente con los siguientes campos llenos en su tarjeta:
+   - Por lo menos una etiqueta (tag) del servicio requerido.
+   - Presupuesto (ingresado sin IVA).
+   - Dirección de entrega completa.
+   - Archivos adjuntos en PDF de: **Constancia de Situación Fiscal (CSF)** e **INE** (o comprobante de domicilio si es particular).
+   - Tipo de baño y cantidad de sanitarios solicitados.
+   - Área geográfica (cobertura) y canal de procedencia del cliente.
+   - Método de pago, estatus del pago y comprobante de pago adjunto (si aplica).
+   - Fecha de entrega requerida y número de contrato.
+   
+   ![Campos obligatorios en la tarjeta del lead](assets/image5.png)
+   
+3. **Contacto del Receptor en Sitio:** Es obligatorio agregar en los campos inferiores el **nombre y número de teléfono de la persona física que recibirá el sanitario en sitio**, sin importar que sea el mismo contacto del contratante. Este dato es vital para agilizar la logística de entregas y retiros de operaciones.
+   
+   ![Contacto de recepción de sanitarios](assets/image6.png)
+
+#### 🖱️ Botones Manuales de Automatización
+Los bots comerciales se basan en disparadores que tú debes activar manualmente al dar clics obligatorios en los siguientes botones dentro de la tarjeta:
+1. **Cotización realizada:** Haz clic aquí de forma obligatoria en cuanto envíes la cotización formal en PDF al cliente. El sistema le enviará automáticamente un mensaje informativo predefinido en el chat (no necesitas escribir texto de acompañamiento) y programará el bot de seguimiento de 21h.
+   
+   ![Botón Cotización Realizada](assets/image7.png)
+   
+2. **Baño entregado y ganado:** Haz clic aquí una vez que el área de entregas y retiros te confirme la entrega física del baño. El bot le enviará automáticamente al cliente la información post-venta sobre su renta (reglas de uso, mantenimiento y qué procede a partir de ese momento).
+   
+   ![Botón Baño Entregado y Ganado](assets/image8.png)
 
 #### ⚡ Mensajes Rápidos
 Escribe `/` (diagonal) en el chat para buscar plantillas predefinidas. Úsalas para saludos, cuentas de pago o preguntas frecuentes y mantén la consistencia profesional del equipo.
+
+#### 📬 Proceso Obligatorio de Programación y Envío a Facturación/Operaciones
+Cuando un lead está calificado y listo para entrega, el paso de ventas a operaciones debe seguir estrictamente este flujo formal:
+1. **Mover a Solicitud de Programación:** Asegúrate de que toda la información crítica y documentos estén completos en la tarjeta. Mueve el lead al embudo de **Entregas y Retiros** en la etapa **Solicitud de programación**.
+   
+   ![Mover a Solicitud de Programación en Entregas y Retiros](assets/image9.png)
+   
+2. **Generación de Correo Automático:** Al mover el lead, el sistema generará automáticamente un correo electrónico plantilla que llegará a `soporte@saniglobal.com.mx` y `d.herrera@saniglobal.com.mx`.
+3. **Revisión y Reenvío de Datos:** Revisa que todos los datos en el correo estén correctos. Corrige o ajusta lo necesario y adjunta los documentos del cliente (CSF, comprobante de domicilio, INE y comprobante de pago).
+4. **Destinatarios de Envío:** Reenvía el correo a los siguientes destinatarios obligatorios para facturación y logística:
+   - `facturacion@saniglobal.com.mx`
+   - `cobranza3@saniglobal.com.mx`
+   - `operaciones3@saniglobal.com.mx`
+   - `soporte@saniglobal.com.mx`
+   - `casetassanitarias@saniglobal.com.mx`
+   - `cobranza1@saniglobal.com.mx`
+   - `v.ruiz@saniglobal.com.mx`
+   - `d.herrera@saniglobal.com.mx`
+   
+   > [!TIP]
+   > Para ahorrar tiempo, crea un grupo de contactos en tu gestor de correo llamado **"programación"** que incluya todas estas direcciónes para que solo debas ingresar ese nombre al reenviar.
+   
+   ![Configuración del grupo de contactos programación](assets/image10.png)
+   
+5. **Monitoreo de Estatus:** Realiza el seguimiento visual en el embudo de Entregas y Retiros.
+   - **Tarjeta en Rojo:** Requiere acciones inmediatas del vendedor (corregir datos, documentos faltantes, etc.).
+   - **Tarjeta en Azul:** Significa que está en manos de Entregas y Retiros y se encuentra programada o en ruta.
+6. **Captura de Evidencia:** En cuanto el lead pase a la etapa `programado`, solicita al área de entregas y retiros que le asigne la fecha de entrega oficial (si aún no la tiene) para tomar captura de evidencia.
 
 ---
 
