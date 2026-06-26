@@ -151,35 +151,6 @@ Los bots comerciales se basan en disparadores que tú debes activar manualmente 
 
 #### ⚡ Mensajes Rápidos
 Escribe `/` (diagonal) en el chat para buscar plantillas predefinidas. Úsalas para saludos, cuentas de pago o preguntas frecuentes y mantén la consistencia profesional del equipo.
-
-#### 📬 Proceso Obligatorio de Programación y Envío a Facturación/Operaciones
-Cuando un lead está calificado y listo para entrega, el paso de ventas a operaciones debe seguir estrictamente este flujo formal:
-1. **Mover a Solicitud de Programación:** Asegúrate de que toda la información crítica y documentos estén completos en la tarjeta. Mueve el lead al embudo de **Entregas y Retiros** en la etapa **Solicitud de programación**.
-   
-   ![Mover a Solicitud de Programación en Entregas y Retiros](assets/image9.png)
-   
-2. **Generación de Correo Automático:** Al mover el lead, el sistema generará automáticamente un correo electrónico plantilla que llegará a `soporte@saniglobal.com.mx` y `d.herrera@saniglobal.com.mx`.
-3. **Revisión y Reenvío de Datos:** Revisa que todos los datos en el correo estén correctos. Corrige o ajusta lo necesario y adjunta los documentos del cliente (CSF, comprobante de domicilio, INE y comprobante de pago).
-4. **Destinatarios de Envío:** Reenvía el correo a los siguientes destinatarios obligatorios para facturación y logística:
-   - `facturacion@saniglobal.com.mx`
-   - `cobranza3@saniglobal.com.mx`
-   - `operaciones3@saniglobal.com.mx`
-   - `soporte@saniglobal.com.mx`
-   - `casetassanitarias@saniglobal.com.mx`
-   - `cobranza1@saniglobal.com.mx`
-   - `v.ruiz@saniglobal.com.mx`
-   - `d.herrera@saniglobal.com.mx`
-   
-   > [!TIP]
-   > Para ahorrar tiempo, crea un grupo de contactos en tu gestor de correo llamado **"programación"** que incluya todas estas direcciónes para que solo debas ingresar ese nombre al reenviar.
-   
-   ![Configuración del grupo de contactos programación](assets/image10.png)
-   
-5. **Monitoreo de Estatus:** Realiza el seguimiento visual en el embudo de Entregas y Retiros.
-   - **Tarjeta en Rojo:** Requiere acciones inmediatas del vendedor (corregir datos, documentos faltantes, etc.).
-   - **Tarjeta en Azul:** Significa que está en manos de Entregas y Retiros y se encuentra programada o en ruta.
-6. **Captura de Evidencia:** En cuanto el lead pase a la etapa `programado`, solicita al área de entregas y retiros que le asigne la fecha de entrega oficial (si aún no la tiene) para tomar captura de evidencia.
-
 ---
 
 <a name="embudos-soporte"></a>
@@ -326,6 +297,36 @@ Cuando un cliente ganado nos vuelve a escribir (tenga o no un baño físicamente
 - **Retirar o reubicar:** Si elige *Retirar*, le da instrucciones de enviar un correo a operaciones. Cuando el cliente confirma el envío, se le dispara la **encuesta de emojis** y al finalizar se le regala un **cupón del 10% de descuento** para reactivación. Si dice que no quiere retirar, se le ofrece ampliar la renta.
 - **Quiero otro baño:** Envía al cliente al proceso de cotización agregando la tarea "Cotizar nuevo baño".
 - **Reportes y quejas:** Mueve el lead automáticamente al embudo especializado de **Quejas sanitarios (Pipeline 12717196)** en la etapa `INICIO QUEJA` para atención manual urgente.
+
+---
+
+### 📬 Proceso Obligatorio de Programación y Envío a Facturación/Operaciones (Solo para Baños)
+Cuando un lead está calificado y listo para entrega, el paso de ventas a operaciones debe seguir estrictamente este flujo formal:
+1. **Mover a Solicitud de Programación:** Asegúrate de que toda la información crítica y documentos estén completos en la tarjeta. Mueve el lead al embudo de **Entregas y Retiros** en la etapa **Solicitud de programación**.
+   
+   ![Mover a Solicitud de Programación en Entregas y Retiros](assets/image9.png)
+   
+2. **Generación de Correo Automático:** Al mover el lead, el sistema generará automáticamente un correo electrónico plantilla que llegará a `soporte@saniglobal.com.mx` y `d.herrera@saniglobal.com.mx`.
+3. **Revisión y Reenvío de Datos:** Revisa que todos los datos en el correo estén correctos. Corrige o ajusta lo necesario y adjunta los documentos del cliente (CSF, comprobante de domicilio, INE y comprobante de pago).
+4. **Destinatarios de Envío:** Reenvía el correo a los siguientes destinatarios obligatorios para facturación y logística:
+   - `facturacion@saniglobal.com.mx`
+   - `cobranza3@saniglobal.com.mx`
+   - `operaciones3@saniglobal.com.mx`
+   - `soporte@saniglobal.com.mx`
+   - `casetassanitarias@saniglobal.com.mx`
+   - `cobranza1@saniglobal.com.mx`
+   - `v.ruiz@saniglobal.com.mx`
+   - `d.herrera@saniglobal.com.mx`
+   
+   > [!TIP]
+   > Para ahorrar tiempo, crea un grupo de contactos en tu gestor de correo llamado **"programación"** que incluya todas estas direcciónes para que solo debas ingresar ese nombre al reenviar.
+   
+   ![Configuración del grupo de contactos programación](assets/image10.png)
+   
+5. **Monitoreo de Estatus:** Realiza el seguimiento visual en el embudo de Entregas y Retiros.
+   - **Tarjeta en Rojo:** Requiere acciones inmediatas del vendedor (corregir datos, documentos faltantes, etc.).
+   - **Tarjeta en Azul:** Significa que está en manos de Entregas y Retiros y se encuentra programada o en ruta.
+6. **Captura de Evidencia:** En cuanto el lead pase a la etapa `programado`, solicita al área de entregas y retiros que le asigne la fecha de entrega oficial (si aún no la tiene) para tomar captura de evidencia.
 
 ---
 

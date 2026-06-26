@@ -319,6 +319,7 @@ def load_guide_sections():
             ("soporte_quejas", "### 4. 😤 Embudos de Soporte y Regla Especial de Quejas"),
             ("seccion_banos", "## 🚽 SECCIÓN II: RENTA DE BAÑOS PORTÁTILES"),
             ("gestion_ganados_banos", "### 📋 Gestión y Reactivación de Clientes Ganados (Tengan o no Baño Activo)"),
+            ("programacion_banos", "### 📬 Proceso Obligatorio de Programación y Envío a Facturación/Operaciones (Solo para Baños)"),
             ("seccion_fosas", "## 🌀 SECCIÓN III: SERVICIOS ESPECIALES Y FOSAS SÉPTICAS"),
             ("seccion_trampas", "## 🍳 SECCIÓN IV: TRAMPAS DE GRASA"),
             ("tabla_resumen", "## 📌 Tabla Resumen de Reglas, Cupones y Gestión de Quejas"),
@@ -419,20 +420,10 @@ def render_unified_guides_for_tab(tab_name, sections):
         reglas_txt = reglas_txt.replace('"Cotización realizada", "Cotización de trampas de grasa manual", "Baño entregado"', '"Cotización realizada", "Baño entregado"')
         reglas_txt = reglas_txt.replace('"Cotización de trampas de grasa manual"', '"Cotización realizada"')
     elif tab_name == "fosas":
-        for marker in ["#### 📬 Proceso Obligatorio de Programación", "#### Proceso Obligatorio de Programación", "Proceso Obligatorio de Programación"]:
-            if marker in reglas_txt:
-                reglas_txt = reglas_txt.split(marker)[0]
-                reglas_txt = re.sub(r'####\s*📬?\s*$', '', reglas_txt).strip()
-                break
         reglas_txt = reglas_txt.replace("Daniel Herrera (Usuario 12824423)", "Livier Mora").replace("Asesor de Trampas de Grasa", "Livier Mora")
         reglas_txt = reglas_txt.replace('"Cotización realizada", "Cotización de trampas de grasa manual", "Baño entregado"', '"Cotización realizada"')
         reglas_txt = reglas_txt.replace('"Cotización de trampas de grasa manual"', '"Cotización realizada"')
     elif tab_name == "trampas":
-        for marker in ["#### 📬 Proceso Obligatorio de Programación", "#### Proceso Obligatorio de Programación", "Proceso Obligatorio de Programación"]:
-            if marker in reglas_txt:
-                reglas_txt = reglas_txt.split(marker)[0]
-                reglas_txt = re.sub(r'####\s*📬?\s*$', '', reglas_txt).strip()
-                break
         reglas_txt = reglas_txt.replace("Daniel Herrera (Usuario 12824423)", "Asesor de Trampas").replace("Livier Mora (Usuario 13346199)", "Asesor de Trampas")
         reglas_txt = reglas_txt.replace('"Cotización realizada", "Cotización de trampas de grasa manual", "Baño entregado"', '"Cotización de trampas de grasa manual"')
     with st.expander("🛠️ 4. Reglas de Operación Diaria"):
@@ -677,6 +668,10 @@ with tab_banos:
         
     with st.expander("👥 3. Gestión de Clientes Activos (Ganados, Reactivaciones y Retiros)"):
         render_markdown_with_images(sections.get("gestion_ganados_banos", ""))
+        
+    with st.expander("📬 4. Proceso Obligatorio de Programación y Envío a Facturación/Operaciones"):
+        render_markdown_with_images(sections.get("programacion_banos", ""))
+        
     st.markdown("<div class='h-divider'></div>", unsafe_allow_html=True)
     st.markdown("### 📊 Tablero Visual de Etapas del Embudo (Renta de Baños)")
     st.markdown("El embudo se compone de **18 etapas** secuenciales en el orden exacto de tu CRM. Cada columna representa una etapa individual en orden de flujo comercial. Haz clic en cada tarjeta para ver su detalle:")
