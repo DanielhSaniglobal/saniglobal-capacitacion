@@ -334,16 +334,40 @@ def render_unified_guides_for_tab(tab_name, sections):
     st.markdown("### 📘 Guías de Operación y Reglas Generales")
     st.markdown("Consulta las bases del sistema comercial y directrices obligatorias en Kommo CRM:")
     
-    # 1. Glosario Rápido
+    # 1. Introducción a Kommo CRM
+    with st.expander("🎬 1. Introducción: ¿Qué es Kommo CRM y cómo captamos clientes?"):
+        st.markdown("""
+        ### ¿Qué es Kommo CRM?
+        Kommo es nuestra plataforma central de gestión de relaciones con clientes (CRM). Aunque para el cliente final la comunicación ocurre 100% en su chat familiar de **WhatsApp**, para nosotros, Kommo es el panel de control unificado que concentra todas estas conversaciones en una sola bandeja de entrada colaborativa y automatizada.
+        
+        ### Ventajas de Kommo vs. WhatsApp Tradicional (Celular)
+        - **Colaboración Multiusuario:** Permite que todo nuestro equipo trabaje simultáneamente en la computadora o celular sin necesidad de vincular dispositivos físicos ni sufrir cierres de sesión.
+        - **Asignación Inteligente:** Los prospectos se asignan de forma automática al vendedor especializado correspondiente (Baños a Daniel Herrera, Fosas a Livier Mora, Trampas a Asesor de Trampas) según lo que elijan al chatear.
+        - **Control de Tareas y Tiempos:** El sistema obliga a programar una tarea a futuro (llamadas, cotizaciones, seguimientos) para cada lead comercial. Si una tarea se vence o no existe, el CRM colorea el prospecto de rojo para alertar sobre la desatención.
+        - **Historial Permanente:** Se registran permanentemente notas internas, fechas de cotización y los cambios de etapa para que no se pierda nada de información del cliente.
+        
+        ### ¿Cómo llegan los prospectos a nuestro CRM?
+        Nuestros clientes potenciales son atraídos mediante campañas de marketing digital integradas:
+        1. **Meta Ads (Facebook & Instagram Ads):** Anuncios visuales en redes sociales diseñados bajo el formato *Click-to-WhatsApp*. Al hacer clic en el anuncio, se abre el chat directo y el mensaje entra al CRM.
+        2. **Google Ads & Web Orgánica:** Los usuarios buscan activamente en Google (ej. *"renta de baños portátiles"*), ingresan a nuestro sitio web, y dan clic en nuestros botones flotantes de WhatsApp.
+        En ambos casos, el lead entra de forma inmediata al CRM e inicia el **Bot GPT Completo** de bienvenida.
+        
+        ### ¿Por qué existen los embudos y cuál es el objetivo?
+        Un embudo (o pipeline) divide el proceso de venta en etapas ordenadas y consecutivas para organizar el seguimiento según el nivel de interés del cliente.
+        - **Por qué existen:** Para separar visualmente a los prospectos (no es igual de prioritario un lead que apenas saludó a uno al que ya le cotizamos y requiere cierre manual).
+        - **El verdadero objetivo:** **Tener un control absoluto sobre nuestra base de clientes** (saber quiénes somos, qué servicios activos tenemos en sitio y cuándo corresponde recontactar para reactivación o retiro) para **optimizar las ventas y no dejar ir ninguna oportunidad de ingresos.**
+        """)
+        
+    # 2. Glosario Rápido
     glosario_txt = sections.get("glosario", "")
     if tab_name != "fosas":
         lines = glosario_txt.split("\n")
         filtered_lines = [l for l in lines if "Casa Habitación" not in l]
         glosario_txt = "\n".join(filtered_lines)
-    with st.expander("📖 1. Glosario Rápido"):
+    with st.expander("📖 2. Glosario Rápido"):
         st.markdown(glosario_txt)
         
-    # 2. El Embudo GPT Completo (Filtrado)
+    # 3. El Embudo GPT Completo (Filtrado)
     gpt_txt = sections.get("gpt_completo", "")
     if tab_name == "banos":
         gpt_txt = gpt_txt.replace("- 🔧 **Servicios especiales** → El bot lo mueve al **Embudo de Servicios Especiales (Fosas)** y lo asigna a Livier Mora.\n", "")
@@ -354,10 +378,10 @@ def render_unified_guides_for_tab(tab_name, sections):
     elif tab_name == "trampas":
         gpt_txt = gpt_txt.replace("- 🚽 **Rentar baños** → El bot lo mueve al **Embudo de Ventas (Baños)** y lo asigna a Daniel Herrera.\n", "")
         gpt_txt = gpt_txt.replace("¿Te interesa rentar un baño portátil o buscas algún servicio especializado como limpieza de fosas sépticas, trampas de grasa, recolección de residuos?", "¿Buscas algún servicio especializado como limpieza de trampas de grasa?")
-    with st.expander("🌟 2. El Embudo GPT Completo — El Origen de Todo"):
+    with st.expander("🌟 3. El Embudo GPT Completo — El Origen de Todo"):
         st.markdown(gpt_txt)
         
-    # 3. Reglas de Operación Diaria (Filtrado)
+    # 4. Reglas de Operación Diaria (Filtrado)
     reglas_txt = sections.get("reglas_diarias", "")
     if tab_name == "banos":
         reglas_txt = reglas_txt.replace("Livier Mora (Usuario 13346199)", "Daniel Herrera").replace("Asesor de Trampas de Grasa", "Daniel Herrera")
@@ -370,10 +394,10 @@ def render_unified_guides_for_tab(tab_name, sections):
     elif tab_name == "trampas":
         reglas_txt = reglas_txt.replace("Daniel Herrera (Usuario 12824423)", "Asesor de Trampas").replace("Livier Mora (Usuario 13346199)", "Asesor de Trampas")
         reglas_txt = reglas_txt.replace('"Cotización realizada", "Cotización de trampas de grasa manual", "Baño entregado"', '"Cotización de trampas de grasa manual"')
-    with st.expander("🛠️ 3. Reglas de Operación Diaria"):
+    with st.expander("🛠️ 4. Reglas de Operación Diaria"):
         st.markdown(reglas_txt)
         
-    # 4. Embudos de Soporte y Regla Especial de Quejas (Filtrado)
+    # 5. Embudos de Soporte y Regla Especial de Quejas (Filtrado)
     soporte_txt = sections.get("soporte_quejas", "")
     lines = soporte_txt.split("\n")
     filtered_soporte = []
@@ -406,10 +430,10 @@ def render_unified_guides_for_tab(tab_name, sections):
                 clean_line = line.replace("🌀 Fosas (Livier Mora) y ", "").replace("fosas sépticas o ", "")
                 filtered_soporte.append(clean_line)
                 
-    with st.expander("😤 4. Embudos de Soporte y Regla de Quejas"):
+    with st.expander("😤 5. Embudos de Soporte y Regla de Quejas"):
         st.markdown("\n".join(filtered_soporte))
         
-    # 5. Guías Prácticas de Operación (Filtrado)
+    # 6. Guías Prácticas de Operación (Filtrado)
     guias_txt = sections.get("guias_operacion", "")
     if tab_name == "banos":
         guias_txt = guias_txt.replace("Livier Mora", "Daniel Herrera").replace("Asesor de Trampas", "Daniel Herrera")
@@ -423,10 +447,10 @@ def render_unified_guides_for_tab(tab_name, sections):
         guias_txt = guias_txt.replace("(ej. Casa Habitación en fosas)", "(ej. quejas de grasa)")
         guias_txt = guias_txt.replace("Daniel Herrera o Livier Mora", "Asesor de Trampas")
         guias_txt = guias_txt.replace("'La calle es estrecha, se requiere camión chico'", "'La trampa está en sótano, requiere manguera extra'")
-    with st.expander("📖 5. Guías Prácticas de Operación en Kommo CRM"):
+    with st.expander("📖 6. Guías Prácticas de Operación en Kommo CRM"):
         st.markdown(guias_txt)
         
-    # 6. Buenas Prácticas (Filtrado)
+    # 7. Buenas Prácticas (Filtrado)
     bp_txt = sections.get("buenas_practicas", "")
     if tab_name == "banos":
         bp_txt = bp_txt.replace("(Baños, Fosas y Trampas)", "(Baños)")
@@ -437,10 +461,10 @@ def render_unified_guides_for_tab(tab_name, sections):
     elif tab_name == "trampas":
         bp_txt = bp_txt.replace("(Baños, Fosas y Trampas)", "(Trampas)")
         bp_txt = bp_txt.replace("`apoyo humano` en todos los embudos (Baños, Fosas y Trampas)", "la etapa de `APOYO HUMANO` en el embudo de Trampas")
-    with st.expander("🚀 6. Buenas Prácticas de Servicio en Ventas"):
+    with st.expander("🚀 7. Buenas Prácticas de Servicio en Ventas"):
         st.markdown(bp_txt)
         
-    # 7. Tabla Resumen (Filtrado)
+    # 8. Tabla Resumen (Filtrado)
     tabla_txt = sections.get("tabla_resumen", "")
     lines = tabla_txt.split("\n")
     filtered_tabla = []
@@ -459,7 +483,7 @@ def render_unified_guides_for_tab(tab_name, sections):
                     filtered_tabla.append(line)
         else:
             filtered_tabla.append(line)
-    with st.expander("📌 7. Tabla Resumen de Reglas, Cupones y Gestión de Quejas"):
+    with st.expander("📌 8. Tabla Resumen de Reglas, Cupones y Gestión de Quejas"):
         st.markdown("\n".join(filtered_tabla))
 
 # Helper to render the Q&A filtered
