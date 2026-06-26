@@ -27,7 +27,10 @@ def render_markdown_with_images(md_text):
                 full_img_path = img_path
             
             if os.path.exists(full_img_path):
-                st.image(full_img_path, caption=caption, use_container_width=True)
+                # Center and reduce width to 70% (30% size reduction)
+                col_l, col_c, col_r = st.columns([15, 70, 15])
+                with col_c:
+                    st.image(full_img_path, caption=caption, use_container_width=True)
             else:
                 st.warning(f"Imagen no encontrada: {img_path} (ruta resuelta: {full_img_path})")
             i += 3
