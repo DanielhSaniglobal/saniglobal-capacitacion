@@ -2,8 +2,10 @@
 import streamlit as st
 import pandas as pd
 from guia_data import EMBUDOS_INFO, MENSAJES_RAPIDOS, ETAPAS_BANOS, ETAPAS_FOSAS, ETAPAS_TRAMPAS
+from quiz_data import QUIZ_BANOS, QUIZ_FOSAS, QUIZ_TRAMPAS
 import re
 import os
+import random
 
 # Helper function to render markdown text and extract image tags to display them inline via st.image
 def render_markdown_with_images(md_text):
@@ -604,11 +606,12 @@ def render_pipeline_grid(etapas, pipeline_name=""):
                 col.empty()
 
 # 7. Navigation Tabs
-tab_banos, tab_fosas, tab_trampas, tab_recursos = st.tabs([
+tab_banos, tab_fosas, tab_trampas, tab_recursos, tab_quiz = st.tabs([
     "🚽 Renta de Baños", 
     "🌀 Fosas Sépticas", 
     "🍳 Trampas de Grasa",
-    "📂 Recursos & Plantillas"
+    "📂 Recursos & Plantillas",
+    "🧠 Evalúa tus Conocimientos"
 ])
 
 # ----------------------------------------------------
@@ -828,3 +831,165 @@ with tab_recursos:
                 <p style="font-size: 0.85rem; background: {bg_subtle}; border: 1px solid {border_color}; border-radius: 6px; padding: 0.8rem; font-family: monospace; white-space: pre-wrap; margin-top: 0.5rem;">{tmpl['texto']}</p>
             </div>
             """, unsafe_allow_html=True)
+
+# ----------------------------------------------------
+# TAB 5: EVALÚA TUS CONOCIMIENTOS
+# ----------------------------------------------------
+with tab_quiz:
+    st.markdown("### 🧠 Evalúa tus Conocimientos")
+    st.markdown("Pon a prueba lo que has aprendido. Selecciona un área, responde las 10 preguntas y descubre tu nivel de dominio.")
+    
+    st.markdown("<div class='h-divider'></div>", unsafe_allow_html=True)
+    
+    # Area selector
+    quiz_area = st.selectbox(
+        "Selecciona el área a evaluar:",
+        ["🚽 Renta de Baños Portátiles", "🌀 Fosas Sépticas", "🍳 Trampas de Grasa"],
+        key="quiz_area_select"
+    )
+    
+    # Map selection to data
+    area_map = {
+        "🚽 Renta de Baños Portátiles": ("banos", QUIZ_BANOS),
+        "🌀 Fosas Sépticas": ("fosas", QUIZ_FOSAS),
+        "🍳 Trampas de Grasa": ("trampas", QUIZ_TRAMPAS),
+    }
+    area_key, area_questions = area_map[quiz_area]
+    session_key = f"quiz_{area_key}"
+    
+    # Initialize or refresh quiz questions for this area
+    if session_key not in st.session_state:
+        selected = random.sample(area_questions, min(10, len(area_questions)))
+        st.session_state[session_key] = {
+            "questions": selected,
+            "submitted": False,
+            "answers": {},
+        }
+    
+    quiz_state = st.session_state[session_key]
+    
+    # "New quiz" button
+    col_new, col_spacer = st.columns([1, 4])
+    with col_new:
+        if st.button("🔄 Generar nuevo examen", key=f"new_quiz_{area_key}"):
+            selected = random.sample(area_questions, min(10, len(area_questions)))
+            st.session_state[session_key] = {
+                "questions": selected,
+                "submitted": False,
+                "answers": {},
+            }
+            st.rerun()
+    
+    st.markdown("<div class='h-divider'></div>", unsafe_allow_html=True)
+    
+    questions = quiz_state["questions"]
+    submitted = quiz_state["submitted"]
+    
+    # Render questions inside a form
+    with st.form(key=f"quiz_form_{area_key}"):
+        for i, q in enumerate(questions):
+            q_num = i + 1
+            st.markdown(f"**Pregunta {q_num} de 10**")
+            st.markdown(f"> {q['pregunta']}")
+            
+            # Radio for options
+            answer = st.radio(
+                "Selecciona tu respuesta:",
+                options=q["opciones"],
+                key=f"q_{area_key}_{i}",
+                index=None,
+                label_visibility="collapsed",
+            )
+            
+            # Show feedback if submitted
+            if submitted:
+                user_answer = quiz_state["answers"].get(i)
+                correct_idx = q["correcta"]
+                correct_text = q["opciones"][correct_idx]
+                
+                if user_answer is None:
+                    st.markdown(f"""
+                    <div style="background: {amber_bg}; border: 1px solid {amber_color}; border-radius: 8px; padding: 0.8rem; margin: 0.5rem 0;">
+                        <strong style="color: {amber_color};">⚠️ Sin respuesta</strong><br>
+                        <span style="color: {text_color};">La respuesta correcta es: <strong style="color: {green_color};">{correct_text}</strong></span><br>
+                        <span style="font-size: 0.85rem; color: {text_muted};">{q['explicacion']}</span>
+                    </div>
+                    """, unsafe_allow_html=True)
+                elif user_answer == correct_text:
+                    st.markdown(f"""
+                    <div style="background: {green_bg}; border: 1px solid {green_color}; border-radius: 8px; padding: 0.8rem; margin: 0.5rem 0;">
+                        <strong style="color: {green_color};">✅ ¡Correcto!</strong><br>
+                        <span style="font-size: 0.85rem; color: {text_muted};">{q['explicacion']}</span>
+                    </div>
+                    """, unsafe_allow_html=True)
+                else:
+                    st.markdown(f"""
+                    <div style="background: {red_bg}; border: 1px solid {red_color}; border-radius: 8px; padding: 0.8rem; margin: 0.5rem 0;">
+                        <strong style="color: {red_color};">❌ Incorrecto</strong><br>
+                        <span style="color: {text_color};">La respuesta correcta es: <strong style="color: {green_color};">{correct_text}</strong></span><br>
+                        <span style="font-size: 0.85rem; color: {text_muted};">{q['explicacion']}</span>
+                    </div>
+                    """, unsafe_allow_html=True)
+            
+            st.markdown("---")
+        
+        # Submit button
+        submit_clicked = st.form_submit_button(
+            "📝 Calificar examen" if not submitted else "✅ Examen calificado",
+            disabled=submitted,
+            use_container_width=True,
+        )
+        
+        if submit_clicked and not submitted:
+            # Collect answers
+            answers = {}
+            for i in range(len(questions)):
+                answers[i] = st.session_state.get(f"q_{area_key}_{i}")
+            quiz_state["answers"] = answers
+            quiz_state["submitted"] = True
+            st.rerun()
+    
+    # Show score summary after submission
+    if submitted:
+        correct_count = 0
+        for i, q in enumerate(questions):
+            user_answer = quiz_state["answers"].get(i)
+            correct_text = q["opciones"][q["correcta"]]
+            if user_answer == correct_text:
+                correct_count += 1
+        
+        total = len(questions)
+        pct = int((correct_count / total) * 100)
+        
+        if pct >= 90:
+            grade_color = green_color
+            grade_bg = green_bg
+            grade_emoji = "🏆"
+            grade_msg = "¡Excelente! Dominas esta área a la perfección."
+        elif pct >= 70:
+            grade_color = accent_color
+            grade_bg = "rgba(37,99,235,0.1)"
+            grade_emoji = "👍"
+            grade_msg = "¡Buen trabajo! Tienes un buen dominio, repasa los puntos que fallaste."
+        elif pct >= 50:
+            grade_color = amber_color
+            grade_bg = amber_bg
+            grade_emoji = "📖"
+            grade_msg = "Necesitas repasar. Revisa la guía del área y vuelve a intentarlo."
+        else:
+            grade_color = red_color
+            grade_bg = red_bg
+            grade_emoji = "🔴"
+            grade_msg = "Es necesario estudiar a fondo la guía de capacitación de esta área."
+        
+        st.markdown(f"""
+        <div style="background: {grade_bg}; border: 2px solid {grade_color}; border-radius: 12px; padding: 1.5rem; margin: 1rem 0; text-align: center;">
+            <div style="font-size: 2.5rem;">{grade_emoji}</div>
+            <div style="font-size: 1.8rem; font-weight: 800; color: {grade_color}; margin: 0.5rem 0;">{correct_count} / {total}</div>
+            <div style="font-size: 1rem; font-weight: 600; color: {grade_color};">{pct}% de aciertos</div>
+            <div style="font-size: 0.9rem; color: {text_muted}; margin-top: 0.5rem;">{grade_msg}</div>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        st.markdown("")
+        st.info("💡 **Tip:** Haz clic en **🔄 Generar nuevo examen** para obtener un nuevo set de 10 preguntas aleatorias y volver a practicar.")
