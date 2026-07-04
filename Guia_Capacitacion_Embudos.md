@@ -312,17 +312,17 @@ Cuando un lead está calificado y listo para entrega, el paso de ventas a operac
    
    ![Mover a Solicitud de Programación en Entregas y Retiros](assets/image9.png)
    
-2. **Generación de Correo Automático:** Al mover el lead, el sistema generará automáticamente un correo electrónico plantilla que llegará a `soporte@saniglobal.com.mx` y `d.herrera@saniglobal.com.mx`.
+2. **Generación de Correo Automático:** Al mover el lead, el sistema generará automáticamente un correo electrónico plantilla que llegará a [soporte@saniglobal.com.mx](mailto:soporte@saniglobal.com.mx) y [d.herrera@saniglobal.com.mx](mailto:d.herrera@saniglobal.com.mx).
 3. **Revisión y Reenvío de Datos:** Revisa que todos los datos en el correo estén correctos. Corrige o ajusta lo necesario y adjunta los documentos del cliente (CSF, comprobante de domicilio, INE y comprobante de pago).
 4. **Destinatarios de Envío:** Reenvía el correo a los siguientes destinatarios obligatorios para facturación y logística:
-   - `facturacion@saniglobal.com.mx`
-   - `cobranza3@saniglobal.com.mx`
-   - `operaciones3@saniglobal.com.mx`
-   - `soporte@saniglobal.com.mx`
-   - `casetassanitarias@saniglobal.com.mx`
-   - `cobranza1@saniglobal.com.mx`
-   - `v.ruiz@saniglobal.com.mx`
-   - `d.herrera@saniglobal.com.mx`
+   - [facturacion@saniglobal.com.mx](mailto:facturacion@saniglobal.com.mx)
+   - [cobranza3@saniglobal.com.mx](mailto:cobranza3@saniglobal.com.mx)
+   - [operaciones3@saniglobal.com.mx](mailto:operaciones3@saniglobal.com.mx)
+   - [soporte@saniglobal.com.mx](mailto:soporte@saniglobal.com.mx)
+   - [casetassanitarias@saniglobal.com.mx](mailto:casetassanitarias@saniglobal.com.mx)
+   - [cobranza1@saniglobal.com.mx](mailto:cobranza1@saniglobal.com.mx)
+   - [v.ruiz@saniglobal.com.mx](mailto:v.ruiz@saniglobal.com.mx)
+   - [d.herrera@saniglobal.com.mx](mailto:d.herrera@saniglobal.com.mx)
    
    > [!TIP]
    > Para ahorrar tiempo, crea un grupo de contactos en tu gestor de correo llamado **"programación"** que incluya todas estas direcciónes para que solo debas ingresar ese nombre al reenviar.

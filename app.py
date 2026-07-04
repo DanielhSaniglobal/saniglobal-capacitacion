@@ -816,6 +816,110 @@ with tab_trampas:
 # ----------------------------------------------------
 with tab_recursos:
     st.markdown("### 📂 Recursos Compartidos y Plantillas")
+    st.markdown("Cuentas bancarias, formularios internos y plantillas de mensajes rápidos para el equipo de ventas.")
+    
+    st.markdown("<div class='h-divider'></div>", unsafe_allow_html=True)
+    
+    # ---- SECTION 1: CUENTAS BANCARIAS ----
+    st.markdown("### 🏦 Cuentas Bancarias para Pagos de Clientes")
+    st.markdown("Proporciona al cliente la cuenta correspondiente según su zona geográfica:")
+    
+    col_gdl, col_slp = st.columns(2)
+    
+    with col_gdl:
+        st.markdown(f"""
+        <div class="custom-card" style="border-left: 4px solid {green_color} !important;">
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 0.8rem;">
+                <span style="font-size: 1.1rem; font-weight: 700; color: {text_color};">🏦 Cuenta Guadalajara (GDL)</span>
+                <span class="badge badge-green">BANORTE</span>
+            </div>
+            <table style="width: 100%; font-size: 0.88rem; border-collapse: collapse;">
+                <tr style="border-bottom: 1px solid {border_color};">
+                    <td style="padding: 6px 0; color: {text_muted}; font-weight: 500;">Razón Social</td>
+                    <td style="padding: 6px 0; color: {text_color}; font-weight: 600;">SM JAL, SA DE CV</td>
+                </tr>
+                <tr style="border-bottom: 1px solid {border_color};">
+                    <td style="padding: 6px 0; color: {text_muted}; font-weight: 500;">RFC</td>
+                    <td style="padding: 6px 0; color: {text_color}; font-weight: 600;">SMJ010713J79</td>
+                </tr>
+                <tr style="border-bottom: 1px solid {border_color};">
+                    <td style="padding: 6px 0; color: {text_muted}; font-weight: 500;">Cuenta</td>
+                    <td style="padding: 6px 0; color: {text_color}; font-weight: 600;">0205021329</td>
+                </tr>
+                <tr style="border-bottom: 1px solid {border_color};">
+                    <td style="padding: 6px 0; color: {text_muted}; font-weight: 500;">CLABE</td>
+                    <td style="padding: 6px 0; color: {accent_color}; font-weight: 700; letter-spacing: 0.03em;">072-320-00205021329-4</td>
+                </tr>
+                <tr>
+                    <td style="padding: 6px 0; color: {text_muted}; font-weight: 500;">Sucursal</td>
+                    <td style="padding: 6px 0; color: {text_color}; font-weight: 600;">0205 Guadalajara Patria</td>
+                </tr>
+            </table>
+            <div style="margin-top: 0.6rem; padding: 6px 10px; background: {green_bg}; border-radius: 6px; font-size: 0.78rem; color: {green_color};">
+                ℹ️ Exclusivo para pagos en bancos Banorte o App Banorte móvil
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    with col_slp:
+        st.markdown(f"""
+        <div class="custom-card" style="border-left: 4px solid {accent_color} !important;">
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 0.8rem;">
+                <span style="font-size: 1.1rem; font-weight: 700; color: {text_color};">🏦 Cuenta San Luis Potosí (SLP)</span>
+                <span class="badge badge-blue">BANORTE</span>
+            </div>
+            <table style="width: 100%; font-size: 0.88rem; border-collapse: collapse;">
+                <tr style="border-bottom: 1px solid {border_color};">
+                    <td style="padding: 6px 0; color: {text_muted}; font-weight: 500;">Razón Social</td>
+                    <td style="padding: 6px 0; color: {text_color}; font-weight: 600;">SANIGLOBAL MEXICO, S.A. DE C.V.</td>
+                </tr>
+                <tr style="border-bottom: 1px solid {border_color};">
+                    <td style="padding: 6px 0; color: {text_muted}; font-weight: 500;">RFC</td>
+                    <td style="padding: 6px 0; color: {text_color}; font-weight: 600;">ALN1109071B2</td>
+                </tr>
+                <tr style="border-bottom: 1px solid {border_color};">
+                    <td style="padding: 6px 0; color: {text_muted}; font-weight: 500;">Cuenta</td>
+                    <td style="padding: 6px 0; color: {text_color}; font-weight: 600;">1298412308</td>
+                </tr>
+                <tr style="border-bottom: 1px solid {border_color};">
+                    <td style="padding: 6px 0; color: {text_muted}; font-weight: 500;">CLABE</td>
+                    <td style="padding: 6px 0; color: {accent_color}; font-weight: 700; letter-spacing: 0.03em;">072-320-01298412308-4</td>
+                </tr>
+                <tr>
+                    <td style="padding: 6px 0; color: {text_muted}; font-weight: 500;">Sucursal</td>
+                    <td style="padding: 6px 0; color: {text_color}; font-weight: 600;">0205 Guadalajara Patria</td>
+                </tr>
+            </table>
+            <div style="margin-top: 0.6rem; padding: 6px 10px; background: rgba(37,99,235,0.1); border-radius: 6px; font-size: 0.78rem; color: {accent_color};">
+                ℹ️ Exclusivo para pagos en bancos Banorte o App Banorte móvil
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    st.markdown("<div class='h-divider'></div>", unsafe_allow_html=True)
+    
+    # ---- SECTION 2: ENLACES Y FORMULARIOS INTERNOS ----
+    st.markdown("### 🔗 Enlaces y Formularios Internos")
+    
+    st.markdown(f"""
+    <div class="custom-card" style="border-left: 4px solid {amber_color} !important;">
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 0.5rem;">
+            <span style="font-size: 1.1rem; font-weight: 700; color: {text_color};">📋 Requisiciones (Solicitudes de Compras Internas)</span>
+        </div>
+        <p style="font-size: 0.88rem; color: {text_muted}; margin-bottom: 0.8rem;">
+            Formulario oficial para solicitar compras internas de la empresa. Úsalo cuando necesites material, equipo o insumos para operaciones.
+        </p>
+        <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=WQjhOqwPrE6kcajSjnVGSC7IUYC3Y4tOuyooMnmszwVUN0E4NDdNR0ZKSUlRTlM2RlE5WlFBNEFXWC4u" target="_blank" 
+           style="display: inline-block; background: {amber_color}; color: #ffffff; padding: 8px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.88rem;">
+            🔗 Abrir formulario de requisiciones →
+        </a>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    st.markdown("<div class='h-divider'></div>", unsafe_allow_html=True)
+    
+    # ---- SECTION 3: MENSAJES RÁPIDOS ----
+    st.markdown("### ⚡ Mensajes Rápidos (Plantillas de Texto)")
     st.markdown("Buscador de mensajes rápidos y material de apoyo para interactuar con los clientes en Kommo CRM.")
 
     # Search bar for templates
