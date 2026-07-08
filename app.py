@@ -671,6 +671,78 @@ with tab_banos:
     with st.expander("📬 5. Proceso Obligatorio de Programación y Envío a Facturación/Operaciones"):
         render_markdown_with_images(sections.get("programacion_banos", ""))
         
+    with st.expander("💳 6. Métodos de Pago y Reglas de Facturación"):
+        st.markdown(f"""
+        La forma de cobro al cliente depende de si requiere o no factura fiscal. A continuación se detallan las reglas para cada escenario:
+        """)
+        
+        col_factura, col_sin = st.columns(2)
+        
+        with col_factura:
+            st.markdown(f"""
+            <div style="background: {green_bg}; border: 1px solid {green_color}; border-radius: 10px; padding: 1.2rem; height: 100%;">
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 0.8rem;">
+                    <span style="font-size: 1.3rem;">🧾</span>
+                    <span style="font-size: 1.05rem; font-weight: 700; color: {green_color};">CON FACTURA</span>
+                </div>
+                <p style="font-size: 0.85rem; color: {text_muted}; margin-bottom: 0.8rem;">
+                    Cuando el cliente <strong style="color: {text_color};">SÍ requiere factura</strong>, se acepta <u>cualquier método de pago</u>:
+                </p>
+                <ul style="font-size: 0.85rem; color: {text_color}; padding-left: 1.2rem; margin-bottom: 0.8rem;">
+                    <li>✅ Transferencia bancaria (SPEI)</li>
+                    <li>✅ Depósito bancario en ventanilla</li>
+                    <li>✅ Pago vía link de Clip (tarjeta)</li>
+                    <li>✅ Retiro sin tarjeta en cajero</li>
+                    <li>✅ Cheque (salvo buen cobro)</li>
+                    <li>✅ Efectivo contra entrega</li>
+                </ul>
+                <div style="background: {card_bg}; border: 1px solid {border_color}; border-radius: 8px; padding: 0.7rem; margin-top: 0.5rem;">
+                    <strong style="color: {green_color}; font-size: 0.82rem;">💰 IVA:</strong>
+                    <span style="font-size: 0.82rem; color: {text_color};"> <strong>Siempre se cobra el IVA (16%)</strong> obligatoriamente en operaciones con factura.</span>
+                </div>
+            </div>
+            """, unsafe_allow_html=True)
+        
+        with col_sin:
+            st.markdown(f"""
+            <div style="background: {amber_bg}; border: 1px solid {amber_color}; border-radius: 10px; padding: 1.2rem; height: 100%;">
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 0.8rem;">
+                    <span style="font-size: 1.3rem;">📄</span>
+                    <span style="font-size: 1.05rem; font-weight: 700; color: {amber_color};">SIN FACTURA</span>
+                </div>
+                <p style="font-size: 0.85rem; color: {text_muted}; margin-bottom: 0.8rem;">
+                    Cuando el cliente <strong style="color: {text_color};">NO requiere factura</strong>, <u>solo</u> se aceptan estos métodos:
+                </p>
+                <ul style="font-size: 0.85rem; color: {text_color}; padding-left: 1.2rem; margin-bottom: 0.8rem;">
+                    <li>✅ Retiro sin tarjeta en cajero</li>
+                    <li>✅ Efectivo <strong>(antes de entregar el baño)</strong></li>
+                </ul>
+                <div style="background: {card_bg}; border: 1px solid {border_color}; border-radius: 8px; padding: 0.7rem; margin-bottom: 0.5rem;">
+                    <strong style="color: {amber_color}; font-size: 0.82rem;">💰 IVA:</strong>
+                    <span style="font-size: 0.82rem; color: {text_color};"> El cliente <strong>puede deslindarse de pagar el IVA</strong> al no requerir factura.</span>
+                </div>
+                <div style="background: {red_bg}; border: 1px solid {red_color}; border-radius: 8px; padding: 0.7rem;">
+                    <strong style="color: {red_color}; font-size: 0.82rem;">⚠️ Política interna:</strong>
+                    <span style="font-size: 0.82rem; color: {text_color};"> Internamente se debe <strong>evitar ofrecer esta opción</strong>. Reservarla <strong>solo para eventos</strong>.</span>
+                </div>
+            </div>
+            """, unsafe_allow_html=True)
+        
+        st.markdown("")
+        st.markdown(f"""
+        <div style="background: {card_bg}; border: 1px solid {accent_color}; border-left: 4px solid {accent_color}; border-radius: 8px; padding: 1rem; margin-top: 0.5rem;">
+            <strong style="color: {accent_color}; font-size: 0.9rem;">📋 Datos obligatorios para cobro en efectivo (sin factura):</strong>
+            <p style="font-size: 0.85rem; color: {text_color}; margin-top: 0.5rem; margin-bottom: 0;">
+                Cuando el pago será en efectivo antes de la entrega, debes solicitar al cliente:
+            </p>
+            <ol style="font-size: 0.85rem; color: {text_color}; padding-left: 1.2rem; margin-top: 0.4rem; margin-bottom: 0;">
+                <li><strong>Dirección de domicilio</strong> donde se recogerá el pago.</li>
+                <li><strong>Horario disponible</strong> para la recolección del efectivo.</li>
+                <li><strong>Nombre de la persona</strong> que entregará el efectivo al operador.</li>
+            </ol>
+        </div>
+        """, unsafe_allow_html=True)
+        
     st.markdown("<div class='h-divider'></div>", unsafe_allow_html=True)
     st.markdown("### 📊 Tablero Visual de Etapas del Embudo (Renta de Baños)")
     st.markdown("El embudo se compone de **18 etapas** secuenciales en el orden exacto de tu CRM. Cada columna representa una etapa individual en orden de flujo comercial. Haz clic en cada tarjeta para ver su detalle:")
