@@ -782,9 +782,6 @@ with tab_banos:
         # --- FLOW SECTION ---
         st.markdown("**🔄 Flujo del Programa de Protección (paso a paso):**")
         
-        # --- FLOW SECTION ---
-        st.markdown("**🔄 Flujo del Programa de Protección (paso a paso):**")
-        
         st.markdown(f"""<div style="background: {card_bg}; border: 1px solid {border_color}; border-left: 4px solid {accent_color}; border-radius: 8px; padding: 12px 16px; margin-bottom: 10px;">
 <div style="display: flex; align-items: center; gap: 10px;">
 <span style="background: {accent_color}; color: #fff; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.85rem; flex-shrink: 0;">1</span>
@@ -796,25 +793,35 @@ El vendedor incluye el Programa de Protección como <strong>opción adicional</s
 </p>
 </div>
 
-<div style="background: {card_bg}; border: 1px solid {border_color}; border-left: 4px solid {accent_color}; border-radius: 8px; padding: 12px 16px; margin-bottom: 10px;">
-<div style="display: flex; align-items: center; gap: 10px;">
-<span style="background: {accent_color}; color: #fff; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.85rem; flex-shrink: 0;">2</span>
-<strong style="color: {text_color}; font-size: 0.95rem;">Iniciar Sesión en la Plataforma de Gestión</strong>
-<span style="background: rgba(37,99,235,0.1); color: {accent_color}; padding: 2px 8px; border-radius: 4px; font-size: 0.72rem; font-weight: 700; margin-left: auto;">ACCESO</span>
-</div>
-<p style="font-size: 0.85rem; color: {text_muted}; margin: 8px 0 0 38px;">
-Ingresar a <a href="https://saniglobal.com.mx/gestion-banos.php" target="_blank" style="color: {accent_color}; font-weight: 600;">saniglobal.com.mx/gestion-banos.php</a> e iniciar sesión con tu cuenta de <strong>Outlook (@saniglobal.com.mx)</strong>.
-</p>
-</div>
-
 <div style="background: {card_bg}; border: 1px solid {border_color}; border-left: 4px solid {green_color}; border-radius: 8px; padding: 12px 16px; margin-bottom: 10px;">
 <div style="display: flex; align-items: center; gap: 10px;">
-<span style="background: {green_color}; color: #fff; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.85rem; flex-shrink: 0;">3</span>
-<strong style="color: {text_color}; font-size: 0.95rem;">Etapa 1: Vendedor Llena la Solicitud</strong>
-<span style="background: {green_bg}; color: {green_color}; padding: 2px 8px; border-radius: 4px; font-size: 0.72rem; font-weight: 700; margin-left: auto;">VENTAS</span>
+<span style="background: {green_color}; color: #fff; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.85rem; flex-shrink: 0;">2</span>
+<strong style="color: {text_color}; font-size: 0.95rem;">Aceptación del Cliente y Contrato en G8 ($99.00 + IVA por Baño)</strong>
+<span style="background: {green_bg}; color: {green_color}; padding: 2px 8px; border-radius: 4px; font-size: 0.72rem; font-weight: 700; margin-left: auto;">COBRO Y G8</span>
+</div>
+<div style="font-size: 0.85rem; color: {text_muted}; margin: 8px 0 0 38px;">
+En caso de que el cliente acepte el programa:
+<ul style="margin: 6px 0 0 0; padding-left: 18px; color: {text_color};">
+<li><strong>Costo del Programa:</strong> Se cobra <strong>$99.00 antes de IVA</strong> por cada baño al mes. Este importe se suma directamente al precio unitario del baño en la cotización/contrato.</li>
+<li><strong>Contrato en Paralelo en G8:</strong> Al generar el contrato en el sistema G8:
+    <ul style="margin: 4px 0 0 0; padding-left: 18px; color: {text_muted};">
+    <li>Se actualiza el precio unitario del sanitario sumando los $99.00 antes de IVA.</li>
+    <li>En el campo <strong>Observaciones</strong> del contrato en G8, es <strong>obligatorio</strong> asentar la leyenda de contratación y el <strong>número de Folio</strong> que arroja el sistema de gestión.</li>
+    <li><em>Ejemplo exacto:</em> <code style="background: {bg_subtle}; padding: 2px 6px; border-radius: 4px; color: {accent_color};">Se contrata Programa de protección para el baño 11 SMJ 088 Rojo con número de Folio A-0805</code></li>
+    </ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div style="background: {card_bg}; border: 1px solid {border_color}; border-left: 4px solid {accent_color}; border-radius: 8px; padding: 12px 16px; margin-bottom: 10px;">
+<div style="display: flex; align-items: center; gap: 10px;">
+<span style="background: {accent_color}; color: #fff; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.85rem; flex-shrink: 0;">3</span>
+<strong style="color: {text_color}; font-size: 0.95rem;">Iniciar Sesión y Llenar Solicitud en Plataforma (Etapa 1 - Ventas)</strong>
+<span style="background: rgba(37,99,235,0.1); color: {accent_color}; padding: 2px 8px; border-radius: 4px; font-size: 0.72rem; font-weight: 700; margin-left: auto;">VENTAS</span>
 </div>
 <p style="font-size: 0.85rem; color: {text_muted}; margin: 8px 0 0 38px;">
-El vendedor llena <strong>todos los campos iniciales</strong> (datos del cliente, correos de contacto, notas operativas) y al finalizar hace clic en el botón <strong>"Enviar Solicitud a Operaciones (Etapa 1)"</strong>.
+Ingresar a <a href="https://saniglobal.com.mx/gestion-banos.php" target="_blank" style="color: {accent_color}; font-weight: 600;">saniglobal.com.mx/gestion-banos.php</a> e iniciar sesión con tu cuenta de <strong>Outlook (@saniglobal.com.mx)</strong>. El sistema genera automáticamente el <strong>Número de Afiliación (Folio)</strong>. El vendedor completa los datos de cliente, obra, correos y hace clic en <strong>"Enviar Solicitud a Operaciones (Etapa 1)"</strong>.
 </p>
 </div>
 
@@ -843,6 +850,14 @@ El cliente recibe la constancia y debe <strong>firmarla</strong> para que la cob
 </ul>
 </div>
 </div>""", unsafe_allow_html=True)
+        
+        # Reference images for G8 & Platform linking
+        st.markdown("**📸 Guía Visual: Relación del Folio en Plataforma de Gestión y Contrato G8:**")
+        col_img1, col_img2 = st.columns(2)
+        with col_img1:
+            st.image("assets/image11.png", caption="1. Folio arrojado en el Formulario de Afiliación (ej. A-0805)", use_container_width=True)
+        with col_img2:
+            st.image("assets/image12.png", caption="2. Observaciones del Contrato G8 con leyenda y precio ($99 + IVA)", use_container_width=True)
         
         st.markdown("<div class='h-divider'></div>", unsafe_allow_html=True)
         
