@@ -743,6 +743,130 @@ with tab_banos:
         </div>
         """, unsafe_allow_html=True)
         
+    with st.expander("🛡️ 7. Programa de Protección de Baños (Opcional en Cotización)"):
+        st.markdown(f"""
+        El **Programa de Protección** es un servicio opcional que se ofrece al cliente desde la cotización. 
+        Protege al arrendatario contra daños accidentales al equipo sanitario durante el periodo de renta, 
+        cubriendo reparaciones o reposición por siniestros documentados.
+        """)
+        
+        # Links section
+        st.markdown(f"""
+        <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 1rem;">
+            <a href="https://saniglobal.com.mx/programa-de-proteccion-banos/" target="_blank" 
+               style="display: inline-flex; align-items: center; gap: 6px; background: {accent_color}; color: #fff; padding: 8px 16px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.85rem;">
+                🌐 Ver Términos y Condiciones →
+            </a>
+            <a href="https://saniglobal.com.mx/gestion-banos.php" target="_blank" 
+               style="display: inline-flex; align-items: center; gap: 6px; background: {green_color}; color: #fff; padding: 8px 16px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.85rem;">
+                🖥️ Acceder a Plataforma de Gestión →
+            </a>
+            <a href="https://cotizaciones.saniglobal.com.mx/ver/Cotizacion_26603579.pdf" target="_blank" 
+               style="display: inline-flex; align-items: center; gap: 6px; background: {amber_color}; color: #fff; padding: 8px 16px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.85rem;">
+                📄 Ejemplo de Cotización con Programa →
+            </a>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        st.markdown(f"""
+        <div style="background: {red_bg}; border: 1px solid {red_color}; border-radius: 8px; padding: 0.8rem; margin-bottom: 1rem;">
+            <strong style="color: {red_color};">⚠️ Obligación del vendedor:</strong>
+            <span style="color: {text_color}; font-size: 0.88rem;"> Es <strong>responsabilidad de cada vendedor leer y conocer a fondo</strong> los 
+            <a href="https://saniglobal.com.mx/programa-de-proteccion-banos/" target="_blank" style="color: {accent_color}; font-weight: 600;">términos y condiciones del programa</a> 
+            antes de ofrecerlo al cliente.</span>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        st.markdown("<div class='h-divider'></div>", unsafe_allow_html=True)
+        
+        # --- FLOW SECTION ---
+        st.markdown("**🔄 Flujo del Programa de Protección (paso a paso):**")
+        
+        st.markdown(f"""
+        <div style="display: flex; flex-direction: column; gap: 0;">
+            <!-- STEP 1: Cotización -->
+            <div style="display: flex; align-items: flex-start; gap: 14px; padding: 12px 0;">
+                <div style="min-width: 36px; height: 36px; background: {accent_color}; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.9rem;">1</div>
+                <div>
+                    <div style="font-weight: 700; color: {text_color}; font-size: 0.92rem;">Ofrecerlo en la Cotización</div>
+                    <div style="font-size: 0.83rem; color: {text_muted};">El vendedor incluye el Programa de Protección como <strong>opción adicional</strong> en la cotización PDF. El cliente decide si lo contrata o no.</div>
+                </div>
+            </div>
+            <div style="border-left: 2px dashed {border_color}; height: 12px; margin-left: 17px;"></div>
+            
+            <!-- STEP 2: Login -->
+            <div style="display: flex; align-items: flex-start; gap: 14px; padding: 12px 0;">
+                <div style="min-width: 36px; height: 36px; background: {accent_color}; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.9rem;">2</div>
+                <div>
+                    <div style="font-weight: 700; color: {text_color}; font-size: 0.92rem;">Iniciar Sesión en la Plataforma de Gestión</div>
+                    <div style="font-size: 0.83rem; color: {text_muted};">Ingresar a <a href="https://saniglobal.com.mx/gestion-banos.php" target="_blank" style="color: {accent_color}; font-weight: 600;">saniglobal.com.mx/gestion-banos.php</a> 
+                    e iniciar sesión con tu <strong>correo de Outlook (@saniglobal.com.mx)</strong>.</div>
+                </div>
+            </div>
+            <div style="border-left: 2px dashed {border_color}; height: 12px; margin-left: 17px;"></div>
+            
+            <!-- STEP 3: Etapa 1 Ventas -->
+            <div style="display: flex; align-items: flex-start; gap: 14px; padding: 12px 0;">
+                <div style="min-width: 36px; height: 36px; background: {green_color}; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.9rem;">3</div>
+                <div style="flex: 1;">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <span style="font-weight: 700; color: {text_color}; font-size: 0.92rem;">Etapa 1 — Vendedor completa la solicitud</span>
+                        <span style="background: {green_bg}; color: {green_color}; padding: 2px 8px; border-radius: 4px; font-size: 0.72rem; font-weight: 700;">VENTAS</span>
+                    </div>
+                    <div style="font-size: 0.83rem; color: {text_muted}; margin-top: 4px;">El vendedor llena <strong>todos los campos del formulario</strong> (datos del cliente, correos, observaciones) y hace clic en el botón <strong>"Enviar Solicitud a Operaciones (Etapa 1)"</strong>.</div>
+                </div>
+            </div>
+            <div style="border-left: 2px dashed {border_color}; height: 12px; margin-left: 17px;"></div>
+            
+            <!-- STEP 4: Etapa 2 Operaciones -->
+            <div style="display: flex; align-items: flex-start; gap: 14px; padding: 12px 0;">
+                <div style="min-width: 36px; height: 36px; background: {amber_color}; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.9rem;">4</div>
+                <div style="flex: 1;">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <span style="font-weight: 700; color: {text_color}; font-size: 0.92rem;">Etapa 2 — Operaciones (E&R) completa y envía</span>
+                        <span style="background: {amber_bg}; color: {amber_color}; padding: 2px 8px; border-radius: 4px; font-size: 0.72rem; font-weight: 700;">OPERACIONES</span>
+                    </div>
+                    <div style="font-size: 0.83rem; color: {text_muted}; margin-top: 4px;">El área de Entregas y Retiros <strong>recibe la solicitud por correo</strong>, llena los campos restantes (datos de la entrega, fotografías del estado inicial del baño) y hace clic en <strong>"Guardar y Enviar Constancia Final (Etapa 2)"</strong> para enviarla al cliente.</div>
+                </div>
+            </div>
+            <div style="border-left: 2px dashed {border_color}; height: 12px; margin-left: 17px;"></div>
+            
+            <!-- STEP 5: Firma -->
+            <div style="display: flex; align-items: flex-start; gap: 14px; padding: 12px 0;">
+                <div style="min-width: 36px; height: 36px; background: #8b5cf6; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.9rem;">5</div>
+                <div>
+                    <div style="font-weight: 700; color: {text_color}; font-size: 0.92rem;">Firma del Cliente</div>
+                    <div style="font-size: 0.83rem; color: {text_muted};">El cliente recibe la constancia, la <strong>firma y la devuelve</strong> ya sea:</div>
+                    <ul style="font-size: 0.83rem; color: {text_muted}; margin-top: 4px; padding-left: 1.2rem; margin-bottom: 0;">
+                        <li><strong>Escaneada:</strong> por correo electrónico o WhatsApp.</li>
+                        <li><strong>Física:</strong> entregándola a alguno de los gestores, operadores de limpieza o de entregas.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        st.markdown("<div class='h-divider'></div>", unsafe_allow_html=True)
+        
+        # --- SINIESTROS ---
+        st.markdown("**🚨 Registro de Siniestros:**")
+        st.markdown(f"""
+        <div style="background: {red_bg}; border: 1px solid {red_color}; border-radius: 10px; padding: 1rem;">
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 0.5rem;">
+                <span style="font-size: 1.1rem;">🚨</span>
+                <span style="font-size: 0.95rem; font-weight: 700; color: {red_color};">Alta de Siniestros</span>
+            </div>
+            <p style="font-size: 0.85rem; color: {text_color}; margin-bottom: 0.5rem;">
+                Cuando ocurra un daño al equipo sanitario durante la renta, el siniestro se <strong>da de alta en la misma plataforma de gestión</strong> 
+                (<a href="https://saniglobal.com.mx/gestion-banos.php" target="_blank" style="color: {accent_color}; font-weight: 600;">saniglobal.com.mx/gestion-banos.php</a>).
+            </p>
+            <p style="font-size: 0.85rem; color: {text_color}; margin-bottom: 0;">
+                Se debe registrar: <strong>fecha del siniestro</strong>, <strong>descripción del daño</strong> y <strong>fotografías de evidencia</strong>. 
+                Esto es clave para que la cobertura del programa aplique correctamente.
+            </p>
+        </div>
+        """, unsafe_allow_html=True)
+
     st.markdown("<div class='h-divider'></div>", unsafe_allow_html=True)
     st.markdown("### 📊 Tablero Visual de Etapas del Embudo (Renta de Baños)")
     st.markdown("El embudo se compone de **18 etapas** secuenciales en el orden exacto de tu CRM. Cada columna representa una etapa individual en orden de flujo comercial. Haz clic en cada tarjeta para ver su detalle:")
